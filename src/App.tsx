@@ -1,13 +1,13 @@
 import React from "react";
 import Layout from "./components/layout/Layout";
-import SortingVisualizer from "./components/sorting-visualizer/SortingVisualizer";
+import SortingPage from "./pages/visualizer/SortingPage";
 import "./App.scss";
 
 function App () {
 	return (
 		<div className="App">
 			<Layout>
-				<SortingVisualizer />
+				<SortingPage />
 			</Layout>
 		</div>
 	);

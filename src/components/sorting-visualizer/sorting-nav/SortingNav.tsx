@@ -74,8 +74,13 @@ const SortingNav: React.FC<Props> = (props) => {
 		[ userErrMessage ]
 	);
 
+	const sectionContainerClass =
+		numberOfSections >= 3
+			? classes["nav-quarter"]
+			: numberOfSections === 2 ? classes["nav-half"] : "";
+
 	return (
-		<nav className={classes["sorting-nav"]}>
+		<nav className={`${classes["sorting-nav"]} ${sectionContainerClass}`}>
 			<h3>Sorting Visualizer</h3>
 			<section className={classes["control-section"]}>
 				<div className={classes.control}>

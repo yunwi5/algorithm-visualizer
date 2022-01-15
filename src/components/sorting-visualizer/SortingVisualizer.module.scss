@@ -3,8 +3,8 @@
 .sorting-visualizer {
 	border: 1px solid $color-primary-dark-4;
 	min-height: 750px;
-	max-width: 96%;
-	margin: 5rem auto;
+	min-width: 96%;
+	margin: 0 auto;
 	background-color: lighten($color-primary-light-1, 20%);
 
 	display: flex;

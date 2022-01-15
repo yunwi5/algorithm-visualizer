@@ -127,7 +127,12 @@ const SortingSection: React.FC<Props> = (props) => {
 			/>
 			<div className={classes["bar-container"]}>
 				{sortingArray.map((bar, idx) => (
-					<SortingBar key={idx} arraySize={arraySize} bar={bar} />
+					<SortingBar
+						key={idx}
+						arraySize={arraySize}
+						bar={bar}
+						sortingSpeed={sortingSpeed}
+					/>
 				))}
 			</div>
 

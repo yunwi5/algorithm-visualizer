@@ -1,0 +1,42 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+
+.sorting-intro {
+	display: flex;
+	flex-direction: column;
+
+	h2 {
+		font-size: 5rem;
+		color: $color-grey-dark-4;
+		margin-bottom: 3rem;
+		font-weight: 300;
+	}
+
+	.text-container {
+		max-width: 70rem;
+		margin: 0 auto;
+		text-align: left;
+	}
+
+	p {
+		font-size: 1.7rem;
+		line-height: 2.2rem;
+		display: flex;
+		font-family: sans-serif;
+		font-weight: 400;
+
+		&:not(:last-child) {
+			margin-bottom: 2.2rem;
+		}
+
+		span {
+			display: inline-block;
+		}
+
+		i {
+			display: inline-block;
+			color: $color-secondary-dark-1;
+			margin-right: .7rem;
+		}
+	}
+}

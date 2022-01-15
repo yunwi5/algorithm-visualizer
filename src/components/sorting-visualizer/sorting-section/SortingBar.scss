@@ -17,20 +17,38 @@
 	align-items: flex-end;
 	width: 80%;
 	font-size: 60%;
+	&:hover {
+		background-color: $color-grey-dark-3;
+	}
 }
 
 .bar-pending {
 	background-color: $color-gold-light;
+
+	&:hover {
+		background-color: $color-gold;
+	}
 }
 
 .bar-swapped {
 	background-color: $color-secondary;
+
+	&:hover {
+		background-color: $color-secondary-dark-3;
+	}
 }
 
 .bar-sorted {
 	background-color: $color-primary-dark-3;
+
+	&:hover {
+		background-color: $color-primary-dark-4;
+	}
 }
 
 .bar-final {
 	background-color: $color-primary-light-2;
+	&:hover {
+		background-color: $color-primary;
+	}
 }

@@ -6,9 +6,10 @@ import "./SortingBar.scss";
 interface Props {
 	arraySize: number;
 	bar: Bar;
+	sortingSpeed: number;
 }
 
-const SortingBar: React.FC<Props> = ({ arraySize, bar }) => {
+const SortingBar: React.FC<Props> = ({ arraySize, bar, sortingSpeed }) => {
 	const { value, status } = bar;
 	const [ barStatus, setBarStatus ] = useState(status);
 
@@ -19,7 +20,8 @@ const SortingBar: React.FC<Props> = ({ arraySize, bar }) => {
 
 	const innerStyle = {
 		height: `${value / MAX_BAR_HEIGHT * 100}%`,
-		fontSize: `${getBarFontSize(arraySize)}%`
+		fontSize: `${getBarFontSize(arraySize)}%`,
+		transition: `height ${sortingSpeed / 1000}s ease`
 	};
 
 	// Bar animation effect

@@ -1,0 +1,45 @@
+@import "../../styles/abstracts/variables";
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	background: linear-gradient(to right bottom, $color-primary-light-3, $color-secondary);
+	color: $color-grey-light-1;
+	min-height: 6rem;
+
+	h2 {
+		margin-left: 2rem;
+		font-weight: 300;
+		font-size: 3rem;
+		display: flex;
+		align-items: center;
+	}
+
+	ul {
+		display: flex;
+		align-items: center;
+		font-size: 2rem;
+		list-style: none;
+		margin-right: 1.5rem;
+	}
+
+	li {
+		height: 68%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		cursor: pointer;
+		transition: all .5s ease-out;
+		padding: 0 .5rem;
+		margin-right: 1.5rem;
+
+		&:hover {
+			font-size: 101%;
+			border-bottom: 1.5px solid $color-grey-light-1;
+		}
+		&:last-child {
+			transform: translateY(1px);
+		}
+	}
+}
