@@ -1,0 +1,30 @@
+@mixin btn-medium() {
+	padding: 1.2rem 2rem;
+	border-radius: 5px;
+	min-width: 10rem;
+	font-size: 1.7rem;
+	cursor: pointer;
+	box-shadow: 0 2rem 6rem rgba($color-black, .2);
+}
+
+@mixin button-medium-empty($border) {
+	@include btn-medium;
+	border: 1px solid $border;
+	color: $border;
+	background: transparent;
+
+	&:hover {
+		border: 1px solid lighten($border, 15%);
+		color: lighten($border, 15%);
+	}
+}
+
+@mixin button-medium-fill($bg) {
+	@include btn-medium;
+	background-color: $bg;
+	border: 1px solid $bg;
+
+	&:hover {
+		background-color: lighten($bg, 10%);
+	}
+}

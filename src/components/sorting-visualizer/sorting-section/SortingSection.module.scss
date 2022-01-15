@@ -1,0 +1,65 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+
+.sorting-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 60rem;
+	width: 100%;
+	font-size: 2.5rem;
+	border: 1px solid $color-primary-dark-4;
+	background-color: lighten($color-primary-light-1, 18%);
+
+	.bar-container {
+		display: flex;
+		justify-content: space-between;
+		background-color: $color-grey-light-2;
+		min-width: 90%;
+		height: 50rem;
+	}
+
+	.sorting-summary {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		font-size: 80%;
+		padding: 1.5rem 0;
+		border-top: 1px solid $color-primary-dark-3;
+
+		& > *:not(:last-child) {
+			margin-right: 3rem;
+		}
+
+		.label {
+			font-family: sans-serif;
+			font-weight: 300;
+			color: $color-grey-dark-5;
+		}
+
+		.value {
+			font-weight: 600;
+			color: rgba($color-primary-dark-3, .8);
+		}
+	}
+}
+
+.section-half,
+.section-quarter {
+	font-size: 1.9rem;
+	min-width: 71rem;
+	width: 49.5%;
+}
+
+.section-half {
+	min-height: 35rem;
+	height: 50rem;
+	&:last-child {
+		margin-left: auto;
+	}
+}
+
+.section-quarter {
+	min-height: 30rem;
+	height: 32rem;
+}

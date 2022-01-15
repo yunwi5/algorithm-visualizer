@@ -1,0 +1,61 @@
+// Can change color base easily later on
+$color-primary-light-1: #aad1e7;
+$color-primary-light-2: #9dcfec;
+$color-primary-light-3: #7ac2ec;
+$color-primary-light-4: #3eabeb;
+$color-primary: #2ca3e7;
+$color-primary-dark-1: #0096c7;
+$color-primary-dark-2: #0077b6;
+$color-primary-dark-3: #023e8a;
+$color-primary-dark-4: #03045e;
+
+$color-secondary-light-1: #fae0e4;
+$color-secondary-light-2: #f7cad0;
+$color-secondary-light-3: #f9bec7;
+$color-secondary-light-4: #fbb1bd;
+$color-secondary: #ff99ac;
+$color-secondary-dark-1: #ff85a1;
+$color-secondary-dark-2: #ff7096;
+$color-secondary-dark-3: #ff477e;
+$color-secondary-dark-4: #ff0a54;
+
+$color-tertiary-dark: #3a506b;
+
+// For light backfound / font
+$color-grey-light-1: #faf9f9;
+$color-grey-light-2: #f4f2f2;
+$color-grey-light-3: #ccc;
+$color-grey-light-5: #5e5151;
+
+// For Box shadow
+$color-grey-dark-1: #aaa;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #777;
+$color-grey-dark-4: #555;
+$color-grey-dark-5: #333;
+$color-grey-dark-6: #222;
+
+$color-black: #111;
+
+$color-gold-light: #ffef9e;
+$color-gold: #ffd60a;
+$color-gold-dark: #ffc300;
+
+$shadow-light: 0 2rem 5rem rgba(0, 0, 0, .15);
+$shadow-dark: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+
+// Screen size break points.
+$bp-largest: 75em; // 1200px
+$bp-large: 68.75em; // 1100px
+$bp-medium: 56.25em; // 900px
+$bp-small: 37.5em;
+$bp-smallest: 31.25em;
+
+// FONT
+$font-size-small: 1.3rem;
+$font-size-medium: 1.6rem;
+
+// GRID
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-horizontal: 6rem;

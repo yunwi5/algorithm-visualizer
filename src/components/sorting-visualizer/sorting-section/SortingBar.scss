@@ -1,0 +1,36 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+
+.sorting-bar {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	// border: 1px solid $color-grey-dark-4;
+	font-size: 2rem;
+}
+
+.inner-bar {
+	background-color: $color-grey-dark-1;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	width: 80%;
+	font-size: 60%;
+}
+
+.bar-pending {
+	background-color: $color-gold-light;
+}
+
+.bar-swapped {
+	background-color: $color-secondary;
+}
+
+.bar-sorted {
+	background-color: $color-primary-dark-3;
+}
+
+.bar-final {
+	background-color: $color-primary-light-2;
+}
