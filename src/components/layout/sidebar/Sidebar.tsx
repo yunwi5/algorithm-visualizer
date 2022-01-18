@@ -3,15 +3,13 @@ import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/pro-light-svg-icons";
 import SideNav from "./SideNav";
-import Backdrop from "./Backdrop";
+import Backdrop from "../../ui/Backdrop";
 import classes from "./Sidebar.module.scss";
 
 /* Sidebar with backdrop */
-interface SidebarProps {}
-
 const sidebarDiv = document.getElementById("sidebar") as HTMLElement;
 
-const Sidebar: React.FC<SidebarProps> = (props) => {
+const Sidebar: React.FC = (props) => {
 	const [ showNav, setShowNav ] = useState(false);
 
 	return (
