@@ -1,12 +1,12 @@
 import { Fragment } from "react";
 import SortingVisualizer from "../../components/sorting-visualizer/SortingVisualizer";
-import SortingIntro from "../../components/sorting-visualizer/sorting-heading/SortingIntro";
+import SortingIntro from "../../components/sorting-visualizer/sorting-info/SortingIntro";
 
 const SortingPage: React.FC = () => {
 	return (
 		<Fragment>
-			<SortingIntro />
 			<SortingVisualizer />
+			<SortingIntro />
 		</Fragment>
 	);
 };

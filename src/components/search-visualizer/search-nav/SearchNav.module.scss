@@ -1,0 +1,38 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+@import "../../../styles/abstracts/mixin";
+
+.nav {
+	display: flex;
+	// justify-content: space-between;
+	align-items: center;
+	background-color: $color-secondary-light-2;
+	padding: .7rem 0;
+
+	& h2 {
+		font-size: 3.8rem;
+		font-weight: 300;
+		margin-left: 2rem;
+	}
+
+	& > *:not(:last-child) {
+		margin-right: 8rem;
+		display: flex;
+	}
+
+	.controls {
+		display: flex;
+	}
+
+	button {
+		margin-left: 9rem;
+		@include button-medium-fill($color-secondary-dark-2);
+		color: $color-grey-light-2;
+	}
+
+	button:disabled {
+		background-color: rgba($color-secondary-dark-2, .5);
+		border: 1px solid rgba($color-secondary-dark-2, .5);
+		cursor: not-allowed;
+	}
+}

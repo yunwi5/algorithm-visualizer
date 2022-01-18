@@ -1,5 +1,5 @@
-@import "../../../styles/abstracts/variables";
-@import "../../../styles/base/button";
+@import "../../styles/abstracts/variables";
+@import "../../styles/base/button";
 
 .sorting-bar {
 	height: 100%;
@@ -50,5 +50,41 @@
 	background-color: $color-primary-light-2;
 	&:hover {
 		background-color: $color-primary;
+	}
+}
+
+.bar-pivoted,
+.bar-selected {
+	background-color: #cdb4db;
+
+	&:hover {
+		background-color: #b69ac7;
+	}
+}
+
+// Search Specific
+.bar-correct,
+.bar-final-valid {
+	background-color: #95d5b2;
+
+	&:hover {
+		background-color: #74c69d;
+	}
+}
+
+.bar-incorrect,
+.bar-final-invalid {
+	background-color: $color-secondary-dark-1;
+
+	&:hover {
+		background-color: $color-secondary-dark-3;
+	}
+}
+
+.bar-pointed {
+	background-color: #cdb4db;
+
+	&:hover {
+		background-color: #b69ac7;
 	}
 }

@@ -1,0 +1,11 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/base/button";
+
+.bar-container {
+	display: flex;
+	justify-content: space-between;
+	background-color: $color-grey-light-2;
+	min-width: 90%;
+	height: clamp(35rem, 50rem, 700px);
+	box-shadow: 0 2rem 6rem rgba($color-black, .25);
+}

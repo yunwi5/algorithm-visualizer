@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import SortingNav from "./sorting-nav/SortingNav";
 import SortingSection from "./sorting-section/SortingSection";
-import { Bar } from "../../models/sorting-models";
+import { SortingBar } from "../../models/sorting-models";
 import { createRandomSortingArray } from "../../utilities/sotring-util.ts/sorting-util";
+import { DEFAULT_ARR_SIZE, DEFAULT_SPEED } from "../../utilities/calc-util";
 import classes from "./SortingVisualizer.module.scss";
-
-export const DEFAULT_ARR_SIZE = 20;
-export const DEFAULT_SORTING_SPEED = 10;
-export const MIN_SPEED = 500; // 500ms per operation
-export const MAX_SPEED = 1; // 5ms per operation
 
 export const MAXIMUM_NUMBER_OF_SECTIONS = 4;
 
 const SortingVisualizer: React.FC = () => {
 	const [ arraySize, setArraySize ] = useState(DEFAULT_ARR_SIZE);
-	const [ sortingSpeed, setSortingSpeed ] = useState(DEFAULT_SORTING_SPEED);
+	const [ sortingSpeed, setSortingSpeed ] = useState(DEFAULT_SPEED);
 
 	// Initial array and Sections management
-	const [ initialArray, setInitialArray ] = useState<Bar[]>([]);
+	const [ initialArray, setInitialArray ] = useState<SortingBar[]>([]);
 	const [ showSections, setShowSections ] = useState<boolean[]>([ true, false, false, false ]);
 	const numSections = showSections.reduce((prev, curr) => prev + (curr ? 1 : 0), 0);
 
@@ -29,7 +25,6 @@ const SortingVisualizer: React.FC = () => {
 	const [ fourthCompleted, setFourthCompleted ] = useState(false);
 
 	function sortingSectionsHandler () {
-		// if (!showSections.includes(false)) return;
 		const secs = [ ...showSections ];
 		const falseIndex = secs.findIndex((bool) => !bool);
 		secs[falseIndex] = true;

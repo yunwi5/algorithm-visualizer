@@ -1,0 +1,29 @@
+@import "../../../styles/abstracts/variables";
+
+.search-section {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	& > *:last-child {
+		max-height: 420px;
+	}
+
+	& > *:first-child {
+		align-self: flex-start;
+	}
+
+	p {
+		position: absolute;
+		top: 7%;
+		right: 1%;
+		font-size: 180%;
+		color: $color-secondary-dark-2;
+	}
+}
+
+.section-long {
+	& > *:last-child {
+		max-height: 520px;
+	}
+}

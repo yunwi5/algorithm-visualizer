@@ -1,4 +1,4 @@
-import { BarState, Bar } from "../../models/sorting-models";
+import { BarState, SortingBar as Bar } from "../../models/sorting-models";
 
 export const MIN_BAR_HEIGHT = 5;
 export const MAX_BAR_HEIGHT = 200;
@@ -17,15 +17,6 @@ export function createRandomSortingArray (arrSize: number) {
 
 	return randomArr;
 }
-
-// export function createDeepCopyBarArray (originalArr: Bar[]) {
-// 	let newArr: Bar[] = [];
-// 	for (let bar of originalArr) {
-// 		const barCopy = { ...bar };
-// 		newArr.push(barCopy);
-// 	}
-// 	return newArr;
-// }
 
 // Dynammic bar styling which is the key of the animation
 export function getBarFontSize (arraySize: number) {

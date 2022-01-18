@@ -1,11 +1,7 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
+import RangeSection from "../../graphs/graph-support/RangeSection";
+import { toSortingSpeed } from "../../../utilities/calc-util";
 import classes from "./SortingNav.module.scss";
-import {
-	DEFAULT_ARR_SIZE,
-	DEFAULT_SORTING_SPEED,
-	MIN_SPEED,
-	MAX_SPEED
-} from "../SortingVisualizer";
 
 interface Props {
 	isBegin: boolean;
@@ -14,20 +10,6 @@ interface Props {
 	onChangeStart: (isBegin: boolean) => void;
 	onAddSection: () => void;
 	numberOfSections: number;
-}
-
-// Translate range value to sorting speed in ms.
-function toSortingSpeed (value: number) {
-	// x1 should be 500ms per operation
-	// x100 should be 5ms per operation
-	const reverse = 1 / value;
-	const speed = reverse * ((MIN_SPEED + MAX_SPEED) / 2);
-	return speed;
-}
-
-// Exact Reverse of toSortingSpeed Fn.
-function sortingSpeedToRange (sortingSpeed: number) {
-	return 1 / (sortingSpeed / MIN_SPEED);
 }
 
 const SortingNav: React.FC<Props> = (props) => {
@@ -82,32 +64,8 @@ const SortingNav: React.FC<Props> = (props) => {
 	return (
 		<nav className={`${classes["sorting-nav"]} ${sectionContainerClass}`}>
 			<h3>Sorting Visualizer</h3>
-			<section className={classes["control-section"]}>
-				<div className={classes.control}>
-					<label htmlFor="array-size">Array Size</label>
-					<input
-						name="array-size"
-						id="array-size"
-						type="range"
-						min="5"
-						max="300"
-						defaultValue={DEFAULT_ARR_SIZE}
-						onChange={arrSizeHandler}
-					/>
-				</div>
-				<div className={classes.control}>
-					<label htmlFor="sorting-speed">Sorting Speed</label>
-					<input
-						name="sorting-speed"
-						id="sorting-speed"
-						type="range"
-						min="1"
-						max="100"
-						defaultValue={sortingSpeedToRange(DEFAULT_SORTING_SPEED)}
-						onChange={sortSpeedHandler}
-					/>
-				</div>
-			</section>
+
+			<RangeSection onChangeSize={arrSizeHandler} onChangeSpeed={sortSpeedHandler} />
 
 			<div className={classes.buttons}>
 				{!isBegin && (

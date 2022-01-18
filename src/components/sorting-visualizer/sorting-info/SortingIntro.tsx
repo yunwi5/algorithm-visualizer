@@ -11,7 +11,7 @@ const SortingIntro: React.FC = () => {
 						If you want to explore sorting algorithms, if you want to revise the sorting
 						algorithms you learned before, or if you just want to have fun watching cool
 						dynamic animations, try the visualizer on your own! Have a look at how we
-						animated the most sorting algorithms existing in the world.
+						animated the most popular sorting algorithms existing in the world.
 					</span>
 				</p>
 				<p>

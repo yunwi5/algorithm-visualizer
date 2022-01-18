@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import classes from "./Header.module.scss";
 
 const Header: React.FC = () => {
@@ -6,9 +7,25 @@ const Header: React.FC = () => {
 		<header className={classes.header}>
 			<h2>AlgoVisualizer</h2>
 			<ul>
-				<li>Network Flow</li>
-				<li>Path Finding</li>
-				<li>Sorting</li>
+				<li>
+					<NavLink to="/sorting">Path Finding</NavLink>
+				</li>
+				<li>
+					<NavLink
+						className={(navData) => (navData.isActive ? classes.active : "")}
+						to="/searching"
+					>
+						Searching
+					</NavLink>
+				</li>
+				<li>
+					<NavLink
+						className={(navData) => (navData.isActive ? classes.active : "")}
+						to="/sorting"
+					>
+						Sorting
+					</NavLink>
+				</li>
 			</ul>
 		</header>
 	);

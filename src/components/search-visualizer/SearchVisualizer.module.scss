@@ -1,0 +1,28 @@
+.search-visualizer {
+	margin-top: 9rem;
+	max-height: clamp(100vh, 75rem, 770px);
+	// overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.content {
+	// background-color: blue;
+}
+
+.sections {
+	flex: 1;
+	margin-top: 4rem;
+	display: flex;
+	justify-content: space-around;
+	padding: 0 2rem;
+
+	& > * {
+		flex: 1;
+	}
+
+	& > *:not(:last-child) {
+		margin-right: 2.5rem;
+	}
+}

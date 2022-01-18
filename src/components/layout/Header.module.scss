@@ -1,4 +1,5 @@
 @import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixin";
 
 .header {
 	display: flex;
@@ -25,21 +26,28 @@
 
 	li {
 		height: 68%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@include flex-center;
 
 		cursor: pointer;
 		transition: all .5s ease-out;
-		padding: 0 .5rem;
 		margin-right: 1.5rem;
+		padding: 0 0.5rem;
 
 		&:hover {
 			font-size: 101%;
 			border-bottom: 1.5px solid $color-grey-light-1;
 		}
-		&:last-child {
-			transform: translateY(1px);
+
+		a {
+			display: block;
+			height: 100%;
+			text-decoration: none;
+			color: inherit;
+			@include flex-center;
+		}
+
+		.active {
+			border-bottom: 1.5px solid $color-grey-light-1;
 		}
 	}
 }

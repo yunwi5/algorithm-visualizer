@@ -22,10 +22,11 @@ export enum BarState {
 	SWAPPED = "swapped",
 	SORTED = "sorted",
 	FINAL = "final",
-	PIVOTED = "pivoted"
+	PIVOTED = "pivoted",
+	SELECTED = "selected"
 }
 
-export interface Bar {
+export interface SortingBar {
 	value: number;
 	status: BarState;
 }
@@ -37,9 +38,12 @@ export enum Action {
 	PEND = "pend",
 	COMPLETE = "complete",
 	FINALIZE = "finalize",
-	PIVOTIZE = "pivotize"
+	PIVOTIZE = "pivotize",
+	// New action for SelectionSort
+	SELECT = "select"
 }
 
+// Invalid index is just -1.
 export interface SortingAction {
 	action: Action;
 	indexOne: number;

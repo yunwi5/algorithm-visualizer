@@ -1,18 +1,27 @@
 import { useState, useEffect } from "react";
 import SectionNav from "./SectionNav";
-import SortingBar from "./SortingBar";
-import { SortingAlgorithm, SortingAction, Action, Bar } from "../../../models/sorting-models";
-import { createRandomSortingArray } from "../../../utilities/sotring-util.ts/sorting-util";
+import BarList from "../../graphs/BarList";
+import {
+	SortingAlgorithm,
+	SortingAction,
+	Action,
+	SortingBar
+} from "../../../models/sorting-models";
+import {
+	createRandomSortingArray,
+	MAX_BAR_HEIGHT
+} from "../../../utilities/sotring-util.ts/sorting-util";
 import { createDeepArrayCopy } from "../../../utilities/list-util";
 import { getSortingActions } from "../../../utilities/sotring-util.ts/sorting-algo-util";
 import { executeSortingAction } from "../../../utilities/sotring-util.ts/sorting-action-util";
+import { getTimeElapsedInFormat } from "../../../utilities/calc-util";
 import classes from "./SortingSection.module.scss";
 
 interface Props {
 	isBegin: boolean;
 	arraySize: number;
 	sortingSpeed: number;
-	initialArray: Bar[];
+	initialArray: SortingBar[];
 	numberOfSections: number;
 	onResetStart: () => void;
 	onClose: () => void;
@@ -33,13 +42,14 @@ const SortingSection: React.FC<Props> = (props) => {
 	// Domain sorting algorithm
 	const [ algorithm, setAlgorithm ] = useState(SortingAlgorithm.BubbleSort);
 
-	// Sorting
-	const [ sortingArray, setSortingArray ] = useState<Bar[]>(initialArray);
+	// Sorting array & actions
+	const [ sortingArray, setSortingArray ] = useState<SortingBar[]>(initialArray);
 	const [ animationActions, setAnimationActions ] = useState<SortingAction[]>([]);
 
-	// Comparisons & Swaps operations counter
+	// Comparisons & swaps operations counter
 	const [ comparisons, setComparisons ] = useState(0);
 	const [ swaps, setSwaps ] = useState(0);
+	const [ timeElapsed, setTimeElapsed ] = useState<number | null>(null);
 
 	// Randomize Internally
 	function randomizeArray () {
@@ -47,7 +57,7 @@ const SortingSection: React.FC<Props> = (props) => {
 		setSortingArray(newRandomArray);
 		setComparisons(0);
 		setSwaps(0);
-		// Moved
+		// Get new sorting animation actions
 		const sortingActions = getSortingActions(newRandomArray, algorithm);
 		setAnimationActions(sortingActions);
 	}
@@ -62,7 +72,8 @@ const SortingSection: React.FC<Props> = (props) => {
 			setSortingArray(newRandomArray);
 			setComparisons(0);
 			setSwaps(0);
-			// Moved
+			setTimeElapsed(null);
+			// Get new sorting animation actions
 			const sortingActions = getSortingActions(newRandomArray, algorithm);
 			setAnimationActions(sortingActions);
 		},
@@ -87,11 +98,13 @@ const SortingSection: React.FC<Props> = (props) => {
 				// When Start turns to true
 				setComparisons(0);
 				setSwaps(0);
-
+				const startTime = performance.now();
 				let index = 0;
 				let interval = setInterval(() => {
 					if (index === animationActions.length) {
 						stopInterval(interval);
+						const finishTime = performance.now();
+						setTimeElapsed(finishTime - startTime);
 						return;
 					}
 					let action = animationActions[index];
@@ -125,16 +138,13 @@ const SortingSection: React.FC<Props> = (props) => {
 				onChangeAlgorithm={(algo: SortingAlgorithm) => setAlgorithm(algo)}
 				onRandomize={randomizeArray}
 			/>
-			<div className={classes["bar-container"]}>
-				{sortingArray.map((bar, idx) => (
-					<SortingBar
-						key={idx}
-						arraySize={arraySize}
-						bar={bar}
-						sortingSpeed={sortingSpeed}
-					/>
-				))}
-			</div>
+
+			<BarList
+				arraySize={arraySize}
+				speed={sortingSpeed}
+				barArray={sortingArray}
+				maxHeight={MAX_BAR_HEIGHT}
+			/>
 
 			<div className={classes["sorting-summary"]}>
 				<p>
@@ -149,6 +159,11 @@ const SortingSection: React.FC<Props> = (props) => {
 					<span className={classes.label}>Swaps: </span>
 					<span className={classes.value}>{swaps}</span>
 				</p>
+				{timeElapsed && (
+					<p className={classes.time}>
+						{getTimeElapsedInFormat(timeElapsed)}s <span>taken.</span>
+					</p>
+				)}
 			</div>
 		</section>
 	);

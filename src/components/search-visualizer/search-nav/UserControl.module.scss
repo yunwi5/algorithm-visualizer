@@ -1,0 +1,82 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/abstracts/mixin";
+@import "../../../styles/base/button";
+
+.controls {
+	margin-top: 7rem;
+	@include flex-center;
+}
+
+.control-wrapper {
+	position: relative;
+	&:not(:last-child) {
+		margin-right: 2.5rem;
+	}
+	padding-right: 1rem;
+
+	p {
+		position: absolute;
+		top: 105%;
+		color: $color-secondary-dark-3;
+		font-size: 1.6rem;
+	}
+}
+
+.control {
+	border: 1.5px solid $color-grey-dark-4;
+	padding: 1.2rem;
+	font-size: 2rem;
+	border-radius: 3px;
+	color: $color-grey-dark-5;
+
+	display: flex;
+	box-shadow: $shadow-light;
+
+	&:focus-within {
+		border: 2px solid $color-secondary-dark-1;
+
+		label {
+			border-right: 2px solid $color-secondary-dark-1;
+		}
+	}
+
+	label {
+		font-weight: 400;
+		border-right: 2px solid $color-grey-dark-4;
+		padding-right: 1rem;
+		margin-right: 1rem;
+	}
+
+	input {
+		border: none;
+		font-size: 100%;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.action {
+	button {
+		@include btn-grad;
+	}
+	p {
+		margin-top: 1rem;
+		color: $color-secondary-dark-3;
+		font-size: 1.6rem;
+	}
+}
+
+.control-long {
+	width: 29rem;
+	input {
+		min-width: 0;
+		flex: 1;
+	}
+}
+.control-short {
+	input {
+		width: 11rem;
+	}
+}
