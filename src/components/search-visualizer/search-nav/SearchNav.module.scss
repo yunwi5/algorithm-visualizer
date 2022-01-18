@@ -4,20 +4,31 @@
 
 .nav {
 	display: flex;
-	// justify-content: space-between;
 	align-items: center;
+	min-height: 6rem;
 	background-color: $color-secondary-light-2;
 	padding: .7rem 0;
-
-	& h2 {
-		font-size: 3.8rem;
-		font-weight: 300;
-		margin-left: 2rem;
-	}
+	font-size: 2rem;
 
 	& > *:not(:last-child) {
 		margin-right: 8rem;
 		display: flex;
+	}
+
+	.heading {
+		display: flex;
+		align-items: center;
+		color: $color-grey-dark-4;
+
+		& > *:first-child {
+			margin-left: 1.5rem;
+			margin-right: 2.7rem;
+		}
+
+		& h2 {
+			font-weight: 500;
+			font-size: 135%;
+		}
 	}
 
 	.controls {
@@ -27,6 +38,7 @@
 	button {
 		margin-left: 9rem;
 		@include button-medium-fill($color-secondary-dark-2);
+		font-size: 1.9rem;
 		color: $color-grey-light-2;
 	}
 

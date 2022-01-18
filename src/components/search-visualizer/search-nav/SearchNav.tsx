@@ -1,6 +1,8 @@
 import { useRef, useLayoutEffect } from "react";
 import RangeSection from "../../graphs/graph-support/RangeSection";
 import ToggleBar from "../../ui/ToggleBar";
+
+import Sidebar from "../../layout/sidebar/Sidebar";
 import { toMsSpeed } from "../../../utilities/calc-util";
 
 import classes from "./SearchNav.module.scss";
@@ -47,7 +49,10 @@ const SearchNav: React.FC<Props> = (props) => {
 
 	return (
 		<nav className={classes.nav}>
-			<h2>Search Visualizer</h2>
+			<div className={classes.heading}>
+				<Sidebar />
+				<h2>Search Visualizer</h2>
+			</div>
 			<div className={classes.controls}>
 				<RangeSection
 					onChangeSpeed={speedChangeHandler}
@@ -56,6 +61,8 @@ const SearchNav: React.FC<Props> = (props) => {
 					isBegin={isBegin}
 				/>
 				<ToggleBar onChange={displayDuoHandler} isBegin={isBegin} />
+			</div>
+			<div>
 				<button ref={btnRef} onClick={onRandomize}>
 					Randomize
 				</button>

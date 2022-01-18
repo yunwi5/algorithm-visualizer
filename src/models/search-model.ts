@@ -26,10 +26,10 @@ export interface SearchAction {
 export enum SearchBarState {
 	INITIAL = "initial",
 	PENDING = "pending",
-	POINTED = "pointed", // Binary Search
+	POINTED = "pointed point", // Binary Search
 	CORRECT = "correct",
 	INCORRECT = "incorrect",
-	FINAL_VALID = "final-valid",
+	FINAL_VALID = "final-valid point",
 	FINAL_INVALID = "final-invalid"
 }
 

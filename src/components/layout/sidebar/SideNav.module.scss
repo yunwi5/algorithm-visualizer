@@ -1,0 +1,57 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/abstracts/mixin";
+
+.sidenav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: clamp(100vh, 75rem, 750px);
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(to right bottom, $color-primary-light-3, $color-secondary);
+	color: $color-grey-light-1;
+
+	z-index: 30;
+
+	h2 {
+		font-weight: 300;
+		font-size: 3rem;
+		display: flex;
+		align-items: center;
+	}
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: 2rem;
+		list-style: none;
+		margin-right: 1.5rem;
+	}
+
+	li {
+		height: 68%;
+		@include flex-center;
+
+		cursor: pointer;
+		transition: all .5s ease-out;
+		padding: 0 0.5rem;
+
+		&:hover {
+			font-size: 101%;
+			border-bottom: 1.5px solid $color-grey-light-1;
+		}
+
+		a {
+			display: block;
+			height: 100%;
+			text-decoration: none;
+			color: inherit;
+			@include flex-center;
+		}
+
+		.active {
+			border-bottom: 1.5px solid $color-grey-light-1;
+		}
+	}
+}

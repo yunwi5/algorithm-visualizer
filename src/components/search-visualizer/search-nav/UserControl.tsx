@@ -61,15 +61,18 @@ const UserControl: React.FC<Props> = (props) => {
 		onBegin();
 	}
 
+	const targetValue = targetRef.current ? +targetRef.current.value : null;
+
 	useEffect(
 		() => {
 			if (targetErrMessage || minErrMessage || maxErrMessage) {
 				setOverallErrMessage("Please enter valid numbers first!");
 				return;
 			}
+			if (!targetValue || targetValue < 1) return;
 			setOverallErrMessage(null);
 		},
-		[ targetErrMessage, minErrMessage, maxErrMessage ]
+		[ targetValue, targetErrMessage, minErrMessage, maxErrMessage ]
 	);
 
 	return (

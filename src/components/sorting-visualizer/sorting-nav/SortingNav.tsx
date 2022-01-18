@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
+import Sidebar from "../../layout/sidebar/Sidebar";
 import RangeSection from "../../graphs/graph-support/RangeSection";
 import { toSortingSpeed } from "../../../utilities/calc-util";
 import classes from "./SortingNav.module.scss";
@@ -63,7 +64,10 @@ const SortingNav: React.FC<Props> = (props) => {
 
 	return (
 		<nav className={`${classes["sorting-nav"]} ${sectionContainerClass}`}>
-			<h3>Sorting Visualizer</h3>
+			<div className={classes.heading}>
+				<Sidebar />
+				<h3>Sorting Visualizer</h3>
+			</div>
 
 			<RangeSection onChangeSize={arrSizeHandler} onChangeSpeed={sortSpeedHandler} />
 

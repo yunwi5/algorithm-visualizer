@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { SortingBar, BarState } from "../../models/sorting-models";
 import { SearchBar, SearchBarState } from "../../models/search-model";
 import { getBarFontSize } from "../../utilities/sotring-util.ts/sorting-util";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faLongArrowAltDown } from "@fortawesome/pro-regular-svg-icons";
 import "./Bar.scss";
 
 interface Props {
@@ -17,6 +20,10 @@ function barIsFinal (barState: BarState | SearchBarState) {
 
 function barIsValidFinal (barState: BarState | SearchBarState) {
 	return barState === SearchBarState.FINAL_VALID;
+}
+
+function barHasArrowPointer (barState: BarState | SearchBarState) {
+	return barState.toLocaleLowerCase().includes("point");
 }
 
 const Bar: React.FC<Props> = (props) => {
@@ -51,8 +58,16 @@ const Bar: React.FC<Props> = (props) => {
 		[ status ]
 	);
 
+	const addArrow = barHasArrowPointer(status);
+	console.log("has arrow:", addArrow);
+
 	return (
 		<div className="sorting-bar" style={outerStyle}>
+			{addArrow && (
+				<div className="icon">
+					<FontAwesomeIcon icon={faLongArrowAltDown as IconProp} />
+				</div>
+			)}
 			<div style={innerStyle} className={`inner-bar bar-${barStatus}`}>
 				{arraySize < 50 && value}
 			</div>

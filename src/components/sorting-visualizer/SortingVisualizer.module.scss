@@ -1,9 +1,8 @@
 @import "../../styles/abstracts/variables";
 
 .sorting-visualizer {
-	border: 1px solid $color-primary-dark-4;
 	min-height: 750px;
-	min-width: 96%;
+	min-width: 100%;
 	margin: 0 auto;
 	background-color: lighten($color-primary-light-1, 20%);
 
