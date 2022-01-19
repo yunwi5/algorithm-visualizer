@@ -1,21 +1,29 @@
 import { NavLink } from "react-router-dom";
 import classes from "./SideNav.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLongArrowLeft } from "@fortawesome/pro-light-svg-icons";
+
+interface Prop {
+	onClose: () => void;
+}
 
 /* Side Navigation */
-const SideNav: React.FC = () => {
+const SideNav: React.FC<Prop> = (props) => {
+	const { onClose } = props;
+
 	return (
 		<aside className={classes.sidenav}>
-			<h2>AlgoVisualizer</h2>
+			<FontAwesomeIcon onClick={onClose} className={classes.icon} icon={faLongArrowLeft} />
+			<h2>
+				<span>Algo</span> <br /> <span>Visualizer</span>
+			</h2>
 			<ul>
-				<li>
-					<NavLink to="/sorting">Path Finding</NavLink>
-				</li>
 				<li>
 					<NavLink
 						className={(navData) => (navData.isActive ? classes.active : "")}
-						to="/searching"
+						to="/"
 					>
-						Searching
+						Home
 					</NavLink>
 				</li>
 				<li>
@@ -25,6 +33,18 @@ const SideNav: React.FC = () => {
 					>
 						Sorting
 					</NavLink>
+				</li>
+				<li>
+					<NavLink
+						className={(navData) => (navData.isActive ? classes.active : "")}
+						to="/searching"
+					>
+						Searching
+					</NavLink>
+				</li>
+
+				<li>
+					<NavLink to="/sorting">Path Finding</NavLink>
 				</li>
 			</ul>
 		</aside>

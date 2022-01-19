@@ -57,6 +57,7 @@ const SortingSection: React.FC<Props> = (props) => {
 		setSortingArray(newRandomArray);
 		setComparisons(0);
 		setSwaps(0);
+		setTimeElapsed(null);
 		// Get new sorting animation actions
 		const sortingActions = getSortingActions(newRandomArray, algorithm);
 		setAnimationActions(sortingActions);

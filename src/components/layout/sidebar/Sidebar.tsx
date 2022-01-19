@@ -12,18 +12,19 @@ const sidebarDiv = document.getElementById("sidebar") as HTMLElement;
 const Sidebar: React.FC = (props) => {
 	const [ showNav, setShowNav ] = useState(false);
 
+	const toggleSidebarHandler = () => {
+		setShowNav((prev) => !prev);
+	};
+
 	return (
 		<Fragment>
-			<div className={classes["icon-wrapper"]} onClick={() => setShowNav((prev) => !prev)}>
+			<div className={classes["icon-wrapper"]} onClick={toggleSidebarHandler}>
 				<FontAwesomeIcon className={classes.icon} icon={faBars} />
 			</div>
 			{showNav && (
 				<Fragment>
-					{ReactDOM.createPortal(
-						<Backdrop onClose={() => setShowNav(false)} />,
-						sidebarDiv
-					)}
-					{ReactDOM.createPortal(<SideNav />, sidebarDiv)}
+					{ReactDOM.createPortal(<Backdrop onClose={toggleSidebarHandler} />, sidebarDiv)}
+					{ReactDOM.createPortal(<SideNav onClose={toggleSidebarHandler} />, sidebarDiv)}
 				</Fragment>
 			)}
 		</Fragment>
