@@ -59,7 +59,6 @@ const Bar: React.FC<Props> = (props) => {
 	);
 
 	const addArrow = barHasArrowPointer(status);
-	console.log("has arrow:", addArrow);
 
 	return (
 		<div className="sorting-bar" style={outerStyle}>

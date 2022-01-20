@@ -14,13 +14,15 @@ export function getSortingActions (sortingArray: Bar[], algorithm: SortingAlgori
 	const sortingIntArray = sortingArray.map((bar) => bar.value);
 	let resArr: number[] = [];
 	if (algorithm === SortingAlgorithm.BubbleSort) {
-		resArr = BubbleSortAlgorithm(actionsArray, sortingIntArray);
+		resArr = bubbleSortAlgorithm(actionsArray, sortingIntArray);
 	} else if (algorithm === SortingAlgorithm.SelectionSort) {
-		resArr = SelectionSortAlgorithm(actionsArray, sortingIntArray);
+		resArr = selectionSortAlgorithm(actionsArray, sortingIntArray);
 		// BubbleSortAlgorithm(actionsArray, sortingIntArray);
+	} else if (algorithm === SortingAlgorithm.InsertionSort) {
+		resArr = insertionSortAlgorithm(actionsArray, sortingIntArray);
 	} else {
 		// Only have BubbleSort algorithm at the moment!
-		resArr = BubbleSortAlgorithm(actionsArray, sortingIntArray);
+		resArr = bubbleSortAlgorithm(actionsArray, sortingIntArray);
 	}
 
 	// Validate the output.
@@ -30,7 +32,49 @@ export function getSortingActions (sortingArray: Bar[], algorithm: SortingAlgori
 	return actionsArray;
 }
 
-function SelectionSortAlgorithm (actionsArray: SortingAction[], arr: number[]) {
+function insertionSortAlgorithm (actionsArray: SortingAction[], array: number[]) {
+	// Write your code here.
+	for (let curr = 0; curr <= array.length - 1; curr++) {
+		// Selected
+		actionsArray.push({
+			action: Action.SELECT,
+			indexOne: curr,
+			indexTwo: -1
+		});
+		for (let i = curr; i > 0; i--) {
+			actionsArray.push({
+				action: Action.PEND,
+				indexOne: i,
+				indexTwo: i - 1
+			});
+			// Terminate as the subarray is already sorted
+			if (array[i] >= array[i - 1]) break;
+
+			actionsArray.push({
+				action: Action.SWAP,
+				indexOne: i,
+				indexTwo: i - 1
+			});
+			[ array[i], array[i - 1] ] = [ array[i - 1], array[i] ];
+		}
+
+		actionsArray.push({
+			action: Action.COMPLETE,
+			indexOne: curr,
+			indexTwo: -1,
+			indexThree: curr
+		});
+	}
+
+	actionsArray.push({
+		action: Action.FINALIZE,
+		indexOne: -1,
+		indexTwo: -1
+	});
+	return array;
+}
+
+function selectionSortAlgorithm (actionsArray: SortingAction[], arr: number[]) {
 	let lastIndex = arr.length - 1;
 	while (lastIndex >= 0) {
 		let biggestIndex = 0;
@@ -99,7 +143,7 @@ function SelectionSortAlgorithm (actionsArray: SortingAction[], arr: number[]) {
 	return arr.slice();
 }
 
-function BubbleSortAlgorithm (actionsArray: SortingAction[], arr: number[]) {
+function bubbleSortAlgorithm (actionsArray: SortingAction[], arr: number[]) {
 	let lastIndex = arr.length - 1;
 	while (lastIndex > 0) {
 		let swaps = 0;

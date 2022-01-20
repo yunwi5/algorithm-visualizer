@@ -1,0 +1,30 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixin";
+
+.buttons {
+	margin-top: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+
+	.left-buttons {
+		position: relative;
+		display: flex;
+	}
+
+	.right-buttons {
+		& > *:not(:last-child) {
+			margin-right: 1rem;
+		}
+	}
+
+	button {
+		color: white;
+		padding: 1rem 2rem;
+		background-image: linear-gradient(to right, #480ca8, #3f37c9, $color-primary-dark-3);
+		border: none;
+		border-radius: 5px;
+		box-shadow: $shadow-light;
+		cursor: pointer;
+	}
+}

@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import SortingPage from "./pages/visualizer/SortingPage";
@@ -11,7 +10,8 @@ function App () {
 		<div className="App">
 			<Layout>
 				<Routes>
-					<Route path="/" element={<Navigate replace to="/sorting" />} />
+					{/* <Route path="/" element={<Navigate replace to="/sorting" />} /> */}
+					<Route path="/" element={<HomePage />} />
 					<Route path="/sorting" element={<SortingPage />} />
 					<Route path="/searching" element={<SearchingPage />} />
 				</Routes>

@@ -1,7 +1,11 @@
-import React, { Fragment, useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import Sidebar from "../../layout/sidebar/Sidebar";
 import RangeSection from "../../graphs/graph-support/RangeSection";
+import ModalContext from "../../../store/modal-context";
 import { toSortingSpeed } from "../../../utilities/calc-util";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faCircleInfo } from "@fortawesome/pro-solid-svg-icons";
 import classes from "./SortingNav.module.scss";
 
 interface Props {
@@ -23,6 +27,7 @@ const SortingNav: React.FC<Props> = (props) => {
 		numberOfSections
 	} = props;
 
+	const { showSortingModal } = useContext(ModalContext);
 	const [ userErrMessage, setUserErrMessage ] = useState<string | null>(null);
 
 	// size between 5 and 100!
@@ -91,6 +96,13 @@ const SortingNav: React.FC<Props> = (props) => {
 					>
 						Start!
 					</button>
+				)}
+				{!isBegin && (
+					<FontAwesomeIcon
+						onClick={showSortingModal.bind(null, true)}
+						className={classes["info-icon"]}
+						icon={faCircleInfo as IconProp}
+					/>
 				)}
 			</div>
 			{isBegin && <p className={classes.message}>On Going ...</p>}

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import classes from "./SideNav.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faLongArrowLeft } from "@fortawesome/pro-light-svg-icons";
 
 interface Prop {
@@ -13,7 +14,11 @@ const SideNav: React.FC<Prop> = (props) => {
 
 	return (
 		<aside className={classes.sidenav}>
-			<FontAwesomeIcon onClick={onClose} className={classes.icon} icon={faLongArrowLeft} />
+			<FontAwesomeIcon
+				onClick={onClose}
+				className={classes.icon}
+				icon={faLongArrowLeft as IconProp}
+			/>
 			<h2>
 				<span>Algo</span> <br /> <span>Visualizer</span>
 			</h2>

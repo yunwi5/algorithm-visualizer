@@ -1,4 +1,7 @@
 import { SortingAlgorithmList, SortingAlgorithm } from "../../../models/sorting-models";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faXmark as exitIcon } from "@fortawesome/pro-regular-svg-icons";
 import classes from "./SectionNav.module.scss";
 
 interface Props {
@@ -43,7 +46,7 @@ const SectionNav: React.FC<Props> = (props) => {
 				{!isBegin &&
 				numberOfSections > 1 && (
 					<button className={classes["close-btn"]} onClick={onClose}>
-						X
+						<FontAwesomeIcon icon={exitIcon as IconProp} />
 					</button>
 				)}
 			</div>

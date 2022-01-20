@@ -1,10 +1,13 @@
-import { useRef, useLayoutEffect } from "react";
+import { useContext } from "react";
 import RangeSection from "../../graphs/graph-support/RangeSection";
 import ToggleBar from "../../ui/ToggleBar";
 
 import Sidebar from "../../layout/sidebar/Sidebar";
+import ModalContext from "../../../store/modal-context";
 import { toMsSpeed } from "../../../utilities/calc-util";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { faCircleInfo } from "@fortawesome/pro-solid-svg-icons";
 import classes from "./SearchNav.module.scss";
 
 interface Props {
@@ -18,7 +21,7 @@ interface Props {
 const SearchNav: React.FC<Props> = (props) => {
 	const { onChangeSpeed, onChangeSize, onChangeDuo, onRandomize, isBegin } = props;
 
-	const btnRef = useRef<HTMLButtonElement>(null);
+	const { showSearchModal } = useContext(ModalContext);
 
 	function speedChangeHandler (e: React.ChangeEvent<HTMLInputElement>) {
 		const speed = toMsSpeed(+e.target.value);
@@ -33,19 +36,6 @@ const SearchNav: React.FC<Props> = (props) => {
 	function displayDuoHandler (e: React.ChangeEvent<HTMLInputElement>) {
 		onChangeDuo();
 	}
-
-	useLayoutEffect(
-		() => {
-			if (isBegin && btnRef.current) {
-				btnRef.current.disabled = true;
-				console.log("btn disabled:", btnRef.current.disabled);
-			} else if (btnRef.current) {
-				btnRef.current.disabled = false;
-				console.log("btn disabled:", btnRef.current.disabled);
-			}
-		},
-		[ isBegin ]
-	);
 
 	return (
 		<nav className={classes.nav}>
@@ -62,10 +52,17 @@ const SearchNav: React.FC<Props> = (props) => {
 				/>
 				<ToggleBar onChange={displayDuoHandler} isBegin={isBegin} />
 			</div>
-			<div>
-				<button ref={btnRef} onClick={onRandomize}>
+			<div className={classes.action}>
+				<button disabled={isBegin ? true : false} onClick={onRandomize}>
 					Randomize
 				</button>
+				{!isBegin && (
+					<FontAwesomeIcon
+						onClick={showSearchModal.bind(null, true)}
+						className={classes["info-icon"]}
+						icon={faCircleInfo as IconProp}
+					/>
+				)}
 			</div>
 		</nav>
 	);

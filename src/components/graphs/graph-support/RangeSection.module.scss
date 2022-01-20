@@ -74,10 +74,10 @@
 // If the theme is secondary, different color.
 .secondary input[type=range]::-moz-range-thumb {
 	box-shadow: 1px 1px 1px #000031;
-	border: 1px solid $color-secondary-dark-3;
+	border: 1px solid $color-secondary;
 	height: 20px;
 	width: 20px;
 	border-radius: 15px;
-	background: $color-secondary-dark-3;
+	background: $color-secondary;
 	cursor: pointer;
 }

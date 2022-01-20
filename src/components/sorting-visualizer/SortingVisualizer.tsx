@@ -69,7 +69,6 @@ const SortingVisualizer: React.FC = () => {
 	useEffect(
 		() => {
 			const total = +firstCompleted + +secondCompleted + +thirdCompleted + +fourthCompleted;
-			console.log("total completed:", total);
 			if (total >= numSections) {
 				setIsBegin(false);
 			}

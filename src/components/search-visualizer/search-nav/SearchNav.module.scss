@@ -35,16 +35,32 @@
 		display: flex;
 	}
 
-	button {
-		margin-left: 9rem;
-		@include button-medium-fill($color-secondary-dark-2);
-		font-size: 1.9rem;
-		color: $color-grey-light-2;
-	}
+	.action {
+		display: flex;
+		align-items: center;
 
-	button:disabled {
-		background-color: rgba($color-secondary-dark-2, .5);
-		border: 1px solid rgba($color-secondary-dark-2, .5);
-		cursor: not-allowed;
+		button {
+			margin-left: 9rem;
+			margin-right: 1rem;
+			@include button-medium-fill($color-secondary-dark-2);
+			font-size: 1.9rem;
+			color: $color-grey-light-2;
+		}
+
+		button:disabled {
+			background-color: rgba($color-secondary-dark-2, .5);
+			border: 1px solid rgba($color-secondary-dark-2, .5);
+			cursor: not-allowed;
+		}
+
+		.info-icon {
+			font-size: 3.5rem;
+			color: $color-secondary-dark-4;
+			cursor: pointer;
+
+			&:hover {
+				color: $color-secondary-dark-2;
+			}
+		}
 	}
 }

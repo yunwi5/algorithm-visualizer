@@ -14,7 +14,7 @@
 		position: absolute;
 		top: 0;
 		font-size: 1.5rem;
-		color: $color-secondary-dark-2;
+		color: $color-secondary;
 	}
 }
 
@@ -39,10 +39,10 @@
 }
 
 .bar-swapped {
-	background-color: $color-secondary;
+	background-color: $color-tertiary;
 
 	&:hover {
-		background-color: $color-secondary-dark-3;
+		background-color: $color-tertiary-dark-3;
 	}
 }
 
@@ -82,10 +82,10 @@
 
 .bar-incorrect,
 .bar-final-invalid {
-	background-color: $color-secondary-dark-1;
+	background-color: $color-tertiary-dark-1;
 
 	&:hover {
-		background-color: $color-secondary-dark-3;
+		background-color: $color-tertiary-dark-3;
 	}
 }
 

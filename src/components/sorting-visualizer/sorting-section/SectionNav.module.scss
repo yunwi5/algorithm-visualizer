@@ -78,15 +78,14 @@
 	}
 
 	.close-btn {
-		@include button-medium-empty($color-secondary);
+		@include button-medium-empty($color-tertiary);
 		font-size: 90%;
 		display: flex;
 		justify-content: center;
 
 		&:hover {
-			color: $color-secondary-dark-3;
-			// background-color: $color-secondary-dark-3;
-			border: 1px solid $color-secondary-dark-3;
+			color: $color-tertiary-dark-3;
+			border: 1px solid $color-tertiary-dark-3;
 		}
 	}
 }
