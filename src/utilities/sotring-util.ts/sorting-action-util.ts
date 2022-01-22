@@ -19,6 +19,12 @@ export function executeSortingAction (
 		selectionSortAction(sortingArrayCpy, action);
 	} else if (algorithm === SortingAlgorithm.InsertionSort) {
 		insertionSortAction(sortingArrayCpy, action);
+	} else if (algorithm === SortingAlgorithm.MergeSort) {
+		try {
+			sortingArrayCpy = mergeSortAction(sortingArrayCpy, action);
+		} catch (err) {
+			console.error(err);
+		}
 	} else {
 		bubbleSortAction(sortingArrayCpy, action);
 	}
@@ -26,16 +32,56 @@ export function executeSortingAction (
 	return sortingArrayCpy;
 }
 
-// function pendTwoConsecutiveBars (bar: Bar, indexOne: number, indexTwo: number) {
-// 	if (i === indexOne || i === indexTwo) {
-// 		bar.status = BarState.PENDING;
-// 	} else if (bar.status !== BarState.SORTED) {
-// 		bar.status = BarState.INITIAL;
-// 	}
-// }
+function mergeSortAction (sortingArray: Bar[], action: SortingAction) {
+	const { indexOne, indexTwo, newSegment, indexThree, indexFour } = action;
+	const { action: actionState } = action;
+
+	for (let i = 0; i < sortingArray.length; i++) {
+		sortingArray[i].status = BarState.INITIAL;
+	}
+
+	if (
+		actionState === Action.PEND ||
+		actionState === Action.APPEND ||
+		actionState === Action.SWAP
+	) {
+		if (newSegment === undefined || indexThree === undefined)
+			throw new Error("new segment or key index is undefined!");
+		const startIndex = indexOne;
+		const lastIndex = indexTwo;
+		const keyIndex = indexThree;
+
+		for (let i = startIndex; i <= lastIndex; i++) {
+			sortingArray[i].status = BarState.SELECTED;
+			if (i < keyIndex) sortingArray[i].status = BarState.SORTED;
+			sortingArray[i].value = newSegment[i - startIndex];
+		}
+
+		if (actionState === Action.SWAP || actionState === Action.APPEND) {
+			sortingArray[keyIndex].status = BarState.SWAPPED;
+		} else {
+			// PENDING
+			if (indexFour) sortingArray[indexFour].status = BarState.PENDING;
+			sortingArray[indexThree].status = BarState.PENDING;
+		}
+	} else if (action.action === Action.COMPLETE) {
+		const startIndex = indexOne;
+		const lastIndex = indexTwo;
+		for (let i = startIndex; i <= lastIndex; i++) {
+			sortingArray[i].status = BarState.SORTED;
+		}
+	} else if (action.action === Action.FINALIZE) {
+		for (let i = 0; i < sortingArray.length; i++) {
+			const bar = sortingArray[i];
+			bar.status = BarState.FINAL;
+		}
+	}
+
+	return sortingArray;
+}
 
 function insertionSortAction (sortingArray: Bar[], action: SortingAction) {
-	const { indexOne, indexTwo, indexThree: curr } = action;
+	const { indexOne, indexTwo } = action;
 	const firstBar = sortingArray[action.indexOne];
 	const secBar = sortingArray[action.indexTwo];
 
@@ -66,8 +112,6 @@ function insertionSortAction (sortingArray: Bar[], action: SortingAction) {
 					const temp = firstBar.value;
 					firstBar.value = secBar.value;
 					secBar.value = temp;
-					console.log(firstBar);
-					console.log(sortingArray);
 				}
 				break;
 
@@ -159,8 +203,6 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 			break;
 		case Action.PEND:
 			// PENDING
-			firstBar = sortingArray[indexOne];
-			secBar = sortingArray[indexTwo];
 			for (let i = 0; i < sortingArray.length; i++) {
 				const bar = sortingArray[i];
 				if (i === indexOne || i === indexTwo) continue;
@@ -172,6 +214,7 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 					bar.status = BarState.INITIAL;
 				}
 			}
+			secBar = sortingArray[indexTwo];
 			secBar.status = BarState.PENDING;
 			break;
 		case Action.SWAP:
@@ -183,7 +226,6 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 			secBar.value = temp;
 			for (let i = 0; i < sortingArray.length; i++) {
 				const bar = sortingArray[i];
-				if (i === indexOne || i === indexTwo) continue;
 				if (
 					bar.status !== BarState.SORTED &&
 					bar.status !== BarState.PIVOTED &&
@@ -201,9 +243,7 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 				const bar = sortingArray[i];
 				if (i >= indexOne) {
 					bar.status = BarState.SORTED;
-				}
-
-				if (bar.status !== BarState.SORTED) {
+				} else {
 					bar.status = BarState.INITIAL;
 				}
 			}

@@ -74,7 +74,11 @@ const SortingNav: React.FC<Props> = (props) => {
 				<h3>Sorting Visualizer</h3>
 			</div>
 
-			<RangeSection onChangeSize={arrSizeHandler} onChangeSpeed={sortSpeedHandler} />
+			<RangeSection
+				onChangeSize={arrSizeHandler}
+				onChangeSpeed={sortSpeedHandler}
+				isBegin={isBegin}
+			/>
 
 			<div className={classes.buttons}>
 				{!isBegin && (

@@ -14,19 +14,6 @@ const RangeSection: React.FC<Props> = (props) => {
 	const speedRef = useRef<HTMLInputElement>(null);
 	const sizeRef = useRef<HTMLInputElement>(null);
 
-	useEffect(
-		() => {
-			if (isBegin && speedRef.current && sizeRef.current) {
-				speedRef.current.disabled = true;
-				sizeRef.current.disabled = true;
-			} else if (speedRef.current && sizeRef.current) {
-				speedRef.current.disabled = false;
-				sizeRef.current.disabled = false;
-			}
-		},
-		[ isBegin ]
-	);
-
 	return (
 		<section
 			className={`${classes["control-section"]} ${colorSecondary ? classes.secondary : ""}`}
@@ -42,6 +29,7 @@ const RangeSection: React.FC<Props> = (props) => {
 					ref={sizeRef}
 					defaultValue={DEFAULT_ARR_SIZE}
 					onChange={onChangeSize}
+					disabled={isBegin}
 				/>
 				{sizeRef.current && <div className={classes.circle}>{sizeRef.current!.value}</div>}
 			</div>
@@ -56,6 +44,7 @@ const RangeSection: React.FC<Props> = (props) => {
 					ref={speedRef}
 					defaultValue={sortingSpeedToRange(DEFAULT_SPEED)}
 					onChange={onChangeSpeed}
+					disabled={isBegin}
 				/>
 				{speedRef.current && (
 					<div className={classes.circle}>{speedRef.current!.value}</div>

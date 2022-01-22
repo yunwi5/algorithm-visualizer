@@ -40,7 +40,13 @@ export enum Action {
 	FINALIZE = "finalize",
 	PIVOTIZE = "pivotize",
 	// New action for SelectionSort
-	SELECT = "select"
+	SELECT = "select",
+
+	// Mergesort Append
+	APPEND = "append",
+
+	// Quicksort Point
+	POINT = "point"
 }
 
 // Invalid index is just -1.
@@ -48,5 +54,9 @@ export interface SortingAction {
 	action: Action;
 	indexOne: number;
 	indexTwo: number;
+
+	// Optional
+	newSegment?: number[];
 	indexThree?: number;
+	indexFour?: number;
 }

@@ -28,7 +28,6 @@ const SortingVisualizer: React.FC = () => {
 		const secs = [ ...showSections ];
 		const falseIndex = secs.findIndex((bool) => !bool);
 		secs[falseIndex] = true;
-		console.log("sections:", secs);
 		setShowSections(secs);
 	}
 

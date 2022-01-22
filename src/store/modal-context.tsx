@@ -10,8 +10,9 @@ const ModalContext = React.createContext({
 export default ModalContext;
 
 export const ModalContextProvider: React.FC = (props) => {
-	const [ sortingModalVisible, setSortingModalVisible ] = useState(true);
-	const [ searchModalVisible, setSearchModalVisible ] = useState(true);
+	const [ defaultShown, setDefaultShown ] = useState(false);
+	const [ sortingModalVisible, setSortingModalVisible ] = useState(defaultShown);
+	const [ searchModalVisible, setSearchModalVisible ] = useState(defaultShown);
 
 	const showSortingModal = (show: boolean) => {
 		setSortingModalVisible(show);
