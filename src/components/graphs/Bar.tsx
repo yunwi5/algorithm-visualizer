@@ -23,7 +23,7 @@ function barIsValidFinal (barState: BarState | SearchBarState) {
 }
 
 function barHasArrowPointer (barState: BarState | SearchBarState) {
-	return barState.toLocaleLowerCase().includes("point");
+	return barState.toLowerCase().includes("point");
 }
 
 const Bar: React.FC<Props> = (props) => {
@@ -63,7 +63,7 @@ const Bar: React.FC<Props> = (props) => {
 	return (
 		<div className="sorting-bar" style={outerStyle}>
 			{addArrow && (
-				<div className="icon">
+				<div className={`icon icon-${barStatus}`}>
 					<FontAwesomeIcon icon={faLongArrowAltDown as IconProp} />
 				</div>
 			)}

@@ -1,12 +1,9 @@
 import { SortingAction, Action } from "../../../models/sorting-models";
+import { attachCommonAction } from "../sorting-algo-util";
 
 export default function mergeSortAlgorithm (actionsArray: SortingAction[], array: number[]) {
 	let resArr = mergeSortHelper(actionsArray, array, 0);
-	actionsArray.push({
-		action: Action.FINALIZE,
-		indexOne: -1,
-		indexTwo: -1
-	});
+	attachCommonAction(actionsArray, Action.FINALIZE);
 
 	return resArr;
 }

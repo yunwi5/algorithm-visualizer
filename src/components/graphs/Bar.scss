@@ -16,83 +16,123 @@
 		font-size: 1.5rem;
 		color: $color-secondary;
 	}
-}
 
-.inner-bar {
-	background-color: $color-grey-dark-1;
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	width: 80%;
-	font-size: 60%;
-	&:hover {
-		background-color: $color-grey-dark-3;
+	.inner-bar {
+		background-color: $color-grey-dark-1;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		width: 80%;
+		font-size: 60%;
+		&:hover {
+			background-color: $color-grey-dark-3;
+		}
 	}
-}
 
-.bar-pending {
-	background-color: $color-gold-light;
+	.bar-pending {
+		background-color: $color-gold-light;
 
-	&:hover {
-		background-color: $color-gold;
+		&:hover {
+			background-color: $color-gold;
+		}
 	}
-}
 
-.bar-swapped {
-	background-color: $color-tertiary;
+	.bar-swapped {
+		background-color: $color-tertiary;
 
-	&:hover {
-		background-color: $color-tertiary-dark-3;
+		&:hover {
+			background-color: $color-tertiary-dark-3;
+		}
 	}
-}
 
-.bar-sorted {
-	background-color: $color-primary-dark-3;
+	.bar-sorted {
+		background-color: $color-primary-dark-3;
 
-	&:hover {
-		background-color: $color-primary-dark-4;
+		&:hover {
+			background-color: $color-primary-dark-4;
+		}
 	}
-}
 
-.bar-final {
-	background-color: $color-primary-light-2;
-	&:hover {
-		background-color: $color-primary;
+	.bar-final {
+		background-color: $color-primary-light-2;
+		&:hover {
+			background-color: $color-primary;
+		}
 	}
-}
 
-.bar-pivoted,
-.bar-selected {
-	background-color: #cdb4db;
+	.bar-pivoted {
+		background-color: #a3c4f3;
 
-	&:hover {
-		background-color: #b69ac7;
+		&:hover {
+			background-color: #79a4e0;
+		}
 	}
-}
 
-// Search Specific
-.bar-correct,
-.bar-final-valid {
-	background-color: #95d5b2;
+	.bar-selected {
+		background-color: #cdb4db;
 
-	&:hover {
-		background-color: #74c69d;
+		&:hover {
+			background-color: #b69ac7;
+		}
 	}
-}
 
-.bar-incorrect,
-.bar-final-invalid {
-	background-color: $color-tertiary-dark-1;
+	// Search Specific
+	.bar-correct,
+	.bar-final-valid {
+		background-color: #95d5b2;
 
-	&:hover {
-		background-color: $color-tertiary-dark-3;
+		&:hover {
+			background-color: #74c69d;
+		}
 	}
-}
 
-.bar-pointed {
-	background-color: #cdb4db;
+	.bar-incorrect,
+	.bar-final-invalid {
+		background-color: $color-tertiary-dark-1;
 
-	&:hover {
-		background-color: #b69ac7;
+		&:hover {
+			background-color: $color-tertiary-dark-3;
+		}
+	}
+
+	.bar-pointed {
+		background-color: #cdb4db;
+
+		&:hover {
+			background-color: #b69ac7;
+		}
+	}
+
+	// QuickSort pointers
+	.bar-left-pointed {
+		background-color: #b9fbc0;
+
+		&:hover {
+			background-color: #93f39d;
+		}
+	}
+
+	.bar-right-pointed {
+		background-color: #98f5e1;
+
+		&:hover {
+			background-color: #62d8be;
+		}
+	}
+
+	.icon-left-pointed {
+		color: #b9fbc0;
+
+		&:hover {
+			color: #85ec90;
+		}
+	}
+
+	.icon-right-pointed {
+		color: #98f5e1;
+
+		&:hover {
+			color: #62d8be;
+		}
 	}
 }

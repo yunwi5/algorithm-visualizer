@@ -4,6 +4,7 @@ import {
 	SortingAction,
 	SortingAlgorithm
 } from "../../models/sorting-models";
+import { arraysAreEqual } from "../list-util";
 import quickSortAlgorithm from "./algorithms/quick-sort";
 import mergeSortAlgorithm from "./algorithms/merge-sort";
 import insertionSortAlgorithm from "./algorithms/insertion-sort";
@@ -24,12 +25,12 @@ export function getSortingActions (sortingArray: Bar[], algorithm: SortingAlgori
 	} else if (algorithm === SortingAlgorithm.MergeSort) {
 		resArr = mergeSortAlgorithm(actionsArray, sortingIntArray);
 	} else if (algorithm === SortingAlgorithm.QuickSort) {
-		quickSortAlgorithm(actionsArray, sortingIntArray);
+		resArr = quickSortAlgorithm(actionsArray, sortingIntArray);
 	} else {
 		resArr = mergeSortAlgorithm(actionsArray, sortingIntArray);
 	}
-	// sortingIntArray.sort((a, b) => a - b);
-	// console.log("Sorting is correct:", arraysAreEqual(sortingIntArray, resArr));
+	sortingIntArray.sort((a, b) => a - b);
+	console.log("Sorting is correct:", arraysAreEqual(sortingIntArray, resArr));
 
 	return actionsArray;
 }

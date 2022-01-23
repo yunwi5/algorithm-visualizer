@@ -23,7 +23,11 @@ export enum BarState {
 	SORTED = "sorted",
 	FINAL = "final",
 	PIVOTED = "pivoted",
-	SELECTED = "selected"
+	SELECTED = "selected",
+
+	// QuickSort Point
+	LEFT_POINTED = "left-pointed",
+	RIGHT_POINTED = "right-pointed"
 }
 
 export interface SortingBar {
