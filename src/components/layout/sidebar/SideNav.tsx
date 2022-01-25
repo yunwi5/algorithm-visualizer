@@ -47,9 +47,12 @@ const SideNav: React.FC<Prop> = (props) => {
 						Searching
 					</NavLink>
 				</li>
+				<li>
+					<NavLink to="/">Sudoku</NavLink>
+				</li>
 
 				<li>
-					<NavLink to="/sorting">Path Finding</NavLink>
+					<NavLink to="/">Path Finding</NavLink>
 				</li>
 			</ul>
 		</aside>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import SectionNav from "./SectionNav";
+import SortingSummary from "../sorting-ui/SortingSummary";
 import BarList from "../../graphs/BarList";
 import {
 	SortingAlgorithm,
@@ -14,7 +15,6 @@ import {
 import { createDeepArrayCopy } from "../../../utilities/list-util";
 import { getSortingActions } from "../../../utilities/sotring-util.ts/sorting-algo-util";
 import { executeSortingAction } from "../../../utilities/sotring-util.ts/sorting-action-util";
-import { getTimeElapsedInFormat } from "../../../utilities/calc-util";
 import classes from "./SortingSection.module.scss";
 
 interface Props {
@@ -147,25 +147,12 @@ const SortingSection: React.FC<Props> = (props) => {
 				maxHeight={MAX_BAR_HEIGHT}
 			/>
 
-			<div className={classes["sorting-summary"]}>
-				<p>
-					<span className={classes.label}>Array Size: </span>
-					<span className={classes.value}>{arraySize}</span>
-				</p>
-				<p>
-					<span className={classes.label}>Comparisons: </span>
-					<span className={classes.value}>{comparisons}</span>
-				</p>
-				<p>
-					<span className={classes.label}>Swaps: </span>
-					<span className={classes.value}>{swaps}</span>
-				</p>
-				{timeElapsed && (
-					<p className={classes.time}>
-						{getTimeElapsedInFormat(timeElapsed)}s <span>taken.</span>
-					</p>
-				)}
-			</div>
+			<SortingSummary
+				arraySize={arraySize}
+				comparisons={comparisons}
+				swaps={swaps}
+				timeElapsed={timeElapsed}
+			/>
 		</section>
 	);
 };

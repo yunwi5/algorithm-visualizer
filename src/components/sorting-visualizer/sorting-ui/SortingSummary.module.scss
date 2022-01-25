@@ -1,0 +1,31 @@
+@import "../../../styles/abstracts/variables";
+
+.sorting-summary {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: 80%;
+	padding-top: 1.5rem;
+	padding-bottom: .5rem;
+
+	& > *:not(:last-child) {
+		margin-right: 3rem;
+	}
+
+	.label {
+		font-family: sans-serif;
+		font-weight: 300;
+		color: $color-grey-dark-5;
+	}
+
+	.value,
+	.time {
+		font-weight: 600;
+		color: rgba($color-primary-dark-3, .8);
+	}
+
+	.time span {
+		font-weight: 400;
+		color: darken(rgba($color-primary-dark-3, .8), 10%);
+	}
+}

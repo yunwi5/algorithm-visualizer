@@ -1,3 +1,4 @@
+import SortingScroll from "../sorting-ui/SortingScroll";
 import { SortingAlgorithmList, SortingAlgorithm } from "../../../models/sorting-models";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
@@ -25,17 +26,11 @@ const SectionNav: React.FC<Props> = (props) => {
 		<nav className={`${classes["section-nav"]} ${navSizeClass}`}>
 			<div className={classes["algorithm-selector"]}>
 				<label>Algorithm</label>
-				<ul>
-					{SortingAlgorithmList.map((algo, idx) => (
-						<li
-							onClick={onChangeAlgorithm.bind(null, algo)}
-							key={idx}
-							className={`${algorithm === algo ? classes["li-active"] : ""}`}
-						>
-							{algo}
-						</li>
-					))}
-				</ul>
+				<SortingScroll
+					numberOfSections={numberOfSections}
+					algorithm={algorithm}
+					onChangeAlgorithm={onChangeAlgorithm}
+				/>
 			</div>
 			<div className={classes["btns-wrapper"]}>
 				{!isBegin && (

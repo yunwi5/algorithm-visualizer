@@ -10,27 +10,40 @@ import mergeSortAlgorithm from "./algorithms/merge-sort";
 import insertionSortAlgorithm from "./algorithms/insertion-sort";
 import selectionSortAlgorithm from "./algorithms/selection-sort";
 import bubbleSortAlgorithm from "./algorithms/bubble-sort";
+import heapSortAlgorithm from "./algorithms/heap-sort";
 
 export function getSortingActions (sortingArray: Bar[], algorithm: SortingAlgorithm) {
 	let actionsArray: SortingAction[] = [];
 
 	const sortingIntArray = sortingArray.map((bar) => bar.value);
 	let resArr: number[] = [];
-	if (algorithm === SortingAlgorithm.BubbleSort) {
-		resArr = bubbleSortAlgorithm(actionsArray, sortingIntArray);
-	} else if (algorithm === SortingAlgorithm.SelectionSort) {
-		resArr = selectionSortAlgorithm(actionsArray, sortingIntArray);
-	} else if (algorithm === SortingAlgorithm.InsertionSort) {
-		resArr = insertionSortAlgorithm(actionsArray, sortingIntArray);
-	} else if (algorithm === SortingAlgorithm.MergeSort) {
-		resArr = mergeSortAlgorithm(actionsArray, sortingIntArray);
-	} else if (algorithm === SortingAlgorithm.QuickSort) {
-		resArr = quickSortAlgorithm(actionsArray, sortingIntArray);
-	} else {
-		resArr = mergeSortAlgorithm(actionsArray, sortingIntArray);
+
+	switch (algorithm) {
+		case SortingAlgorithm.BubbleSort:
+			resArr = bubbleSortAlgorithm(actionsArray, sortingIntArray);
+			break;
+		case SortingAlgorithm.SelectionSort:
+			resArr = selectionSortAlgorithm(actionsArray, sortingIntArray);
+			break;
+		case SortingAlgorithm.InsertionSort:
+			resArr = insertionSortAlgorithm(actionsArray, sortingIntArray);
+			break;
+		case SortingAlgorithm.MergeSort:
+			resArr = mergeSortAlgorithm(actionsArray, sortingIntArray);
+			break;
+		case SortingAlgorithm.QuickSort:
+			resArr = quickSortAlgorithm(actionsArray, sortingIntArray);
+			break;
+		case SortingAlgorithm.HeapSort:
+			resArr = heapSortAlgorithm(actionsArray, sortingIntArray);
+			break;
+		default:
+			resArr = mergeSortAlgorithm(actionsArray, sortingIntArray);
 	}
+
 	sortingIntArray.sort((a, b) => a - b);
-	console.log("Sorting is correct:", arraysAreEqual(sortingIntArray, resArr));
+	// console.log("Sorting is correct:", arraysAreEqual(sortingIntArray, resArr));
+	// console.log(actionsArray);
 
 	return actionsArray;
 }

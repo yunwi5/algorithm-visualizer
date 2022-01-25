@@ -29,6 +29,9 @@ export function executeSortingAction (
 		case SortingAlgorithm.QuickSort:
 			quickSortAction(sortingArrayCpy, action);
 			break;
+		case SortingAlgorithm.HeapSort:
+			heapSortAction(sortingArrayCpy, action);
+			break;
 		default:
 			mergeSortAction(sortingArrayCpy, action);
 	}
@@ -36,10 +39,74 @@ export function executeSortingAction (
 	return sortingArrayCpy;
 }
 
+// Helper funcitons
+function pendTwoBars (bar1: Bar, bar2: Bar) {
+	bar1.status = BarState.PENDING;
+	bar2.status = BarState.PENDING;
+}
+
 function swapTwoBars (bar1: Bar, bar2: Bar) {
 	const temp = bar1.value;
 	bar1.value = bar2.value;
 	bar2.value = temp;
+	bar1.status = BarState.SWAPPED;
+	bar2.status = BarState.SWAPPED;
+}
+
+function selectRangeBars (sortingArray: Bar[], startIdx: number, endIdex: number) {
+	for (let i = startIdx; i <= endIdex; i++) {
+		sortingArray[i].status = BarState.SELECTED;
+	}
+}
+
+function completeOnebar (bar: Bar) {
+	bar.status = BarState.SORTED;
+}
+
+function finalizeSortingArray (sortingArray: Bar[]) {
+	for (let i = 0; i < sortingArray.length; i++) {
+		sortingArray[i].status = BarState.FINAL;
+	}
+}
+
+let heapified = false;
+
+function heapSortAction (sortingArray: Bar[], action: SortingAction) {
+	const { indexOne, indexTwo, action: actionState } = action;
+	const n = sortingArray.length;
+
+	for (let i = 0; i < n; i++) {
+		const bar = sortingArray[i];
+		if (bar.status === BarState.PENDING || bar.status === BarState.SWAPPED) {
+			if (!heapified) bar.status = BarState.INITIAL;
+			else bar.status = BarState.SELECTED;
+		}
+	}
+
+	switch (actionState) {
+		case Action.SELECT:
+			// Once the array is max-heapified, select all of them to indicate that they are indeed max heap.
+			selectRangeBars(sortingArray, 0, n - 1);
+			heapified = true;
+			break;
+		case Action.PEND:
+			if (indexOne >= n || indexOne < 0) throw new Error("Index one out of bound!");
+			if (indexTwo >= n || indexTwo < 0) throw new Error("Index two out of boud!");
+			pendTwoBars(sortingArray[indexOne], sortingArray[indexTwo]);
+			break;
+		case Action.SWAP:
+			if (indexOne >= n || indexOne < 0) throw new Error("Index one out of bound!");
+			if (indexTwo >= n || indexTwo < 0) throw new Error("Index two out of boud!");
+			swapTwoBars(sortingArray[indexOne], sortingArray[indexTwo]);
+			break;
+		case Action.COMPLETE:
+			// In HeapSort, only one element is completely sorted at once.
+			completeOnebar(sortingArray[indexOne]);
+			break;
+		case Action.FINALIZE:
+			finalizeSortingArray(sortingArray);
+			heapified = false;
+	}
 }
 
 function quickSortAction (sortingArray: Bar[], action: SortingAction) {
@@ -102,26 +169,20 @@ function quickSortAction (sortingArray: Bar[], action: SortingAction) {
 			if (indexOne >= 0 && indexOne < n) sortingArray[indexOne].status = BarState.PENDING;
 			break;
 		case Action.SWAP:
-			const swBar1 = sortingArray[indexOne];
-			const swBar2 = sortingArray[indexTwo];
+			const swBar1 = sortingArray[indexOne],
+				swBar2 = sortingArray[indexTwo];
 			swapTwoBars(swBar1, swBar2);
-			swBar1.status = BarState.SWAPPED;
-			swBar2.status = BarState.SWAPPED;
 			break;
 
 		case Action.COMPLETE:
 			const sortedIndex = indexOne;
 			const sortedIndex2 = indexTwo;
-			if (sortedIndex >= 0 && sortedIndex < n)
-				sortingArray[sortedIndex].status = BarState.SORTED;
-			if (sortedIndex2 >= 0 && sortedIndex2 < n)
-				sortingArray[sortedIndex2].status = BarState.SORTED;
+			if (sortedIndex >= 0 && sortedIndex < n) completeOnebar(sortingArray[sortedIndex]);
+			if (sortedIndex2 >= 0 && sortedIndex2 < n) completeOnebar(sortingArray[sortedIndex2]);
 			break;
 
 		case Action.FINALIZE:
-			for (let i = 0; i < sortingArray.length; i++) {
-				sortingArray[i].status = BarState.FINAL;
-			}
+			finalizeSortingArray(sortingArray);
 			break;
 	}
 }
@@ -162,13 +223,11 @@ function mergeSortAction (sortingArray: Bar[], action: SortingAction) {
 		const startIndex = indexOne;
 		const lastIndex = indexTwo;
 		for (let i = startIndex; i <= lastIndex; i++) {
-			sortingArray[i].status = BarState.SORTED;
+			// sortingArray[i].status = BarState.SORTED;
+			completeOnebar(sortingArray[i]);
 		}
 	} else if (action.action === Action.FINALIZE) {
-		for (let i = 0; i < sortingArray.length; i++) {
-			const bar = sortingArray[i];
-			bar.status = BarState.FINAL;
-		}
+		finalizeSortingArray(sortingArray);
 	}
 }
 
@@ -199,8 +258,6 @@ function insertionSortAction (sortingArray: Bar[], action: SortingAction) {
 			case Action.SWAP:
 				// Swapping
 				if (i === indexOne) {
-					firstBar.status = BarState.SWAPPED;
-					secBar.status = BarState.SWAPPED;
 					swapTwoBars(firstBar, secBar);
 				}
 				break;
@@ -241,8 +298,6 @@ export function bubbleSortAction (sortingArray: Bar[], action: SortingAction) {
 			case Action.SWAP:
 				// SWAPPING
 				if (i === indexOne) {
-					firstBar.status = BarState.SWAPPED;
-					secBar.status = BarState.SWAPPED;
 					swapTwoBars(firstBar, secBar);
 				} else if (i !== indexTwo && bar.status !== BarState.SORTED) {
 					bar.status = BarState.INITIAL;
@@ -309,7 +364,6 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 			// SWAPPING
 			firstBar = sortingArray[indexOne];
 			secBar = sortingArray[indexTwo];
-			swapTwoBars(firstBar, secBar);
 			for (let i = 0; i < sortingArray.length; i++) {
 				const bar = sortingArray[i];
 				if (
@@ -320,15 +374,14 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 					bar.status = BarState.INITIAL;
 				}
 			}
-			firstBar.status = BarState.SWAPPED;
-			secBar.status = BarState.SWAPPED;
+			swapTwoBars(firstBar, secBar);
 			break;
 		case Action.COMPLETE:
 			// CONFIRMING
 			for (let i = 0; i < sortingArray.length; i++) {
 				const bar = sortingArray[i];
 				if (i >= indexOne) {
-					bar.status = BarState.SORTED;
+					completeOnebar(bar);
 				} else {
 					bar.status = BarState.INITIAL;
 				}
@@ -336,10 +389,7 @@ function selectionSortAction (sortingArray: Bar[], action: SortingAction) {
 			break;
 		case Action.FINALIZE:
 			// FINALIZING
-			for (let i = 0; i < sortingArray.length; i++) {
-				const bar = sortingArray[i];
-				bar.status = BarState.FINAL;
-			}
+			finalizeSortingArray(sortingArray);
 			break;
 	}
 }

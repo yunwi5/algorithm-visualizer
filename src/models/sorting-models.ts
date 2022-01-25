@@ -4,7 +4,8 @@ export enum SortingAlgorithm {
 	SelectionSort = "SelectionSort",
 	InsertionSort = "InsertionSort",
 	MergeSort = "MergeSort",
-	QuickSort = "QuickSort"
+	QuickSort = "QuickSort",
+	HeapSort = "HeapSort"
 }
 
 export const SortingAlgorithmList = [
@@ -12,7 +13,8 @@ export const SortingAlgorithmList = [
 	SortingAlgorithm.SelectionSort,
 	SortingAlgorithm.InsertionSort,
 	SortingAlgorithm.MergeSort,
-	SortingAlgorithm.QuickSort
+	SortingAlgorithm.QuickSort,
+	SortingAlgorithm.HeapSort
 ];
 
 // Sorting Bar Related
@@ -25,7 +27,7 @@ export enum BarState {
 	PIVOTED = "pivoted",
 	SELECTED = "selected",
 
-	// QuickSort Point
+	// QuickSort Ptrs
 	LEFT_POINTED = "left-pointed",
 	RIGHT_POINTED = "right-pointed"
 }
@@ -43,7 +45,6 @@ export enum Action {
 	COMPLETE = "complete",
 	FINALIZE = "finalize",
 	PIVOTIZE = "pivotize",
-	// New action for SelectionSort
 	SELECT = "select",
 
 	// Mergesort Append
