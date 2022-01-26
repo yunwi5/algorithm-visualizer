@@ -1,0 +1,59 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+@import "../../../styles/base/typography";
+
+.algo-modal {
+	display: flex;
+	flex-direction: column;
+	font-size: 2rem;
+	color: $color-grey-dark-5;
+
+	h2 {
+		padding-bottom: 1.5rem;
+		font-weight: 500;
+		color: $color-primary-dark-4;
+		@include heading-under-gradient($color-primary-dark-4, $color-primary-light-2);
+	}
+	& > *:not(:last-child) {
+		margin-bottom: 1.7rem;
+	}
+	.part {
+		h4 {
+			font-size: 2.2rem;
+			margin-bottom: .6rem;
+		}
+		font-size: 1.8rem;
+		& > * {
+			margin-bottom: .68rem;
+		}
+		& > *:not(:first-child) {
+			margin-left: 3.5rem;
+		}
+		sup {
+			font-size: 11px;
+		}
+	}
+	.part:nth-child(2) {
+		h4 {
+			color: $color-primary-dark-3;
+		}
+	}
+	.part:nth-child(3) {
+		h4 {
+			color: $color-primary-dark-2;
+		}
+	}
+	.part:nth-child(4) {
+		h4 {
+			color: $color-primary-dark-1;
+		}
+	}
+	.btn-wrapper {
+		text-align: center;
+		button {
+			@include button-medium-fill($color-primary-dark-2);
+			color: $color-grey-light-1;
+			font-size: 90%;
+		}
+	}
+}

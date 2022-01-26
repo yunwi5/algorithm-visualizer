@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import SortingNav from "./sorting-nav/SortingNav";
 import SortingSection from "./sorting-section/SortingSection";
+
+import SortingInfoButtons from "./sorting-ui/SortingInfoButtons";
 import { SortingBar } from "../../models/sorting-models";
 import { createRandomSortingArray } from "../../utilities/sotring-util.ts/sorting-util";
 import { DEFAULT_ARR_SIZE, DEFAULT_SPEED } from "../../utilities/calc-util";
@@ -81,33 +83,36 @@ const SortingVisualizer: React.FC = () => {
 			: numSections === 2 ? classes["container-half"] : "";
 
 	return (
-		<main className={classes["sorting-visualizer"]}>
-			<SortingNav
-				isBegin={isBegin}
-				onChangeArraySize={(size: number) => setArraySize(size)}
-				onChangeSortingSpeed={(speed: number) => setSortingSpeed(speed)}
-				onChangeStart={startHandler}
-				onAddSection={sortingSectionsHandler}
-				numberOfSections={numSections}
-			/>
-			<div className={`${classes["sections-container"]} ${sectionContainerClass}`}>
-				{showSections.map(
-					(bool, idx) =>
-						bool && (
-							<SortingSection
-								key={idx}
-								isBegin={isBegin}
-								arraySize={arraySize}
-								sortingSpeed={sortingSpeed}
-								initialArray={initialArray}
-								onResetStart={resetStart.bind(null, idx)}
-								onClose={closeSectionHandler.bind(null, idx)}
-								numberOfSections={numSections}
-							/>
-						)
-				)}
-			</div>
-		</main>
+		<div>
+			<main className={classes["sorting-visualizer"]}>
+				<SortingNav
+					isBegin={isBegin}
+					onChangeArraySize={(size: number) => setArraySize(size)}
+					onChangeSortingSpeed={(speed: number) => setSortingSpeed(speed)}
+					onChangeStart={startHandler}
+					onAddSection={sortingSectionsHandler}
+					numberOfSections={numSections}
+				/>
+				<div className={`${classes["sections-container"]} ${sectionContainerClass}`}>
+					{showSections.map(
+						(bool, idx) =>
+							bool && (
+								<SortingSection
+									key={idx}
+									isBegin={isBegin}
+									arraySize={arraySize}
+									sortingSpeed={sortingSpeed}
+									initialArray={initialArray}
+									onResetStart={resetStart.bind(null, idx)}
+									onClose={closeSectionHandler.bind(null, idx)}
+									numberOfSections={numSections}
+								/>
+							)
+					)}
+				</div>
+			</main>
+			<SortingInfoButtons numSections={numSections} />
+		</div>
 	);
 };
 

@@ -1,0 +1,10 @@
+@mixin heading-under-gradient($bg1, $bg2) {
+	&::after {
+		content: "";
+		margin-top: 7px;
+		display: block;
+		width: 100%;
+		height: 3px;
+		background-image: linear-gradient(to right, $bg1, $bg2);
+	}
+}

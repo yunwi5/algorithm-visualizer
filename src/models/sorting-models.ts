@@ -65,3 +65,15 @@ export interface SortingAction {
 	indexThree?: number;
 	indexFour?: number;
 }
+
+// Sorting Algorithm Modal
+export interface AlgorithmInfo {
+	name: SortingAlgorithm;
+	about: string;
+	timeComplexity: {
+		bestCase: string;
+		averageCase: string;
+		worstCase: string;
+	};
+	spaceComplexity: string;
+}

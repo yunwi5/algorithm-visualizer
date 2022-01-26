@@ -48,7 +48,7 @@ const SideNav: React.FC<Prop> = (props) => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/">Sudoku</NavLink>
+					<NavLink to="/">Sudoku Solver</NavLink>
 				</li>
 
 				<li>

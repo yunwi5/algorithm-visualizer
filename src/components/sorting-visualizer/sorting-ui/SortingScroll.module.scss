@@ -22,15 +22,18 @@
 		align-items: center;
 	}
 
+	$item-right-margin: 1rem;
+
 	.short-ul {
 		width: 70rem;
 		transition: all .5s ease;
+
+		& li {
+			width: calc((70rem - 5 * #{$item-right-margin}) / 6);
+		}
 	}
 
-	$item-right-margin: 1rem;
-
 	li {
-		width: calc((70rem - 5 * #{$item-right-margin}) / 6);
 		font-size: 85%;
 		padding: 1.6rem 1.7rem;
 		cursor: pointer;
