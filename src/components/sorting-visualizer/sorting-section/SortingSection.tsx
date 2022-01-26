@@ -7,7 +7,7 @@ import {
 	SortingAction,
 	Action,
 	SortingBar
-} from "../../../models/sorting-models";
+} from "../../../models/sorting-models/sorting-models";
 import {
 	createRandomSortingArray,
 	MAX_BAR_HEIGHT

@@ -1,4 +1,4 @@
-import { BarState, SortingBar as Bar } from "../../models/sorting-models";
+import { BarState, SortingBar as Bar } from "../../models/sorting-models/sorting-models";
 
 export const MIN_BAR_HEIGHT = 5;
 export const MAX_BAR_HEIGHT = 200;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SortingBar, BarState } from "../../models/sorting-models";
+import { SortingBar, BarState } from "../../models/sorting-models/sorting-models";
 import { SearchBar, SearchBarState } from "../../models/search-model";
 import { getBarFontSize } from "../../utilities/sotring-util.ts/sorting-util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

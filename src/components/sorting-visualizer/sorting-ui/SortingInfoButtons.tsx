@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SortingAlgorithmList, SortingAlgorithm } from "../../../models/sorting-models";
+import { SortingAlgorithmList, SortingAlgorithm } from "../../../models/sorting-models/sorting-models";
 import AlgoModal from "../sorting-modal/AlgoModal";
 import classes from "./SortingInfoButtons.module.scss";
 

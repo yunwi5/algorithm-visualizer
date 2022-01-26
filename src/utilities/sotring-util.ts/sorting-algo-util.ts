@@ -3,7 +3,7 @@ import {
 	Action,
 	SortingAction,
 	SortingAlgorithm
-} from "../../models/sorting-models";
+} from "../../models/sorting-models/sorting-models";
 import { arraysAreEqual } from "../list-util";
 import quickSortAlgorithm from "./algorithms/quick-sort";
 import mergeSortAlgorithm from "./algorithms/merge-sort";

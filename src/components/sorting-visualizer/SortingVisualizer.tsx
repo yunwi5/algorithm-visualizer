@@ -3,7 +3,7 @@ import SortingNav from "./sorting-nav/SortingNav";
 import SortingSection from "./sorting-section/SortingSection";
 
 import SortingInfoButtons from "./sorting-ui/SortingInfoButtons";
-import { SortingBar } from "../../models/sorting-models";
+import { SortingBar } from "../../models/sorting-models/sorting-models";
 import { createRandomSortingArray } from "../../utilities/sotring-util.ts/sorting-util";
 import { DEFAULT_ARR_SIZE, DEFAULT_SPEED } from "../../utilities/calc-util";
 import classes from "./SortingVisualizer.module.scss";

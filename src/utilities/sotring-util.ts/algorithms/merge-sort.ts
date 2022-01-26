@@ -1,4 +1,4 @@
-import { SortingAction, Action } from "../../../models/sorting-models";
+import { SortingAction, Action } from "../../../models/sorting-models/sorting-models";
 import { attachCommonAction } from "../sorting-algo-util";
 
 export default function mergeSortAlgorithm (actionsArray: SortingAction[], array: number[]) {

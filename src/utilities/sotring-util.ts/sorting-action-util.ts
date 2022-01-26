@@ -4,7 +4,7 @@ import {
 	BarState,
 	SortingBar as Bar,
 	Action
-} from "../../models/sorting-models";
+} from "../../models/sorting-models/sorting-models";
 
 export function executeSortingAction (
 	sortingArray: Bar[],

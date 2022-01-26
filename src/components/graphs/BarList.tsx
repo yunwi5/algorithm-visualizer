@@ -1,5 +1,5 @@
 import Bar from "./Bar";
-import { SortingBar } from "../../models/sorting-models";
+import { SortingBar } from "../../models/sorting-models/sorting-models";
 import { SearchBar } from "../../models/search-model";
 import classes from "./BarList.module.scss";
 

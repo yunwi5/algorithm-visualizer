@@ -1,5 +1,8 @@
 import SortingScroll from "../sorting-ui/SortingScroll";
-import { SortingAlgorithmList, SortingAlgorithm } from "../../../models/sorting-models";
+import {
+	SortingAlgorithmList,
+	SortingAlgorithm
+} from "../../../models/sorting-models/sorting-models";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faXmark as exitIcon } from "@fortawesome/pro-regular-svg-icons";

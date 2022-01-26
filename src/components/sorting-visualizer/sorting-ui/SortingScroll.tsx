@@ -1,5 +1,8 @@
 import { Fragment, useState, useLayoutEffect, useRef } from "react";
-import { SortingAlgorithmList, SortingAlgorithm } from "../../../models/sorting-models";
+import {
+	SortingAlgorithmList,
+	SortingAlgorithm
+} from "../../../models/sorting-models/sorting-models";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faAngleLeft, faAngleRight } from "@fortawesome/pro-regular-svg-icons";
