@@ -18,11 +18,11 @@ const SearchingPage: React.FC = () => {
 				/>
 			</Helmet>
 			<SearchVisualizer />
-			{searchModalVisible && (
+			{/* {searchModalVisible && (
 				<Modal onClose={showSearchModal.bind(null, false)}>
 					<SearchIntro />
 				</Modal>
-			)}
+			)} */}
 		</Fragment>
 	);
 };

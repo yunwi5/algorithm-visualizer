@@ -76,6 +76,14 @@
 		}
 	}
 
+	.bar-pointed {
+		background-color: #cdb4db;
+
+		&:hover {
+			background-color: #b69ac7;
+		}
+	}
+
 	// Search Specific
 	.bar-correct,
 	.bar-final-valid {
@@ -86,20 +94,13 @@
 		}
 	}
 
+	// Search Specific
 	.bar-incorrect,
 	.bar-final-invalid {
 		background-color: $color-tertiary-dark-1;
 
 		&:hover {
 			background-color: $color-tertiary-dark-3;
-		}
-	}
-
-	.bar-pointed {
-		background-color: #cdb4db;
-
-		&:hover {
-			background-color: #b69ac7;
 		}
 	}
 

@@ -48,7 +48,12 @@ const SideNav: React.FC<Prop> = (props) => {
 					</NavLink>
 				</li>
 				<li>
-					<NavLink to="/">Sudoku Solver</NavLink>
+					<NavLink
+						className={(navData) => (navData.isActive ? classes.active : "")}
+						to="/sudoku"
+					>
+						Sudoku Solver
+					</NavLink>
 				</li>
 
 				<li>

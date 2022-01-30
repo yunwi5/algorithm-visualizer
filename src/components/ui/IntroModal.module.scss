@@ -1,6 +1,15 @@
 @import "../../styles/abstracts/variables";
 @import "../../styles/abstracts/mixin";
 
+.page-nav {
+	position: absolute;
+	font-size: 2.5rem;
+	top: 3%;
+	right: 4%;
+	font-weight: 600;
+	color: $color-grey-dark-3;
+}
+
 .buttons {
 	margin-top: 2rem;
 	display: flex;
@@ -21,10 +30,25 @@
 	button {
 		color: white;
 		padding: 1rem 2rem;
-		background-image: linear-gradient(to right, #480ca8, #3f37c9, $color-primary-dark-3);
+		background-image: linear-gradient(to right, #5d20be, #554edb, $color-primary-dark-2);
 		border: none;
 		border-radius: 5px;
-		box-shadow: $shadow-light;
+		font-size: 1.7rem;
+		box-shadow: $shadow-dark;
 		cursor: pointer;
+
+		&:hover {
+			background-image: linear-gradient(to right, #9a73d8, #8782e9, $color-primary);
+		}
+	}
+
+	button:disabled {
+		background-image: linear-gradient(
+			to right,
+			rgba(93, 32, 190, 0.5),
+			rgba(85, 78, 219, 0.5),
+			rgba($color-primary-dark-2, .5)
+		);
+		cursor: not-allowed;
 	}
 }
