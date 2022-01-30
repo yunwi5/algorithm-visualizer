@@ -1,9 +1,9 @@
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useContext } from "react";
 import { Helmet } from "react-helmet";
 import SearchVisualizer from "../../components/search-visualizer/SearchVisualizer";
-import SearchIntro from "../../components/search-visualizer/search-info/SearchIntro";
+import SearchIntroList from "../../components/search-visualizer/search-info/SearchIntro";
 import ModalContext from "../../store/modal-context";
-import Modal from "../../components/ui/IntroModal";
+import IntroModal, { Theme } from "../../components/ui/IntroModal";
 
 const SearchingPage: React.FC = () => {
 	const { searchModalVisible, showSearchModal } = useContext(ModalContext);
@@ -18,11 +18,13 @@ const SearchingPage: React.FC = () => {
 				/>
 			</Helmet>
 			<SearchVisualizer />
-			{/* {searchModalVisible && (
-				<Modal onClose={showSearchModal.bind(null, false)}>
-					<SearchIntro />
-				</Modal>
-			)} */}
+			{searchModalVisible && (
+				<IntroModal
+					introJsxList={SearchIntroList}
+					theme={Theme.Secondary}
+					onClose={showSearchModal.bind(null, false)}
+				/>
+			)}
 		</Fragment>
 	);
 };

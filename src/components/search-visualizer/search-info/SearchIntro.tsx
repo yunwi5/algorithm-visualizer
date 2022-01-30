@@ -1,6 +1,6 @@
 import classes from "./SearchIntro.module.scss";
 
-const SortingIntro: React.FC = () => {
+const SearchIntro: React.FC = () => {
 	return (
 		<div className={classes["sorting-intro"]}>
 			<h2>Visualize Two Main Search Algorithms</h2>
@@ -30,4 +30,70 @@ const SortingIntro: React.FC = () => {
 	);
 };
 
-export default SortingIntro;
+const StateGuide: React.FC = () => {
+	return (
+		<div className={classes["sorting-intro"]}>
+			<h2>Bar States</h2>
+			<div className={classes["list-container"]}>
+				<ul className={classes["color-list"]}>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.initial}`} />{" "}
+						<span>Initial State</span>{" "}
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.pending}`} />{" "}
+						<span>Comparison State</span>{" "}
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.swapped}`} />{" "}
+						<span>Swap State</span>{" "}
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.selected}`} />{" "}
+						<span>Selected State</span>{" "}
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.pivot}`} />{" "}
+						<span>Pivot State</span> <span className={classes.suffix}>(QuickSort)</span>
+					</li>
+				</ul>
+				<ul className={classes["color-list"]}>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes["left-pointer"]}`} />{" "}
+						<span>Left Pointer</span>{" "}
+						<span className={classes.suffix}>(QuickSort)</span>
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes["right-pointer"]}`} />{" "}
+						<span>Right Pointer </span>{" "}
+						<span className={classes.suffix}>(QuickSort)</span>
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.sorted}`} />{" "}
+						<span>Sorted State</span>{" "}
+					</li>
+					<li className={classes["color-item"]}>
+						<div className={`${classes.color} ${classes.final}`} />{" "}
+						<span>Final State</span>{" "}
+					</li>
+				</ul>
+			</div>
+		</div>
+	);
+};
+
+const IntroEnding: React.FC = () => {
+	return (
+		<div className={`${classes["sorting-intro"]} ${classes["sorting-intro-ending"]}`}>
+			<h2>Hope You Enjoy!</h2>
+			<p className={classes["ending-p"]}>
+				Try adding more sections and compare the runtime of different algorithms!
+			</p>
+			<img src="" alt="sorting comparison" className={classes.img} />
+		</div>
+	);
+};
+
+const searchIntroList: React.ReactNode[] = [ <SearchIntro />, <StateGuide />, <IntroEnding /> ];
+
+export default searchIntroList;
