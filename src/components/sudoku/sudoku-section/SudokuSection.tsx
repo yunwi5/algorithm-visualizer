@@ -40,12 +40,18 @@ function printGrid (grid: SudokuCell[][]) {
 	}
 }
 
+export enum PlayMode {
+	MACHINE = "machine",
+	USER = "user"
+}
+
 const SudokuSection: React.FC<Props> = (props) => {
 	const { isBegin, resetToggle, speed, grid, onComplete } = props;
 	const customGrid = useMemo(() => createCustomGrid(grid), [ grid ]);
 	const [ currentGrid, setCurrentGrid ] = useState(customGrid);
 	const [ actionsArray, setActionsArray ] = useState<SudokuAction[]>([]);
 
+	const [ playMode, setPlayMode ] = useState(PlayMode.MACHINE);
 	// User message
 	const [ timeElapsed, setTimeElapsed ] = useState<number | null>(null);
 
@@ -96,7 +102,11 @@ const SudokuSection: React.FC<Props> = (props) => {
 
 	return (
 		<section className={classes["sudoku-section"]}>
-			<SectionNav timeElapsed={timeElapsed} />
+			<SectionNav
+				timeElapsed={timeElapsed}
+				playMode={playMode}
+				onChangeMode={(newMode: PlayMode) => setPlayMode(newMode)}
+			/>
 			<SudokuGrid grid={currentGrid} />
 		</section>
 	);

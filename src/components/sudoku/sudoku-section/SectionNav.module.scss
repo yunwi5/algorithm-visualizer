@@ -1,22 +1,49 @@
+@import "../../../styles/abstracts/mixin";
 @import "../../../styles/abstracts/variables";
 @import "../../../styles/base/button";
 
 .section-nav {
 	display: flex;
 	margin-bottom: 1.5rem;
-	font-size: 1.8rem;
+	font-size: 2rem;
 	width: 727px;
 	gap: 1rem;
 
-	.btn {
-		@include btn-medium;
-		border: none;
+	* {
+		cursor: pointer;
+	}
+
+	.btn-wrapper {
 		background-image: linear-gradient(
 			to right bottom,
 			$color-primary-dark-2,
 			$color-secondary-dark-1
 		);
+		padding: .3rem;
+		padding-top: .318rem;
+		border-radius: 5px;
+		@include flex-center;
+	}
+	.btn {
+		@include btn-large;
+		font-size: inherit;
+		border: none;
+		border-radius: 5px;
+	}
+	.btn-active {
 		color: $color-grey-light-1;
+		background: transparent;
+	}
+	.btn-inactive {
+		span {
+			background-image: linear-gradient(
+				to right bottom,
+				$color-primary-dark-2,
+				$color-secondary-dark-1
+			);
+			-webkit-background-clip: text;
+			color: transparent;
+		}
 	}
 	.message {
 		color: $color-tertiary-dark-2;
