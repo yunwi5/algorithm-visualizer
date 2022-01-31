@@ -20,7 +20,8 @@ const SideNav: React.FC<Prop> = (props) => {
 				icon={faLongArrowLeft as IconProp}
 			/>
 			<h2>
-				<span>Algo</span> <br /> <span>Visualizer</span>
+				<span>Algo</span>
+				<span>Visualizer</span>
 			</h2>
 			<ul>
 				<li>

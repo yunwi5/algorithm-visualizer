@@ -2,13 +2,12 @@
 @import "../../../styles/base/button";
 @import "../../../styles/abstracts/mixin";
 
+@import "../../../styles/layout/layout";
+
 .nav {
-	display: flex;
-	align-items: center;
-	min-height: 6rem;
-	background-color: $color-secondary-light-2;
-	padding: .7rem 0;
-	font-size: 2rem;
+	background-color: $color-secondary-dark-1;
+	color: $color-grey-light-1;
+	@include nav-bar;
 
 	& > *:not(:last-child) {
 		margin-right: 8rem;
@@ -18,7 +17,7 @@
 	.heading {
 		display: flex;
 		align-items: center;
-		color: $color-grey-dark-4;
+		color: $color-grey-light-1;
 
 		& > *:first-child {
 			margin-left: 1.5rem;
@@ -42,7 +41,7 @@
 		button {
 			margin-left: 9rem;
 			margin-right: 1rem;
-			@include button-medium-fill($color-secondary-dark-2);
+			@include button-medium-fill($color-primary-dark-2);
 			font-size: 1.9rem;
 			color: $color-grey-light-2;
 		}
@@ -55,11 +54,11 @@
 
 		.info-icon {
 			font-size: 3.5rem;
-			color: $color-secondary-dark-4;
+			color: $color-primary-dark-3;
 			cursor: pointer;
 
 			&:hover {
-				color: $color-secondary-dark-2;
+				color: $color-primary-dark-2;
 			}
 		}
 	}

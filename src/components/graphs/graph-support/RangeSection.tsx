@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { DEFAULT_ARR_SIZE, DEFAULT_SPEED, sortingSpeedToRange } from "../../../utilities/calc-util";
 import classes from "./RangeSection.module.scss";
 

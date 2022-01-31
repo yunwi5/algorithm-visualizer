@@ -7,6 +7,11 @@ export function arraysAreEqual<T> (arr1: T[], arr2: T[]) {
 	for (let i = 0; i < arr1.length; i++) {
 		if (arr1[i] !== arr2[i]) return false;
 	}
-
 	return true;
+}
+
+// Helper funciton
+export function copyBoard<T> (board: T[][]) {
+	const newBoard = board.map((row) => [ ...row ]);
+	return newBoard;
 }

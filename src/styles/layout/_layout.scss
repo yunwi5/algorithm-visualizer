@@ -1,0 +1,11 @@
+@mixin nav-bar() {
+	width: 100%;
+	min-height: 6rem;
+	padding: 0rem 1.8rem;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-transform: capitalize;
+	font-size: 2rem;
+}

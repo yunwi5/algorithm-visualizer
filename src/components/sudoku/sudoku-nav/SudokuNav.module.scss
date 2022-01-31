@@ -1,0 +1,53 @@
+@import "../../../styles/abstracts/mixin";
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+@import "../../../styles/layout/layout";
+
+.sodoku-nav {
+	background-color: $color-grey-dark-3;
+	color: $color-grey-light-1;
+	@include nav-bar;
+
+	.heading {
+		display: flex;
+		align-items: center;
+
+		& > * {
+			margin-right: 2.7rem;
+		}
+		h3 {
+			font-weight: 500;
+			font-size: 135%;
+		}
+	}
+
+	.buttons {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.btn-fill {
+		@include button-medium-fill($color-primary-dark-4);
+		color: $color-grey-light-2;
+	}
+
+	.btn-empty {
+		@include button-medium-empty($color-primary-dark-3);
+	}
+
+	.btn {
+		min-width: 11rem;
+		font-size: 90%;
+	}
+
+	.info-icon {
+		font-size: 3.5rem;
+		color: $color-primary-dark-4;
+		cursor: pointer;
+
+		&:hover {
+			color: $color-primary-dark-2;
+		}
+	}
+}

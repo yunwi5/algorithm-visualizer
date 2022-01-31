@@ -2,19 +2,12 @@
 @import "../../../styles/base/button";
 @import "../../../styles/abstracts/mixin";
 
+@import "../../../styles/layout/layout";
+
 .sorting-nav {
-	width: 100%;
-	min-height: 6rem;
 	background-color: $color-primary-light-2;
-	padding: 0rem 1.8rem;
-
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
 	color: $color-grey-dark-5;
-	text-transform: capitalize;
-	font-size: 2rem;
+	@include nav-bar;
 
 	.heading {
 		display: flex;

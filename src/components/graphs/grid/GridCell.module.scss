@@ -1,0 +1,63 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/abstracts/mixin";
+
+.cell {
+	font-size: 3rem;
+	border-bottom: 1px solid $color-grey-dark-4;
+	width: 8rem;
+	height: 8rem;
+	@include flex-center;
+
+	&:not(:last-child) {
+		border-right: 1px solid $color-grey-dark-4;
+	}
+
+	&:nth-of-type(3n):not(:last-child) {
+		border-right: 3px solid $color-grey-dark-4;
+	}
+}
+
+.cell-fixed {
+	background-color: rgba($color-grey-light-3, .7);
+
+	&:hover {
+		background-color: rgba($color-grey-dark-1, .7);
+	}
+}
+
+.cell-pending {
+	color: #fff;
+
+	background-color: $color-gold-light;
+
+	&:hover {
+		background-color: $color-gold;
+	}
+}
+
+.cell-valid {
+	color: #fff;
+	background-color: #95d5b2;
+
+	&:hover {
+		background-color: #74c69d;
+	}
+}
+
+.cell-invalid,
+.cell-final-invalid {
+	color: #fff;
+	background-color: $color-tertiary-dark-1;
+
+	&:hover {
+		background-color: $color-tertiary-dark-3;
+	}
+}
+
+.cell-final-valid {
+	color: #fff;
+	background-color: $color-primary-light-2;
+	&:hover {
+		background-color: $color-primary;
+	}
+}

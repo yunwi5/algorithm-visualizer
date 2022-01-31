@@ -15,6 +15,8 @@ export interface SudokuAction {
 
 export enum CellState {
 	INITIAL = "initial",
+	PENDING = "pending",
+	FIXED = "fixed",
 	VALID = "valid",
 	INVALID = "invalid",
 	FINAL_VALID = "final-valid",
@@ -23,5 +25,5 @@ export enum CellState {
 
 export interface SudokuCell {
 	value: number;
-	state: CellState;
+	status: CellState;
 }

@@ -1,11 +1,36 @@
-import { SudokuAction, ActionState, SudokuCell, CellState } from "../../models/sudoky-model";
+import { SudokuAction, ActionState, SudokuCell, CellState } from "../../models/sudoku-model";
+import { copyBoard } from "../list-util";
 
-export function getSudokuActions (initialBoard: number[][]) {
+function getIntGrid (board: SudokuCell[][]) {
+	const intGrid: number[][] = board.map((row) => {
+		return row.map((cell) => cell.value);
+	});
+
+	return intGrid;
+}
+
+export function getSudokuActions (initialBoard: SudokuCell[][]) {
 	const initialBoardCpy = copyBoard(initialBoard);
 	const actionsArray: SudokuAction[] = [];
-	solveSudoku(actionsArray, initialBoardCpy);
+	const intGrid = getIntGrid(initialBoardCpy);
+	solveSudoku(actionsArray, intGrid);
 
 	return actionsArray;
+}
+
+function attachSudokuAction (
+	actionsArray: SudokuAction[],
+	actionState: ActionState,
+	row: number = -1,
+	col: number = -1,
+	current: number = -1
+) {
+	actionsArray.push({
+		actionState,
+		row,
+		col,
+		current
+	});
 }
 
 export function solveSudoku (actionsArray: SudokuAction[], board: number[][]) {
@@ -18,7 +43,10 @@ export function solveSudoku (actionsArray: SudokuAction[], board: number[][]) {
 	while (row < 9 && row >= 0) {
 		while (col < 9 && col >= 0) {
 			if (original[row][col] === 0) {
-				isValid = fitValidNumber(board, row, col);
+				let curr = board[row][col];
+				// Try Fit
+				attachSudokuAction(actionsArray, ActionState.TRY_FIT, row, col, curr);
+				isValid = fitValidNumber(actionsArray, board, row, col);
 			}
 			if (isValid) col++;
 			else col--;
@@ -33,30 +61,42 @@ export function solveSudoku (actionsArray: SudokuAction[], board: number[][]) {
 			col = 0;
 		}
 	}
+
+	if (isValid) {
+		console.log("sudoku solved");
+		attachSudokuAction(actionsArray, ActionState.FINAL_VALID);
+	} else {
+		attachSudokuAction(actionsArray, ActionState.FINAL_INVALID);
+	}
 	return board;
 }
 
-function copyBoard (board: number[][]) {
-	let newBoard = [];
-	for (const row of board) {
-		newBoard.push([ ...row ]);
-	}
-	return newBoard;
-}
-
-function fitValidNumber (board: number[][], row: number, col: number) {
-	let currentNumber = board[row][col];
+function fitValidNumber (
+	actionsArray: SudokuAction[],
+	board: number[][],
+	row: number,
+	col: number
+) {
+	let currentNumber = Math.max(board[row][col], 1);
 	let rowColValid = rowAndColAreValid(board, row, col, currentNumber);
 	let squareValid = squareIsValid(board, row, col, currentNumber);
-	while (!squareValid || (!rowColValid && currentNumber <= 9)) {
+	let isValid = rowColValid && squareValid && currentNumber < 10;
+
+	while (!isValid && currentNumber <= 9) {
+		// Invalid cell value. Incorrect.
+		attachSudokuAction(actionsArray, ActionState.SET_INVALID, row, col, currentNumber);
 		currentNumber++;
 		rowColValid = rowAndColAreValid(board, row, col, currentNumber);
 		squareValid = squareIsValid(board, row, col, currentNumber);
+		isValid = rowColValid && squareValid && currentNumber < 10;
 	}
 
-	const isValid = rowColValid && squareValid && currentNumber < 10;
-	if (isValid) board[row][col] = currentNumber;
-	else board[row][col] = 0;
+	isValid = rowColValid && squareValid && currentNumber < 10;
+	if (isValid) {
+		// Valid cell value. Correct.
+		attachSudokuAction(actionsArray, ActionState.SET_VALID, row, col, currentNumber);
+		board[row][col] = currentNumber;
+	} else board[row][col] = 0;
 	return isValid;
 }
 

@@ -1,0 +1,26 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/base/button";
+
+.section-nav {
+	display: flex;
+	margin-bottom: 1.5rem;
+	font-size: 1.8rem;
+	width: 727px;
+	gap: 1rem;
+
+	.btn {
+		@include btn-medium;
+		border: none;
+		background-image: linear-gradient(
+			to right bottom,
+			$color-primary-dark-2,
+			$color-secondary-dark-1
+		);
+		color: $color-grey-light-1;
+	}
+	.message {
+		color: $color-tertiary-dark-2;
+		margin-left: auto;
+		align-self: flex-end;
+	}
+}

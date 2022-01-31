@@ -1,0 +1,20 @@
+@import "../../../styles/abstracts/variables";
+@import "../../../styles/abstracts/mixin";
+
+.sudoku-grid {
+	.row {
+		display: flex;
+		border-left: 2px solid $color-grey-dark-4;
+		border-right: 2px solid $color-grey-dark-4;
+	}
+	.row:nth-of-type(3n) {
+		border-bottom: 2px solid $color-grey-dark-4;
+	}
+	.row:first-child {
+		border-top: 2px solid $color-grey-dark-4;
+	}
+
+	.row:last-child {
+		border-bottom: 1px solid $color-grey-dark-4;
+	}
+}
