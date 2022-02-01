@@ -1,5 +1,5 @@
 import { getTimeElapsedInFormat } from "../../../utilities/calc-util";
-import { PlayMode } from "./SudokuSection";
+import { PlayMode } from "../../../models/sudoku-model";
 import classes from "./SectionNav.module.scss";
 
 interface Props {

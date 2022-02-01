@@ -1,3 +1,8 @@
+export enum PlayMode {
+	MACHINE = "machine",
+	USER = "user"
+}
+
 export enum ActionState {
 	TRY_FIT = "try-fit",
 	SET_VALID = "valid",

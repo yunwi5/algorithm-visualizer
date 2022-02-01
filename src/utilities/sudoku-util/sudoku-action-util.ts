@@ -1,9 +1,10 @@
 import { SudokuAction, CellState, ActionState, SudokuCell } from "../../models/sudoku-model";
 
-function finalizeGrid (grid: SudokuCell[][]) {
+export function finalizeGrid (grid: SudokuCell[][], finalState: CellState = CellState.FINAL_VALID) {
+	console.log("finalize grid");
 	for (const row of grid) {
 		for (const cell of row) {
-			cell.status = CellState.FINAL_VALID;
+			cell.status = finalState;
 		}
 	}
 }
@@ -21,9 +22,7 @@ function resetInvalidCells (grid: SudokuCell[][]) {
 
 export function executeSudokuAction (grid: SudokuCell[][], action: SudokuAction) {
 	const gridCpy = [ ...grid ];
-
 	const { row, col, current, actionState } = action;
-
 	let currCell;
 
 	switch (actionState) {
@@ -44,10 +43,10 @@ export function executeSudokuAction (grid: SudokuCell[][], action: SudokuAction)
 			currCell.value = current;
 			break;
 		case ActionState.FINAL_VALID:
-			finalizeGrid(gridCpy);
-			console.log("finalize grid");
-			console.log(gridCpy[0]);
+			finalizeGrid(gridCpy, CellState.FINAL_VALID);
 			break;
+		case ActionState.FINAL_INVALID:
+			finalizeGrid(gridCpy, CellState.FINAL_INVALID);
 	}
 	return gridCpy;
 }

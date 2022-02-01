@@ -30,5 +30,8 @@ export function getRoundedFormat (num: number) {
 
 export function getTimeElapsedInFormat (milliseconds: number) {
 	const timeInSec = milliseconds / 1000;
+	// If the time is 3 digits (or more), 0 dp
+	if (timeInSec >= 100) return Math.round(timeInSec);
+	// If the time is 2 digits (or less), 1 dp
 	return Math.round(timeInSec * 10) / 10;
 }

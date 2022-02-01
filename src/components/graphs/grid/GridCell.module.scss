@@ -15,6 +15,25 @@
 	&:nth-of-type(3n):not(:last-child) {
 		border-right: 3px solid $color-grey-dark-4;
 	}
+
+	&:focus-within {
+		background-color: lighten($color-primary-light-1, 12%);
+	}
+
+	.input {
+		font-size: inherit;
+		background-color: inherit;
+		color: inherit;
+		width: 80%;
+		height: 80%;
+		border: none;
+		@include flex-center;
+		text-align: center;
+
+		&:focus {
+			outline: none;
+		}
+	}
 }
 
 .cell-fixed {
@@ -42,6 +61,9 @@
 	&:hover {
 		background-color: #74c69d;
 	}
+	&:focus-within {
+		background-color: darken(#74c69d, 15%);
+	}
 }
 
 .cell-invalid,
@@ -52,6 +74,9 @@
 	&:hover {
 		background-color: $color-tertiary-dark-3;
 	}
+	&:focus-within {
+		background-color: darken($color-tertiary-dark-3, 15%);
+	}
 }
 
 .cell-final-valid {
@@ -59,5 +84,8 @@
 	background-color: $color-primary-light-2;
 	&:hover {
 		background-color: $color-primary;
+	}
+	&:focus-within {
+		background-color: darken($color-primary, 15%);
 	}
 }
