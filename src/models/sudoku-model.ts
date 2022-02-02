@@ -31,4 +31,5 @@ export enum CellState {
 export interface SudokuCell {
 	value: number;
 	status: CellState;
+	errMessages?: string[];
 }

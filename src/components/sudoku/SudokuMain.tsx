@@ -2,6 +2,7 @@ import { useState } from "react";
 import SudokuNav from "./sudoku-nav/SudokuNav";
 import SudokuSection from "./sudoku-section/SudokuSection";
 import { DEFAULT_SPEED } from "../../utilities/calc-util";
+import { getRandomGrid } from "../../utilities/sudoku-util/create-sudoku-util";
 import classes from "./SudokuMain.module.scss";
 
 const Grid = [
@@ -21,13 +22,14 @@ const SudokuMain: React.FC = () => {
 	const [ speed, setSpeed ] = useState(DEFAULT_SPEED);
 	const [ grid, setGrid ] = useState<number[][]>(Grid);
 
-	const [ resetToggle, setResetToggle ] = useState(true);
+	// const [ resetToggle, setResetToggle ] = useState(true);
 
 	const randomizeGrid = () => {
 		// One grid at the moment
-		const newGrid = Grid;
+		const newGrid = getRandomGrid();
+		console.log("got new grid");
+		console.table(newGrid);
 		setGrid(newGrid);
-		setResetToggle((prev) => !prev);
 	};
 
 	return (
@@ -40,7 +42,7 @@ const SudokuMain: React.FC = () => {
 			/>
 			<SudokuSection
 				isBegin={isBegin}
-				resetToggle={resetToggle}
+				// resetToggle={resetToggle}
 				speed={speed}
 				grid={grid}
 				onComplete={() => setIsBegin(false)}

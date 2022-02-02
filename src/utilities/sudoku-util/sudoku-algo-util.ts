@@ -1,4 +1,5 @@
 import { SudokuAction, ActionState, SudokuCell, CellState } from "../../models/sudoku-model";
+import { createSolutionGrid } from "./sudoku-util";
 import { copyBoard } from "../list-util";
 
 function getIntGrid (board: SudokuCell[][]) {
@@ -13,9 +14,12 @@ export function getSudokuActions (initialBoard: SudokuCell[][]) {
 	const initialBoardCpy = copyBoard(initialBoard);
 	const actionsArray: SudokuAction[] = [];
 	const intGrid = getIntGrid(initialBoardCpy);
-	solveSudoku(actionsArray, intGrid);
+	const solution = solveSudoku(actionsArray, intGrid);
 
-	return actionsArray;
+	return {
+		actions: actionsArray,
+		solution: createSolutionGrid(solution)
+	};
 }
 
 function attachSudokuAction (
@@ -100,7 +104,7 @@ function fitValidNumber (
 	return isValid;
 }
 
-function squareIsValid (board: number[][], row: number, col: number, curr: number) {
+export function squareIsValid (board: number[][], row: number, col: number, curr: number) {
 	const rowStart = Math.floor(row / 3) * 3;
 	const colStart = Math.floor(col / 3) * 3;
 
@@ -112,7 +116,7 @@ function squareIsValid (board: number[][], row: number, col: number, curr: numbe
 	return true;
 }
 
-function rowAndColAreValid (board: number[][], row: number, col: number, curr: number) {
+export function rowAndColAreValid (board: number[][], row: number, col: number, curr: number) {
 	const rowIsValid = !board[row].includes(curr);
 	const colIsValid = board.filter((r) => r[col] === curr).length === 0;
 	return rowIsValid && colIsValid;

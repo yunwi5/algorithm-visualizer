@@ -45,6 +45,10 @@
 			color: transparent;
 		}
 	}
+	.btn-solution {
+		@include button-large-fill($color-primary-dark-2);
+		color: $color-grey-light-1;
+	}
 	.message {
 		color: $color-tertiary-dark-2;
 		margin-left: auto;

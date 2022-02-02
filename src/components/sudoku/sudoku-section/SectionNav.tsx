@@ -5,11 +5,14 @@ import classes from "./SectionNav.module.scss";
 interface Props {
 	timeElapsed: number | null;
 	playMode: PlayMode;
+	isBegin: boolean;
+	showSolution: boolean;
+	onTerminate: () => void;
 	onChangeMode: (mode: PlayMode) => void;
 }
 
 const SectionNav: React.FC<Props> = (props) => {
-	const { timeElapsed, playMode, onChangeMode } = props;
+	const { timeElapsed, playMode, isBegin, showSolution, onTerminate, onChangeMode } = props;
 
 	return (
 		<div className={classes["section-nav"]}>
@@ -33,8 +36,17 @@ const SectionNav: React.FC<Props> = (props) => {
 					<span>Try Yourself</span>
 				</button>
 			</div>
+			{isBegin && (
+				<button
+					onClick={onTerminate}
+					className={`${classes.btn} ${classes["btn-solution"]}`}
+				>
+					<span>Show Solution</span>
+				</button>
+			)}
 
-			{timeElapsed && (
+			{timeElapsed &&
+			!showSolution && (
 				<p className={classes.message}>{getTimeElapsedInFormat(timeElapsed)}s Taken</p>
 			)}
 		</div>

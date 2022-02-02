@@ -7,6 +7,7 @@
 	width: 8rem;
 	height: 8rem;
 	@include flex-center;
+	position: relative;
 
 	&:not(:last-child) {
 		border-right: 1px solid $color-grey-dark-4;
@@ -33,6 +34,67 @@
 		&:focus {
 			outline: none;
 		}
+	}
+}
+
+.message {
+	position: absolute;
+	top: 0%;
+	right: 0%;
+	display: flex;
+	align-items: flex-start;
+	padding: .1rem;
+	text-align: right;
+
+	&__content {
+		position: absolute;
+		bottom: 2.3rem;
+		left: 100%;
+		transform: translate(-1.5rem, -.5rem);
+
+		color: $color-tertiary-dark-3;
+		background-color: lighten($color-tertiary-light-1, 5%);
+		display: none;
+		flex-direction: column;
+		border: 1px solid $color-tertiary-dark-3;
+		border-radius: 6px;
+		min-width: 15rem;
+		padding: .5rem;
+		text-align: left;
+		z-index: 10;
+
+		ul {
+			padding-left: 1.5rem;
+		}
+	}
+
+	&__heading {
+		font-size: 1.35rem;
+		color: darken($color-gold-dark, 10%);
+		margin-bottom: .5rem;
+		.icon {
+			// font-size: 1.5rem;
+			color: $color-gold-dark;
+			margin-right: .5rem;
+		}
+	}
+
+	&__text {
+		font-size: 1.2rem;
+	}
+
+	&__icon {
+		font-size: 2.5rem;
+		cursor: pointer;
+		color: #fff;
+
+		&:hover {
+			color: darken($color-tertiary-dark-4, 15%);
+		}
+	}
+
+	&__icon:hover ~ &__content {
+		display: flex;
 	}
 }
 

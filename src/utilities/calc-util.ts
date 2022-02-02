@@ -35,3 +35,9 @@ export function getTimeElapsedInFormat (milliseconds: number) {
 	// If the time is 2 digits (or less), 1 dp
 	return Math.round(timeInSec * 10) / 10;
 }
+
+// Random number in range
+export function getRandomNumber (myMin: number, myMax: number) {
+	const randomNumber = Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+	return randomNumber;
+}

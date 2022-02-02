@@ -1,4 +1,4 @@
-import { useState, useMemo, useLayoutEffect, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import SudokuGrid from "../../graphs/grid/SudokuGrid";
 import {
 	createCustomGrid,
@@ -34,9 +34,7 @@ const UserSudoku: React.FC<Props> = (props) => {
 		setUpdateCount((prev) => prev + 1);
 
 		// Validation
-		const isInRange = newValue > 0 && newValue < 10 ? true : false;
-		const isValidSudokuCell = cellIsValid(currentGrid, row, col, newValue); // Call a function for sudoku validation
-		const isValid = isInRange && isValidSudokuCell;
+		const { isValid, errMessages } = cellIsValid(currentGrid, row, col, newValue); // Call a function for sudoku validation
 
 		let newCell;
 		if (newValue === 0) {
@@ -44,7 +42,7 @@ const UserSudoku: React.FC<Props> = (props) => {
 		} else if (isValid) {
 			newCell = { value: newValue, status: CellState.VALID };
 		} else {
-			newCell = { value: newValue, status: CellState.INVALID };
+			newCell = { value: newValue, status: CellState.INVALID, errMessages: errMessages };
 		}
 		const currentGridCpy = [ ...currentGrid ];
 		currentGridCpy[row][col] = newCell;
