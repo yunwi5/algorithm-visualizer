@@ -18,9 +18,6 @@ const SudokuSection: React.FC<Props> = (props) => {
 	// User message
 	const [ timeElapsed, setTimeElapsed ] = useState<number | null>(null);
 
-	// show solution
-	const [ showSolution, setShowSolution ] = useState(false);
-
 	const changeModeHandler = (newMode: PlayMode) => {
 		setPlayMode(newMode);
 		setTimeElapsed(null);
@@ -29,28 +26,6 @@ const SudokuSection: React.FC<Props> = (props) => {
 	const timeDisplayHandler = (time: number | null) => {
 		setTimeElapsed(time);
 	};
-
-	useEffect(
-		() => {
-			setShowSolution(false);
-			onComplete();
-		},
-		[ grid ]
-	);
-
-	useEffect(
-		() => {
-			if (isBegin) setShowSolution(false);
-		},
-		[ isBegin ]
-	);
-
-	useEffect(
-		() => {
-			if (showSolution) onComplete();
-		},
-		[ showSolution ]
-	);
 
 	console.log("Is begin:", isBegin);
 
@@ -61,15 +36,12 @@ const SudokuSection: React.FC<Props> = (props) => {
 				timeElapsed={timeElapsed}
 				playMode={playMode}
 				onChangeMode={changeModeHandler}
-				showSolution={showSolution}
-				onTerminate={() => setShowSolution(true)}
 			/>
 			{playMode === PlayMode.MACHINE ? (
 				<SudokuSolver
 					isBegin={isBegin}
 					speed={speed}
 					grid={grid}
-					showSolution={showSolution}
 					onComplete={onComplete}
 					onTime={timeDisplayHandler}
 				/>
