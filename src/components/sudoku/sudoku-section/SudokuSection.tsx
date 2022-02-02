@@ -3,20 +3,29 @@ import SectionNav from "./SectionNav";
 import { PlayMode } from "../../../models/sudoku-model";
 import UserSudoku from "./UserSudoku";
 import SudokuSolver from "./SudokuSolver";
+import { getRandomGrid } from "../../../utilities/sudoku-util/create-sudoku-util";
 import classes from "./SudokuSection.module.scss";
 
 interface Props {
 	isBegin: boolean;
 	speed: number;
-	grid: number[][];
+	initialGrid: number[][];
 	onComplete: () => void;
 }
 
 const SudokuSection: React.FC<Props> = (props) => {
-	const { isBegin, speed, grid, onComplete } = props;
+	const { isBegin, speed, initialGrid, onComplete } = props;
+
+	const [ grid, setGrid ] = useState(initialGrid);
 	const [ playMode, setPlayMode ] = useState(PlayMode.MACHINE);
 	// User message
 	const [ timeElapsed, setTimeElapsed ] = useState<number | null>(null);
+
+	const randomGridHandler = () => {
+		console.log("randomize grid");
+		const newGrid = getRandomGrid();
+		setGrid(newGrid);
+	};
 
 	const changeModeHandler = (newMode: PlayMode) => {
 		setPlayMode(newMode);
@@ -27,8 +36,6 @@ const SudokuSection: React.FC<Props> = (props) => {
 		setTimeElapsed(time);
 	};
 
-	console.log("Is begin:", isBegin);
-
 	return (
 		<section className={classes["sudoku-section"]}>
 			<SectionNav
@@ -36,6 +43,7 @@ const SudokuSection: React.FC<Props> = (props) => {
 				timeElapsed={timeElapsed}
 				playMode={playMode}
 				onChangeMode={changeModeHandler}
+				onRandomize={randomGridHandler}
 			/>
 			{playMode === PlayMode.MACHINE ? (
 				<SudokuSolver

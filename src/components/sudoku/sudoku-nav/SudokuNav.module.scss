@@ -30,15 +30,27 @@
 	.btn-fill {
 		@include button-medium-fill($color-primary-dark-4);
 		color: $color-grey-light-2;
+
+		&:disabled {
+			@include button-medium-fill(rgba($color-primary-dark-4, .3));
+		}
 	}
 
 	.btn-empty {
 		@include button-medium-empty($color-primary-dark-3);
+
+		&:disabled {
+			@include button-medium-empty(rgba($color-primary-dark-4, .3));
+		}
 	}
 
 	.btn {
 		min-width: 11rem;
 		font-size: 90%;
+
+		&:disabled {
+			cursor: not-allowed;
+		}
 	}
 
 	.info-icon {

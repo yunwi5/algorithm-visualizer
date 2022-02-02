@@ -3,6 +3,7 @@ import RangeSection from "../../graphs/graph-support/RangeSection";
 import ToggleBar from "../../ui/ToggleBar";
 
 import Sidebar from "../../layout/sidebar/Sidebar";
+import { Theme } from "../../../models/gen-model";
 import ModalContext from "../../../store/modal-context";
 import { toMsSpeed } from "../../../utilities/calc-util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,7 +51,7 @@ const SearchNav: React.FC<Props> = (props) => {
 					colorSecondary={true}
 					isBegin={isBegin}
 				/>
-				<ToggleBar onChange={displayDuoHandler} isBegin={isBegin} />
+				<ToggleBar onChange={displayDuoHandler} isBegin={isBegin} theme={Theme.SECONDARY} />
 			</div>
 			<div className={classes.action}>
 				<button disabled={isBegin ? true : false} onClick={onRandomize}>

@@ -1,12 +1,14 @@
 import { useRef, useEffect } from "react";
+import { Theme } from "../../models/gen-model";
 import classes from "./ToggleBar.module.scss";
 
 interface Props {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	theme: Theme;
 	isBegin?: boolean;
 }
 
-const ToggleBar: React.FC<Props> = ({ onChange, isBegin }) => {
+const ToggleBar: React.FC<Props> = ({ onChange, isBegin, theme }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(
@@ -23,7 +25,7 @@ const ToggleBar: React.FC<Props> = ({ onChange, isBegin }) => {
 	return (
 		<div className={classes.toggle}>
 			<span>Duo</span>
-			<label className={classes.switch}>
+			<label className={`${classes.switch} ${classes["switch-" + theme]}`}>
 				<input ref={inputRef} type="checkbox" onChange={onChange} />
 				<span className={`${classes.slider} ${classes.round}`} />
 			</label>

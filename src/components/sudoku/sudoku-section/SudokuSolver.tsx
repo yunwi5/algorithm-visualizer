@@ -27,7 +27,6 @@ const SudokuSolver: React.FC<Props> = (props) => {
 			setCurrentGrid(customGrid);
 			const { actions, solution } = getSudokuActions(customGrid);
 			setActionsArray(actions);
-			console.log("solution:", solution);
 			onTime(null);
 		},
 		[ grid ]

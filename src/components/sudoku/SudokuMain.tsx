@@ -22,6 +22,8 @@ const SudokuMain: React.FC = () => {
 	const [ speed, setSpeed ] = useState(DEFAULT_SPEED);
 	const [ grid, setGrid ] = useState<number[][]>(Grid);
 
+	const [ isDuo, setIsDuo ] = useState(false);
+
 	const randomizeGrid = () => {
 		// One grid at the moment
 		const newGrid = getRandomGrid();
@@ -37,13 +39,24 @@ const SudokuMain: React.FC = () => {
 				isBegin={isBegin}
 				onBegin={() => setIsBegin(true)}
 				onRandomize={randomizeGrid}
+				onDuoToggle={() => setIsDuo((prev) => !prev)}
 			/>
-			<SudokuSection
-				isBegin={isBegin}
-				speed={speed}
-				grid={grid}
-				onComplete={() => setIsBegin(false)}
-			/>
+			<div className={classes.container}>
+				<SudokuSection
+					isBegin={isBegin}
+					speed={speed}
+					initialGrid={grid}
+					onComplete={() => setIsBegin(false)}
+				/>
+				{isDuo && (
+					<SudokuSection
+						isBegin={isBegin}
+						speed={speed}
+						initialGrid={grid}
+						onComplete={() => setIsBegin(false)}
+					/>
+				)}
+			</div>
 		</main>
 	);
 };
