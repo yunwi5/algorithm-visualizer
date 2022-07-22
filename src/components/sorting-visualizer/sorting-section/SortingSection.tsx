@@ -90,7 +90,7 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
         // Get new sorting animation actions
         const sortingActions = getSortingActions(newRandomArray, algorithm);
         setAnimationActions(sortingActions);
-    }, [arraySize, initialArray, algorithm]); // change
+    }, [initialArray, algorithm]); // change
 
     const stopInterval = (interval: ReturnType<typeof setInterval>) => {
         clearInterval(interval);
@@ -98,14 +98,14 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
         onResetStart();
         // pause back to false, so that next turn simulation can run.
         pauseRef.current = false;
+        // reset back to false, so that next turn simulation can run.
+        resetRef.current = false;
     };
 
     const reset = (interval: ReturnType<typeof setInterval>) => {
         stopInterval(interval);
-        setSortingArray(initialArray);
-        console.table(initialArray);
-        // reset back to false, so that next turn simulation can run.
-        resetRef.current = false;
+        // create deepcopy again to prevent modifying initialArray
+        setSortingArray(createDeepArrayCopy(initialArray));
     };
 
     // Execute animation action one by one.

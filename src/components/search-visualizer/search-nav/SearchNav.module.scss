@@ -40,14 +40,13 @@
         button {
             margin-left: 9rem;
             margin-right: 1rem;
-            @include button-medium-fill($color-grey-dark-4);
+            @include button-medium-fill($color-grey-dark-5);
             font-size: 1.9rem;
             color: $color-grey-light-1;
         }
 
         button:disabled {
-            background-color: rgba($color-secondary-dark-2, 0.5);
-            border: 1px solid rgba($color-secondary-dark-2, 0.5);
+            opacity: 0.3;
             cursor: not-allowed;
         }
 

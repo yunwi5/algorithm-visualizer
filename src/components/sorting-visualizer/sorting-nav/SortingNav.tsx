@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext, useRef } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import Sidebar from '../../layout/sidebar/Sidebar';
 import RangeSection from '../../graphs/graph-support/RangeSection';
 import ModalContext from '../../../store/modal-context';
