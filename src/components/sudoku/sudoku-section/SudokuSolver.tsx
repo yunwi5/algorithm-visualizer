@@ -24,10 +24,15 @@ const SudokuSolver: React.FC<Props> = (props) => {
 	useEffect(
 		() => {
 			const customGrid = createCustomGrid(grid);
+			// console.log("new custom grid!", customGrid);
 			setCurrentGrid(customGrid);
-			const { actions, solution } = getSudokuActions(customGrid);
-			setActionsArray(actions);
 			onTime(null);
+
+			const getSudokuActionsAsync = async () => {
+				const { actions, solution } = await getSudokuActions(customGrid);
+				setActionsArray(actions);
+			};
+			getSudokuActionsAsync();
 		},
 		[ grid ]
 	);

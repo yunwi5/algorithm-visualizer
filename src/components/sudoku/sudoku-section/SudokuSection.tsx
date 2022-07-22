@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import SectionNav from "./SectionNav";
-import { PlayMode } from "../../../models/sudoku-model";
-import UserSudoku from "./UserSudoku";
 import SudokuSolver from "./SudokuSolver";
+import UserSudoku from "./UserSudoku";
+import { PlayMode } from "../../../models/sudoku-model";
 import { getRandomGrid } from "../../../utilities/sudoku-util/create-sudoku-util";
 import classes from "./SudokuSection.module.scss";
 
@@ -35,6 +35,14 @@ const SudokuSection: React.FC<Props> = (props) => {
 	const timeDisplayHandler = (time: number | null) => {
 		setTimeElapsed(time);
 	};
+
+	// When the global sudoku grid changes, its section should change accordingly
+	useEffect(
+		() => {
+			setGrid(initialGrid);
+		},
+		[ initialGrid ]
+	);
 
 	return (
 		<section className={classes["sudoku-section"]}>

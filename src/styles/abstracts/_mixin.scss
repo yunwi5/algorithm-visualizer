@@ -1,5 +1,25 @@
 @mixin flex-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Horizontally expand the ::after element as a hovering effect.
+@mixin expand-from-middle($height: 2px) {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 102%;
+        left: 50%;
+        transition: all 0.3s ease-in-out;
+        transform: translateX(-50%);
+        background-color: currentColor;
+        height: $height;
+        width: 0%;
+    }
+
+    &:hover::after {
+        width: 102%;
+    }
 }

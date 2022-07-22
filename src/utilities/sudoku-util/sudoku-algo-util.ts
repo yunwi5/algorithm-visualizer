@@ -1,5 +1,6 @@
 import { SudokuAction, ActionState, SudokuCell, CellState } from "../../models/sudoku-model";
 import { createSolutionGrid } from "./sudoku-util";
+import ExampleGridList from "./easy-example";
 import { copyBoard } from "../list-util";
 
 function getIntGrid (board: SudokuCell[][]) {
@@ -10,12 +11,60 @@ function getIntGrid (board: SudokuCell[][]) {
 	return intGrid;
 }
 
-export function getSudokuActions (initialBoard: SudokuCell[][]) {
+// Incomplete
+async function solveSudokuAsync (actionsArray: SudokuAction[], intGrid: number[][]) {
+	const timeout = (prom: Promise<any>, time: number) => {
+		let timer: ReturnType<typeof setTimeout>;
+		return Promise.race([
+			prom,
+			new Promise((_r, rej) => (timer = setTimeout(rej, time)))
+		]).finally(() => clearTimeout(timer));
+	};
+
+	const sudokuWait = (ms: number): Promise<any> =>
+		new Promise((resolve) =>
+			setTimeout(() => {
+				let solution = solveSudoku(actionsArray, intGrid);
+				resolve(solution);
+			}, ms)
+		);
+
+	// let solution2: number[][] = await sudokuWait(5000)
+	// 	.then((res) => {
+	// 		console.log("sudoku solved with promise!");
+	// 		return res;
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log("sudoku not solved on time!");
+	// 		return ExampleGridList[0];
+	// 	});
+
+	let solution3: number[][] = await timeout(sudokuWait(5000), 5000)
+		.then((res) => {
+			console.log("sudoku solved with promise!");
+			return res;
+		})
+		.catch((err) => {
+			console.log("sudoku not solved on time!");
+			return ExampleGridList[0];
+		});
+
+	if (Array.isArray(solution3)) {
+		console.log("sudoku solved with promise!");
+		console.log(solution3);
+	} else {
+		console.log(solution3);
+		solution3 = ExampleGridList[0];
+	}
+}
+
+export async function getSudokuActions (initialBoard: SudokuCell[][]) {
 	const initialBoardCpy = copyBoard(initialBoard);
 	const actionsArray: SudokuAction[] = [];
 	const intGrid = getIntGrid(initialBoardCpy);
-	const solution = solveSudoku(actionsArray, intGrid);
+	let solution = solveSudoku(actionsArray, intGrid);
 
+	// await solveSudokuAsync(actionsArray, intGrid);
 	return {
 		actions: actionsArray,
 		solution: createSolutionGrid(solution)
@@ -67,7 +116,7 @@ export function solveSudoku (actionsArray: SudokuAction[], board: number[][]) {
 	}
 
 	if (isValid) {
-		console.log("sudoku solved");
+		// console.log("sudoku solved");
 		attachSudokuAction(actionsArray, ActionState.FINAL_VALID);
 	} else {
 		attachSudokuAction(actionsArray, ActionState.FINAL_INVALID);

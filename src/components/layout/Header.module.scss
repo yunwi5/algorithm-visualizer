@@ -1,53 +1,59 @@
-@import "../../styles/abstracts/variables";
-@import "../../styles/abstracts/mixin";
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixin';
 
 .header {
-	display: flex;
-	justify-content: space-between;
-	background: linear-gradient(to right bottom, $color-primary-light-3, $color-secondary);
-	color: $color-grey-light-1;
-	min-height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(to right bottom, $color-primary-light-3, $color-secondary);
+    color: $color-grey-light-1;
+    min-height: 6rem;
 
-	h2 {
-		margin-left: 2rem;
-		font-weight: 300;
-		font-size: 3rem;
-		display: flex;
-		align-items: center;
-	}
+    h2 {
+        margin-left: 2rem;
+        font-weight: 300;
+        font-size: 3rem;
+        display: flex;
+        align-items: center;
 
-	ul {
-		display: flex;
-		align-items: center;
-		font-size: 2rem;
-		list-style: none;
-		margin-right: 1.5rem;
-	}
+        a,
+        a:active {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
 
-	li {
-		height: 68%;
-		@include flex-center;
+    ul {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+        list-style: none;
+        margin-right: 1.5rem;
+    }
 
-		cursor: pointer;
-		transition: all .5s ease-out;
-		margin-right: 1.5rem;
-		padding: 0 0.5rem;
+    li {
+        height: 68%;
+        @include flex-center;
 
-		&:hover {
-			font-size: 101%;
-			border-bottom: 1.5px solid $color-grey-light-1;
-		}
+        cursor: pointer;
+        transition: all 0.5s ease-out;
+        margin-right: 1.5rem;
+        padding: 0 0.5rem;
 
-		a {
-			display: block;
-			height: 100%;
-			text-decoration: none;
-			color: inherit;
-			@include flex-center;
-		}
+        &:hover {
+            font-size: 101%;
+            border-bottom: 1.5px solid $color-grey-light-1;
+        }
 
-		.active {
-			border-bottom: 1.5px solid $color-grey-light-1;
-		}
-	}
+        a {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+            @include flex-center;
+        }
+
+        .active {
+            border-bottom: 1.5px solid $color-grey-light-1;
+        }
+    }
 }
