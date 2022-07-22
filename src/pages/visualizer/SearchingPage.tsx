@@ -1,15 +1,14 @@
-import { Fragment, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import SearchVisualizer from '../../components/search-visualizer/SearchVisualizer';
 import SearchIntroList from '../../components/search-visualizer/search-info/SearchIntro';
-import ModalContext from '../../store/modal-context';
-import IntroModal, { Theme } from '../../components/ui/IntroModal';
+import { useModalContext } from '../../store/modal-context';
+import IntroModal from '../../components/ui/IntroModal';
 
 const SearchingPage: React.FC = () => {
-    const { searchModalVisible, showSearchModal } = useContext(ModalContext);
+    const { searchModalVisible, showSearchModal } = useModalContext();
 
     return (
-        <Fragment>
+        <>
             <Helmet>
                 <title>Search Visualizer</title>
                 <meta
@@ -24,7 +23,7 @@ const SearchingPage: React.FC = () => {
                     onClose={showSearchModal.bind(null, false)}
                 />
             )}
-        </Fragment>
+        </>
     );
 };
 

@@ -1,108 +1,92 @@
-@import "../../../styles/abstracts/variables";
-@import "../../../styles/base/button";
-@import "../../../styles/abstracts/mixin";
-
-@import "../../../styles/layout/layout";
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/base/button';
+@import '../../../styles/abstracts/mixin';
+@import '../../../styles/layout/layout';
 
 .sorting-nav {
-	background-color: $color-primary-light-2;
-	color: $color-grey-dark-5;
-	@include nav-bar;
+    background-color: $color-primary-light-2;
+    color: $color-grey-dark-5;
+    @include nav-bar;
 
-	.heading {
-		display: flex;
-		align-items: center;
-		color: $color-grey-dark-4;
+    .heading {
+        display: flex;
+        align-items: center;
+        color: $color-grey-dark-5;
 
-		& > * {
-			margin-right: 2.7rem;
-		}
-		h3 {
-			font-weight: 500;
-			font-size: 135%;
-		}
-	}
+        & > * {
+            margin-right: 2.7rem;
+        }
+        h3 {
+            font-weight: 500;
+            font-size: 135%;
+        }
+    }
 
-	.buttons {
-		display: flex;
-		margin-left: auto;
-		align-items: center;
+    .buttons {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
 
-		.err-message {
-			color: $color-tertiary-dark-3;
-			font-size: 90%;
-			padding: 1rem 1.5rem;
-			display: flex;
-			align-items: center;
-		}
+        .err-message {
+            color: $color-tertiary-dark-3;
+            font-size: 90%;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+        }
 
-		button:not(:last-child) {
-			margin-right: 2rem;
-		}
+        button:not(:last-child) {
+            margin-right: 2rem;
+        }
 
-		.btn-fill {
-			@include button-medium-fill($color-primary-dark-3);
-			color: $color-grey-light-2;
-			min-width: 11rem;
-			font-size: 90%;
-		}
+        .btn-fill {
+            @include button-medium-fill($color-primary-dark-3);
+            color: $color-grey-light-2;
+            min-width: 11rem;
+            font-size: 90%;
+        }
 
-		.btn-empty {
-			@include button-medium-empty($color-primary-dark-3);
-			font-size: 90%;
-		}
+        .btn-empty {
+            @include button-medium-empty($color-primary-dark-3);
+            font-size: 90%;
+        }
 
-		.info-icon {
-			font-size: 3.5rem;
-			color: $color-primary-dark-4;
-			cursor: pointer;
+        .info-icon {
+            font-size: 3.5rem;
+            color: $color-primary-dark-4;
+            cursor: pointer;
 
-			&:hover {
-				color: $color-primary-dark-2;
-			}
-		}
-	}
-
-	.message {
-		@include button-medium-empty($color-primary-dark-3);
-		border-radius: 30px;
-		padding: 1.7rem 2.2rem;
-		box-shadow: none;
-		transform: translateY(1px);
-	}
+            &:hover {
+                color: $color-primary-dark-2;
+            }
+        }
+    }
 }
 
 .nav-half,
 .nav-quarter {
-	font-size: 1.9rem;
+    font-size: 1.9rem;
 }
 
 .nav-quarter {
-	min-height: 5rem;
-	font-size: 1.6rem;
+    min-height: 5rem;
+    font-size: 1.6rem;
 
-	.circle {
-		font-size: 1.2rem !important;
-	}
+    .circle {
+        font-size: 1.2rem !important;
+    }
 
-	.buttons {
-		.btn-empty,
-		.btn-fill {
-			padding: .8rem 1.8rem;
-		}
+    .buttons {
+        .btn-empty,
+        .btn-fill {
+            padding: 0.8rem 1.8rem;
+        }
 
-		.err-message {
-			padding: 0;
-			padding-right: 1.5rem;
-		}
-	}
-
-	.message {
-		@include button-medium-empty($color-primary-dark-3);
-		border-radius: 30px;
-		padding: 1rem 1.9rem;
-		box-shadow: none;
-	}
+        .err-message {
+            padding: 0;
+            padding-right: 1.5rem;
+        }
+    }
 }
 
 // input[type=range]::-webkit-slider-runnable-track {
