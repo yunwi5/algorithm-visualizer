@@ -2,16 +2,32 @@
 @import '../../../styles/abstracts/mixin';
 @import '../../../styles/base/button';
 
-.controls {
+.container {
     margin-top: 7rem;
     color: $color-tertiary-dark-3;
     @include flex-center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+}
+
+$control-layout-bp: 750px;
+
+.controls {
+    @include flex-center;
+    gap: 2rem 0;
+
+    @include respond($control-layout-bp) {
+        flex-direction: column;
+    }
 }
 
 .control-wrapper {
     position: relative;
     &:not(:last-child) {
-        margin-right: 2.5rem;
+        @media only screen and (min-width: $control-layout-bp) {
+            margin-right: 2.5rem;
+        }
     }
     padding-right: 1rem;
 
@@ -19,6 +35,10 @@
         position: absolute;
         top: 105%;
         font-size: 1.6rem;
+    }
+
+    @include respond($control-layout-bp) {
+        width: 100%;
     }
 }
 
@@ -58,17 +78,24 @@
 }
 
 .action {
+    position: relative;
     button {
         @include btn-grad;
     }
     p {
-        margin-top: 1rem;
+        position: absolute;
+        top: calc(100% + 1rem);
+        left: 0;
+        white-space: nowrap;
         font-size: 1.6rem;
     }
 }
 
 .control-long {
-    width: 29rem;
+    @include respond($control-layout-bp) {
+        width: 100%;
+    }
+
     input {
         min-width: 0;
         flex: 1;
@@ -77,5 +104,9 @@
 .control-short {
     input {
         width: 11rem;
+
+        @include respond($control-layout-bp) {
+            width: 100%;
+        }
     }
 }

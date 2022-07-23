@@ -1,0 +1,66 @@
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixin';
+@import '../../styles/base/animation';
+
+.home {
+    margin-bottom: 5rem !important;
+}
+
+.main {
+    background-image: linear-gradient(to right bottom, rgba(#111, 0.7), rgba(#111, 0.2)),
+        url(../../assets/home-images/home-main.jpg);
+    background-size: cover;
+    height: Max(100vh, 50rem);
+    padding: 3rem 10%;
+    position: relative;
+
+    @include respond(900px) {
+        height: Max(100vh, 30rem);
+    }
+
+    @include respond(600px) {
+        height: Max(90vh, 30rem);
+    }
+}
+
+.content {
+    text-align: left;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    padding: 0 3.5%;
+    color: rgba($color-grey-light-1, 0.87);
+
+    h1 {
+        margin-bottom: 2.5rem;
+        font-size: 6rem;
+        font-weight: 300;
+
+        @include respond(600px) {
+            font-size: 4.5rem;
+        }
+    }
+
+    .paragraphs {
+        max-width: 70%;
+        color: rgba($color-grey-light-2, 0.8);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 1.8rem;
+
+        @include respond(600px) {
+            margin-top: 1rem;
+            padding-right: 1rem;
+            max-width: 100%;
+            gap: 1.5rem;
+        }
+    }
+}
+
+.logo {
+    transition: scale 1s ease-in-out;
+    &:hover {
+        animation: infinite-rotation 1.5s ease-in-out infinite;
+    }
+}

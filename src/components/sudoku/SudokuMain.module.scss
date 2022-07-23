@@ -1,12 +1,9 @@
-@import "../../styles/abstracts/variables";
-@import "../../styles/abstracts/mixin";
-
-.sudoku-main {
-}
+@import '../../styles/abstracts/variables';
+@import '../../styles/abstracts/mixin';
 
 .container {
-	width: 100%;
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }

@@ -23,3 +23,42 @@
         width: 102%;
     }
 }
+
+@mixin respond($breakpoint) {
+    @if ($breakpoint == phone-small) {
+        // If someone tries to print out the page, this media query will not apply.
+        @media only screen and (max-width: 25em) {
+            // 400 px
+            @content;
+        }
+    }
+    @if ($breakpoint == phone) {
+        @media only screen and (max-width: 37.5em) {
+            // 600px
+            @content;
+        }
+    }
+    @if ($breakpoint == tab-port) {
+        @media only screen and (max-width: 56.25em) {
+            // 900px
+            @content;
+        }
+    }
+    @if ($breakpoint == tab-land) {
+        @media only screen and (max-width: 75em) {
+            // 1200px
+            @content;
+        }
+    }
+    @if ($breakpoint == big-desktop) {
+        @media only screen and (min-width: 112.5em) {
+            // 1800px
+            @content;
+        }
+    } @else {
+        @media only screen and (max-width: $breakpoint) {
+            // custom value media query
+            @content;
+        }
+    }
+}

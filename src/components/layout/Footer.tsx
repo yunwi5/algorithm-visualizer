@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
                     ))}
                 </div>
                 <div className={classes.copyright}>
-                    <p>AlgoVisualizer created by YUNKEUN JO</p>
+                    <p>AlgoVisualizer created by yunwi5</p>
                     <p className={classes.ampersand}>&</p>
                     <p>Copyright &copy; 2022 JYK LLC. All rights reserved.</p>
                 </div>

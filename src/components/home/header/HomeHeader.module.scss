@@ -1,0 +1,65 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixin';
+
+$layoub-bp: 800px;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #f7f7f7;
+
+    .heading {
+        color: rgba($color-grey-light-2, 0.87);
+        font-weight: 400;
+        font-size: 3.5rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        &:hover {
+            color: rgba(#fef9c3, 0.87);
+        }
+
+        @include respond(400px) {
+            font-size: 2.8rem;
+        }
+    }
+
+    .nav {
+        display: flex;
+        gap: 2rem;
+        font-size: 2rem;
+        font-weight: 500;
+        color: rgba($color-grey-light-2, 0.91);
+
+        @include respond($layoub-bp) {
+            display: none;
+        }
+
+        a {
+            @include expand-from-middle(2px);
+        }
+        a:hover {
+            color: #fef9c3;
+        }
+    }
+
+    .vertical-nav {
+        display: none;
+
+        @include respond($layoub-bp) {
+            display: inline-block;
+        }
+    }
+
+    .icon {
+        font-size: 2.75rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            color: #fef9c3;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@import '../../../styles/abstracts/mixin';
+
+.container {
+    padding: 5rem 10%;
+    text-align: left;
+
+    h2 {
+        font-size: 3.8rem;
+        font-weight: 400;
+        margin-bottom: 4rem;
+
+        @include respond(600px) {
+            font-size: 3.5rem;
+        }
+    }
+
+    .list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+        row-gap: 5rem;
+        column-gap: 5rem;
+        justify-content: space-between;
+
+        @include respond(400px) {
+            grid-template-columns: 1fr;
+        }
+    }
+}

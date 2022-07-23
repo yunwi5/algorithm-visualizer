@@ -1,12 +1,9 @@
-import classes from './SortingIntro.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faQuoteLeft } from '@fortawesome/pro-solid-svg-icons';
 import { faAngleRight, faList } from '@fortawesome/pro-duotone-svg-icons';
-import SortingBarImage from '../../../assets/sorting-image/SortingBars.jpg';
-import SortingComparisonImage from '../../../assets/sorting-image/SortingComparison.jpg';
-import SortingNavImg from '../../../assets/sorting-image/SortingNavControl.jpg';
-import SortingSectionImg from '../../../assets/sorting-image/SortingSection.jpg';
+import { SortingImages } from '../../../constants';
+import classes from './SortingIntro.module.scss';
 
 const SortingIntro: React.FC = () => {
     return (
@@ -20,7 +17,11 @@ const SortingIntro: React.FC = () => {
                         existing in the world.
                     </span>
                 </p>
-                <img src={SortingBarImage} className={classes.img} alt="sorting bar" />
+                <img
+                    src={SortingImages.SortingBarImage}
+                    className={classes.img}
+                    alt="sorting bar"
+                />
             </div>
         </div>
     );
@@ -34,7 +35,7 @@ const SortingFunctionality: React.FC = () => {
                 <p>Controlling array size and speed</p>
                 <img
                     className={`${classes.img} ${classes['img-small']}`}
-                    src={SortingNavImg}
+                    src={SortingImages.SortingNavImg}
                     alt="Img explaining control arrray size and speed"
                 />
             </div>
@@ -42,7 +43,7 @@ const SortingFunctionality: React.FC = () => {
                 <p>Select an algorithm and randomize</p>
                 <img
                     className={classes.img}
-                    src={SortingSectionImg}
+                    src={SortingImages.SortingSectionImg}
                     alt="Img explaining algorithm selection and randomize"
                 />
             </div>
@@ -200,7 +201,7 @@ const IntroEnding: React.FC = () => {
                 Try adding more sections and compare the runtime of different algorithms!
             </p>
             <img
-                src={SortingComparisonImage}
+                src={SortingImages.SortingComparisonImage}
                 alt="sorting comparison"
                 className={classes.img}
             />

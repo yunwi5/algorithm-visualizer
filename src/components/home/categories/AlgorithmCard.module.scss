@@ -1,0 +1,96 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixin';
+
+.algorithm {
+    border-radius: 12.5px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 10px 10px rgba(#111, 0.3);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 5px 20px 20px rgba(#111, 0.4);
+        transform: scale(1.05);
+
+        @include respond(900px) {
+            transform: scale(1.02);
+        }
+    }
+
+    img {
+        height: 22rem;
+        object-fit: cover;
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap;
+
+        @include respond(400px) {
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    h3 {
+        padding: 1rem 0;
+        text-align: center;
+        font-size: 2.5rem;
+        color: $color-grey-dark-4;
+    }
+
+    .btn {
+        padding: 0.8rem 1.4rem;
+        font-size: 2rem;
+        border-radius: 100px;
+        color: #f7f7f7;
+        background-image: linear-gradient(to right, $color-primary-dark-2, $color-primary);
+        box-shadow: 2px 5px 5px rgba(#111, 0.3);
+
+        display: flex;
+        gap: 0.8rem;
+        position: relative;
+        overflow: hidden;
+
+        span {
+            z-index: 1;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: 100%;
+            transform: translateY(-50%);
+            width: 0;
+            background-image: linear-gradient(
+                to right,
+                $color-secondary-dark-2,
+                $color-secondary
+            );
+            transition: all 0.35s ease-in-out;
+        }
+
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+
+            .icon {
+                transform: scaleX(1.2);
+                transform-origin: left;
+            }
+        }
+    }
+
+    .icon {
+        transition: all 0.3s ease-out;
+    }
+}

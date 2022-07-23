@@ -6,6 +6,7 @@
 }
 
 .content-wrapper {
+    padding: 2rem 0;
     width: 86%;
     height: 100%;
     display: flex;
@@ -25,7 +26,9 @@
 
 .services {
     display: flex;
-    text-align: left;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 0;
 
     .link {
         font-weight: 400;
@@ -46,6 +49,7 @@
 
 .copyright {
     display: flex;
+    align-items: center;
     font-size: 1.5rem;
 
     p:not(:last-child) {
@@ -57,5 +61,9 @@
 
     .ampersand {
         font-size: 120%;
+    }
+
+    @include respond(670px) {
+        margin-top: 2rem;
     }
 }
