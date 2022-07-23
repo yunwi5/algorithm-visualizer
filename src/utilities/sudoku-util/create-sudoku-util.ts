@@ -24,9 +24,10 @@ function getInitialGrid() {
     return grid;
 }
 
+// This function takes less than 1 seconds. Not a cause of performance issue.
 export function getRandomGrid() {
-    const minCellsFilled = 15;
-    const maxCellsFilled = 20;
+    const minCellsFilled = 25;
+    const maxCellsFilled = 40;
     const randomCellsFilled = getRandomNumber(minCellsFilled, maxCellsFilled);
 
     // Probability that the cell is initially filled.
@@ -37,7 +38,7 @@ export function getRandomGrid() {
         for (let col = 0; col < 9; col++) {
             const isFilled = Math.random() < pFill;
             if (isFilled) {
-                const isValid = fitValidNumber(grid, row, col);
+                fitValidNumber(grid, row, col);
             }
         }
     }

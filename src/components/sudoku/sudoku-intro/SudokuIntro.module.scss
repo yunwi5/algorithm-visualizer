@@ -1,0 +1,75 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/base/button';
+@import '../../../styles/base/typography';
+
+.section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.7rem;
+    h2 {
+        font-size: 3.5rem;
+        color: $color-grey-dark-4;
+        margin-bottom: 2rem;
+        font-weight: 400;
+
+        @include heading-under-gradient($color-grey-dark-4, $color-grey-light-2);
+        @include heading-under-gradient(#5d20be, $color-primary-dark-2);
+    }
+    strong {
+        color: $color-primary-dark-2;
+    }
+}
+
+// starting page
+.sudoku-intro {
+    .icon {
+        margin-right: 0.5rem;
+    }
+    .img {
+        width: 100%;
+        max-height: 40rem;
+        object-fit: cover;
+    }
+}
+
+.sudoku-algorithm {
+    ul {
+        padding: 0 1.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        // list-style: none;
+        // list-style-type: upper-roman;
+    }
+
+    .label {
+        font-family: serif;
+    }
+}
+
+.user-mode {
+    font-size: 1.8rem;
+    gap: 1rem;
+
+    .sub-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .sub-section:nth-of-type(2n) {
+        margin-top: 1rem;
+    }
+
+    .user-message {
+        img {
+            max-width: 50%;
+        }
+    }
+
+    img {
+        max-width: 75%;
+    }
+}
