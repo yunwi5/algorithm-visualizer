@@ -8,6 +8,7 @@ import classes from './SudokuNav.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/pro-solid-svg-icons';
 import { useState } from 'react';
+import { useModalContext } from '../../../store/modal-context';
 
 interface Props {
     isBegin: boolean;
@@ -29,6 +30,7 @@ const SudokuNav: React.FC<Props> = (props) => {
         onTogglePause,
         onForceReset,
     } = props;
+    const { showModal } = useModalContext();
     const [isPause, setIsPause] = useState(false);
 
     const speedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +86,11 @@ const SudokuNav: React.FC<Props> = (props) => {
                         </button>
                     </>
                 )}
-                <FontAwesomeIcon className={classes['info-icon']} icon={faCircleInfo as any} />
+                <FontAwesomeIcon
+                    onClick={() => showModal(true)}
+                    className={classes['info-icon']}
+                    icon={faCircleInfo as any}
+                />
             </div>
         </nav>
     );

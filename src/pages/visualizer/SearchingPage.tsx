@@ -5,7 +5,7 @@ import { useModalContext } from '../../store/modal-context';
 import IntroModal from '../../components/ui/IntroModal';
 
 const SearchingPage: React.FC = () => {
-    const { searchModalVisible, showSearchModal } = useModalContext();
+    const { modalVisible, showModal } = useModalContext();
 
     return (
         <>
@@ -17,10 +17,10 @@ const SearchingPage: React.FC = () => {
                 />
             </Helmet>
             <SearchVisualizer />
-            {searchModalVisible && (
+            {modalVisible && (
                 <IntroModal
                     introJsxList={SearchIntroList}
-                    onClose={showSearchModal.bind(null, false)}
+                    onClose={showModal.bind(null, false)}
                 />
             )}
         </>

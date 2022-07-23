@@ -31,7 +31,7 @@ const SortingNav: React.FC<Props> = (props) => {
         numberOfSections,
     } = props;
 
-    const { showSortingModal } = useContext(ModalContext);
+    const { showModal: showSortingModal } = useContext(ModalContext);
     const [userErrMessage, setUserErrMessage] = useState<string | null>(null);
     const [isPause, setIsPause] = useState(false);
 

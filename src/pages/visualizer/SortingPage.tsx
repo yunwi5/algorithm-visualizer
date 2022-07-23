@@ -5,7 +5,7 @@ import { useModalContext } from '../../store/modal-context';
 import IntroModal from '../../components/ui/IntroModal';
 
 const SortingPage: React.FC = () => {
-    const { sortingModalVisible, showSortingModal } = useModalContext();
+    const { modalVisible, showModal } = useModalContext();
 
     return (
         <>
@@ -17,11 +17,8 @@ const SortingPage: React.FC = () => {
                 />
             </Helmet>
             <SortingVisualizer />
-            {sortingModalVisible && (
-                <IntroModal
-                    introJsxList={SortingIntroList}
-                    onClose={() => showSortingModal(false)}
-                />
+            {modalVisible && (
+                <IntroModal introJsxList={SortingIntroList} onClose={() => showModal(false)} />
             )}
         </>
     );

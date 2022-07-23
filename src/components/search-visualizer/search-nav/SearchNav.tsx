@@ -31,7 +31,7 @@ const SearchNav: React.FC<Props> = (props) => {
         onChangeDuo,
         onRandomize,
     } = props;
-    const { showSearchModal } = useContext(ModalContext);
+    const { showModal } = useContext(ModalContext);
     const [isPause, setIsPause] = useState(false);
 
     function speedChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -95,7 +95,7 @@ const SearchNav: React.FC<Props> = (props) => {
                     </>
                 )}
                 <FontAwesomeIcon
-                    onClick={showSearchModal.bind(null, true)}
+                    onClick={showModal.bind(null, true)}
                     className={classes['info-icon']}
                     icon={faCircleInfo as IconProp}
                 />
