@@ -56,7 +56,6 @@ const SudokuSection: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> 
             {playMode === PlayMode.MACHINE ? (
                 <SudokuSolver
                     ref={ref}
-                    isBegin={isBegin}
                     speed={speed}
                     grid={grid}
                     onComplete={onComplete}

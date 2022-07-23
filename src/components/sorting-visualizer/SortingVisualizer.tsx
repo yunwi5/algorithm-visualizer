@@ -54,6 +54,7 @@ const SortingVisualizer: React.FC = () => {
 
     function startHandler(isBegin: boolean) {
         setIsBegin(isBegin);
+        sortingRefs.forEach((sortingSection) => sortingSection.current?.start());
         setFirstCompleted(false);
         setSecondCompleted(false);
         setThirdCompleted(false);
@@ -62,15 +63,11 @@ const SortingVisualizer: React.FC = () => {
 
     // called only when the simulation already started.
     function togglePause() {
-        sortingRefs.forEach((ref) => {
-            ref.current?.togglePause();
-        });
+        sortingRefs.forEach((ref) => ref.current?.togglePause());
     }
 
     function forceReset() {
-        sortingRefs.forEach((ref) => {
-            ref.current?.reset();
-        });
+        sortingRefs.forEach((ref) => ref.current?.reset());
     }
 
     function resetStart(index: number) {

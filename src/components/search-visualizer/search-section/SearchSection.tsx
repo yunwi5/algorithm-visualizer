@@ -40,16 +40,19 @@ const SearchSection: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> 
     const pauseRef = useRef(false);
     const resetRef = useRef(false);
     useImperativeHandle(ref, () => ({
-        getPause: () => pauseRef.current,
         togglePause: () => (pauseRef.current = !pauseRef.current),
         reset: () => (resetRef.current = true),
+        start: executeAlgorithm,
     }));
+
+    function clearRefs() {
+        pauseRef.current = false;
+        resetRef.current = false;
+    }
 
     useEffect(() => {
         const newArray = createDeepArrayCopy(initialArray);
         setSearchArray(newArray);
-        const newSearchActions = getSearchActions(newArray, algorithm, target);
-        setAnimationActions(newSearchActions);
         setUserMessage(null);
     }, [algorithm, initialArray, target]);
 
@@ -57,8 +60,10 @@ const SearchSection: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> 
         clearInterval(interval);
         setAnimationActions([]);
         onFinish();
-        pauseRef.current = false;
-        resetRef.current = false;
+        if (algorithm === SearchAlgorithm.BINARY_SEARCH) {
+            console.log('False to pause and reset');
+        }
+        clearRefs();
     }
 
     function reset(interval: ReturnType<typeof setInterval>) {
@@ -66,37 +71,43 @@ const SearchSection: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> 
         setSearchArray(createDeepArrayCopy(initialArray));
     }
 
-    useEffect(() => {
-        if (isBegin) {
-            const startTIme = performance.now();
-            let index = 0;
-            let interval = setInterval(() => {
-                if (index >= animationActions.length) {
-                    stopInterval(interval);
-                    const finishTime = performance.now();
-                    setTimeTaken(finishTime - startTIme);
-                    return;
-                }
-                if (resetRef.current) {
-                    reset(interval);
-                    return console.log('RESET!');
-                }
-                if (pauseRef.current) {
-                    return console.log('PAUSE!');
-                }
-                const action = animationActions[index];
-                const newArray = executeSearchAction(searchArray, action, algorithm);
-                setSearchArray((prev) => newArray);
+    function executeAlgorithm() {
+        clearRefs();
+        const startTIme = performance.now();
+        let index = 0;
+        let interval = setInterval(() => {
+            if (index >= animationActions.length) {
+                stopInterval(interval);
+                const finishTime = performance.now();
+                setTimeTaken(finishTime - startTIme);
+                return;
+            }
+            if (resetRef.current) {
+                reset(interval);
+                return console.log('RESET!');
+            }
+            if (pauseRef.current) {
+                return console.log('PAUSE!');
+            }
+            const action = animationActions[index];
+            const newArray = executeSearchAction(searchArray, action, algorithm);
+            setSearchArray((prev) => newArray);
 
-                if (action.action === ActionState.FINAL_VALID) {
-                    setUserMessage(`Target found at index ${action.current}!`);
-                } else if (action.action === ActionState.FINAL_INVALID) {
-                    setUserMessage('Not Found!');
-                }
-                index++;
-            }, speed);
-        }
-    }, [isBegin]);
+            if (action.action === ActionState.FINAL_VALID) {
+                setUserMessage(`Target found at index ${action.current}!`);
+            } else if (action.action === ActionState.FINAL_INVALID) {
+                setUserMessage('Not Found!');
+            }
+            index++;
+        }, speed);
+    }
+
+    useEffect(() => {
+        // Do not re-create animation actions when the simulation is in progress.
+        if (isBegin) return;
+        const newSearchActions = getSearchActions(searchArray, algorithm, target);
+        setAnimationActions(newSearchActions);
+    }, [searchArray, algorithm, isBegin, target]);
 
     const sectionClass = isBegin ? classes['section-long'] : '';
 

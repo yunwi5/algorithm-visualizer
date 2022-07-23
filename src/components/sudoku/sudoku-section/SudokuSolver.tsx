@@ -8,7 +8,6 @@ import { PlayMode } from '../../../models/sudoku-model';
 import { AlgorithmSectionRef } from '../../../models/types';
 
 interface Props {
-    isBegin: boolean;
     speed: number;
     grid: number[][];
     onComplete: () => void;
@@ -19,7 +18,7 @@ const SudokuSolver: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> =
     props,
     ref,
 ) => {
-    const { grid, onComplete, isBegin, speed, onTime } = props;
+    const { grid, onComplete, speed, onTime } = props;
 
     const customGrid = useMemo(() => createCustomGrid(grid), [grid]);
     const [sudokuGrid, setSudokuGrid] = useState(customGrid);
@@ -30,7 +29,13 @@ const SudokuSolver: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> =
     useImperativeHandle(ref, () => ({
         togglePause: () => (pauseRef.current = !pauseRef.current),
         reset: () => (resetRef.current = true),
+        start: executeAlgorithm,
     }));
+
+    function clearRefs() {
+        pauseRef.current = false;
+        resetRef.current = false;
+    }
 
     useEffect(() => {
         const customGrid = createCustomGrid(grid);
@@ -47,8 +52,7 @@ const SudokuSolver: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> =
     const finishActions = (interval: ReturnType<typeof setInterval>) => {
         clearInterval(interval);
         onComplete();
-        pauseRef.current = false;
-        resetRef.current = false;
+        clearRefs();
     };
 
     const reset = (interval: ReturnType<typeof setInterval>) => {
@@ -56,32 +60,29 @@ const SudokuSolver: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> =
         setSudokuGrid(createCustomGrid(grid));
     };
 
-    useEffect(() => {
-        if (!isBegin) {
-            return;
-        } else {
-            let index = 0,
-                n = actionsArray.length;
-            const startTime = performance.now();
-            const interval = setInterval(() => {
-                if (index > n - 1) {
-                    finishActions(interval);
-                    const endTime = performance.now();
-                    return onTime(endTime - startTime);
-                }
-                if (resetRef.current) {
-                    reset(interval);
-                    return console.log('RESET!');
-                }
-                if (pauseRef.current) {
-                    return console.log('PAUSE!');
-                }
-                const newGrid = executeSudokuAction(sudokuGrid, actionsArray[index]);
-                setSudokuGrid((prevGrid) => newGrid);
-                index++;
-            }, speed);
-        }
-    }, [isBegin]);
+    function executeAlgorithm() {
+        clearRefs();
+        let index = 0,
+            n = actionsArray.length;
+        const startTime = performance.now();
+        const interval = setInterval(() => {
+            if (index > n - 1) {
+                finishActions(interval);
+                const endTime = performance.now();
+                return onTime(endTime - startTime);
+            }
+            if (resetRef.current) {
+                reset(interval);
+                return console.log('RESET!');
+            }
+            if (pauseRef.current) {
+                return console.log('PAUSE!');
+            }
+            const newGrid = executeSudokuAction(sudokuGrid, actionsArray[index]);
+            setSudokuGrid((prevGrid) => newGrid);
+            index++;
+        }, speed);
+    }
 
     return <SudokuGrid grid={sudokuGrid} playMode={PlayMode.MACHINE} />;
 };

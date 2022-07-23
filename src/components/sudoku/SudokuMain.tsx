@@ -17,6 +17,12 @@ const SudokuMain: React.FC = () => {
 
     const randomizeGrid = () => setGrid(getRandomGrid());
 
+    const startHandler = () => {
+        setIsBegin(true);
+        firstSudokuSectionRef.current?.start();
+        secondSudokuSectionRef.current?.start();
+    };
+
     // called when forcing pause of the current sudoku simulation.
     function togglePause() {
         firstSudokuSectionRef.current?.togglePause();
@@ -36,7 +42,7 @@ const SudokuMain: React.FC = () => {
                 onTogglePause={togglePause}
                 onForceReset={forceReset}
                 onChangeSpeed={(speed: number) => setSpeed(speed)}
-                onBegin={() => setIsBegin(true)}
+                onBegin={startHandler}
                 onRandomize={randomizeGrid}
                 onDuoToggle={() => setIsDuo((prev) => !prev)}
             />

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import SearchSection from './search-section/SearchSection';
 import SearchNav from './search-nav/SearchNav';
 import UserControl from './search-nav/UserControl';
-import { DEFAULT_SPEED, DEFAULT_ARR_SIZE } from '../../utilities/calc-util';
+import { DEFAULT_ARR_SIZE, DEFAULT_SPEED } from '../../utilities/calc-util';
 import { createRandomSearchArray } from '../../utilities/searching-util/search-util';
 import classes from './SearchVisualizer.module.scss';
 import { AlgorithmSectionRef } from '../../models/types';
@@ -10,7 +10,7 @@ import { AlgorithmSectionRef } from '../../models/types';
 const SearchVisualizer: React.FC = () => {
     const [speed, setSpeed] = useState(DEFAULT_SPEED);
     const [arraySize, setArraySize] = useState(DEFAULT_ARR_SIZE);
-    const [isDuo, setIsDuo] = useState(false);
+    const [isDuo, setIsDuo] = useState(true);
 
     const [target, setTarget] = useState(50);
     const [minNumber, setMinNumber] = useState(1);
@@ -33,6 +33,8 @@ const SearchVisualizer: React.FC = () => {
 
     function startHandler() {
         setIsBegin(true);
+        firstSearchSectionRef.current?.start();
+        secondSearchSectionRef.current?.start();
         setFirstCompleted(false);
         setSecondCompleted(false);
     }
@@ -55,6 +57,7 @@ const SearchVisualizer: React.FC = () => {
     function forceReset() {
         firstSearchSectionRef.current?.reset();
         secondSearchSectionRef.current?.reset();
+        setIsBegin(false);
     }
 
     useEffect(() => {
