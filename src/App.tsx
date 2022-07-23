@@ -1,10 +1,13 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/layout/Layout';
-import SortingPage from './pages/visualizer/SortingPage';
-import SearchingPage from './pages/visualizer/SearchingPage';
-import SudokuPage from './pages/visualizer/SudokuPage';
-import HomePage from './pages/HomePage';
 import './App.scss';
+import Spinner from './components/ui/Spinner';
+
+const SortingPage = lazy(() => import('./pages/visualizer/SortingPage'));
+const SearchingPage = lazy(() => import('./pages/visualizer/SearchingPage'));
+const SudokuPage = lazy(() => import('./pages/visualizer/SudokuPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
 
 function App() {
     const location = useLocation();
@@ -13,12 +16,20 @@ function App() {
     return (
         <div className={`App ${isHome ? 'home' : ''}`}>
             <Layout>
-                <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/sorting" element={<SortingPage />} />
-                    <Route path="/searching" element={<SearchingPage />} />
-                    <Route path="/sudoku" element={<SudokuPage />} />
-                </Routes>
+                <Suspense
+                    fallback={
+                        <div className="fallback">
+                            <Spinner />
+                        </div>
+                    }
+                >
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/sorting" element={<SortingPage />} />
+                        <Route path="/searching" element={<SearchingPage />} />
+                        <Route path="/sudoku" element={<SudokuPage />} />
+                    </Routes>
+                </Suspense>
             </Layout>
         </div>
     );
