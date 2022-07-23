@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SortingNav from './sorting-nav/SortingNav';
-import SortingSection, { SortingSectionRef } from './sorting-section/SortingSection';
+import SortingSection from './sorting-section/SortingSection';
 
 import SortingInfoButtons from './sorting-ui/SortingInfoButtons';
 import { SortingBar } from '../../models/sorting-models/sorting-models';
 import { createRandomSortingArray } from '../../utilities/sotring-util.ts/sorting-util';
 import { DEFAULT_ARR_SIZE, DEFAULT_SPEED } from '../../utilities/calc-util';
 import classes from './SortingVisualizer.module.scss';
+import { AlgorithmSectionRef } from '../../models/types';
 
 export const MAXIMUM_NUMBER_OF_SECTIONS = 4;
 
@@ -27,10 +28,10 @@ const SortingVisualizer: React.FC = () => {
     const [fourthCompleted, setFourthCompleted] = useState(false);
 
     // control refs
-    const firstSortingSectionRef = useRef<SortingSectionRef>(null);
-    const secondSortingSectionRef = useRef<SortingSectionRef>(null);
-    const thirdSortingSectionRef = useRef<SortingSectionRef>(null);
-    const fourthSortingSectionRef = useRef<SortingSectionRef>(null);
+    const firstSortingSectionRef = useRef<AlgorithmSectionRef>(null);
+    const secondSortingSectionRef = useRef<AlgorithmSectionRef>(null);
+    const thirdSortingSectionRef = useRef<AlgorithmSectionRef>(null);
+    const fourthSortingSectionRef = useRef<AlgorithmSectionRef>(null);
     const sortingRefs = [
         firstSortingSectionRef,
         secondSortingSectionRef,
@@ -61,14 +62,12 @@ const SortingVisualizer: React.FC = () => {
 
     // called only when the simulation already started.
     function togglePause() {
-        // sortingSectionRef.current?.togglePause();
         sortingRefs.forEach((ref) => {
             ref.current?.togglePause();
         });
     }
 
     function forceReset() {
-        // sortingSectionRef.current?.reset();
         sortingRefs.forEach((ref) => {
             ref.current?.reset();
         });
@@ -126,10 +125,9 @@ const SortingVisualizer: React.FC = () => {
                                     ref={sortingRefs[idx]}
                                     key={idx}
                                     isBegin={isBegin}
-                                    arraySize={arraySize}
                                     sortingSpeed={sortingSpeed}
                                     initialArray={initialArray}
-                                    onResetStart={resetStart.bind(null, idx)}
+                                    onFinish={resetStart.bind(null, idx)}
                                     onClose={closeSectionHandler.bind(null, idx)}
                                     numberOfSections={numSections}
                                 />

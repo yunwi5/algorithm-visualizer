@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import RangeSection from '../../graphs/graph-support/RangeSection';
 import ToggleBar from '../../ui/ToggleBar';
 
@@ -12,6 +12,8 @@ import { faCircleInfo } from '@fortawesome/pro-solid-svg-icons';
 import classes from './SearchNav.module.scss';
 
 interface Props {
+    onTogglePause(): void;
+    onForceReset(): void;
     onChangeSpeed: (speed: number) => void;
     onChangeSize: (size: number) => void;
     onChangeDuo: () => void;
@@ -20,9 +22,17 @@ interface Props {
 }
 
 const SearchNav: React.FC<Props> = (props) => {
-    const { onChangeSpeed, onChangeSize, onChangeDuo, onRandomize, isBegin } = props;
-
+    const {
+        isBegin,
+        onTogglePause,
+        onForceReset,
+        onChangeSpeed,
+        onChangeSize,
+        onChangeDuo,
+        onRandomize,
+    } = props;
     const { showSearchModal } = useContext(ModalContext);
+    const [isPause, setIsPause] = useState(false);
 
     function speedChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
         const speed = toMsSpeed(+e.target.value);
@@ -36,6 +46,11 @@ const SearchNav: React.FC<Props> = (props) => {
 
     function displayDuoHandler(e: React.ChangeEvent<HTMLInputElement>) {
         onChangeDuo();
+    }
+
+    function togglePause() {
+        onTogglePause();
+        setIsPause((ps) => !ps);
     }
 
     return (
@@ -58,16 +73,32 @@ const SearchNav: React.FC<Props> = (props) => {
                 />
             </div>
             <div className={classes.action}>
-                <button disabled={isBegin ? true : false} onClick={onRandomize}>
-                    Randomize
-                </button>
                 {!isBegin && (
-                    <FontAwesomeIcon
-                        onClick={showSearchModal.bind(null, true)}
-                        className={classes['info-icon']}
-                        icon={faCircleInfo as IconProp}
-                    />
+                    <>
+                        <button
+                            className={classes['btn-fill']}
+                            disabled={isBegin ? true : false}
+                            onClick={onRandomize}
+                        >
+                            Randomize
+                        </button>
+                    </>
                 )}
+                {isBegin && (
+                    <>
+                        <button className={classes['btn-fill']} onClick={togglePause}>
+                            {isPause ? 'Continue' : 'Pause'}
+                        </button>
+                        <button className={classes['btn-empty']} onClick={onForceReset}>
+                            Reset
+                        </button>
+                    </>
+                )}
+                <FontAwesomeIcon
+                    onClick={showSearchModal.bind(null, true)}
+                    className={classes['info-icon']}
+                    icon={faCircleInfo as IconProp}
+                />
             </div>
         </nav>
     );

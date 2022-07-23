@@ -38,11 +38,13 @@
         align-items: center;
 
         button {
-            margin-left: 9rem;
             margin-right: 1rem;
-            @include button-medium-fill($color-grey-dark-5);
             font-size: 1.9rem;
             color: $color-grey-light-1;
+        }
+
+        button:first-child {
+            margin-left: 9rem;
         }
 
         button:disabled {
@@ -50,13 +52,26 @@
             cursor: not-allowed;
         }
 
+        .btn-fill {
+            @include button-medium-fill($color-grey-dark-5);
+        }
+
+        .btn-empty {
+            @include button-medium-empty($color-grey-light-1);
+
+            &:hover {
+                background-color: $color-grey-dark-5;
+                color: #f7f7f7;
+            }
+        }
+
         .info-icon {
             font-size: 3.5rem;
-            color: $color-grey-dark-3;
+            color: $color-grey-dark-1;
             cursor: pointer;
 
             &:hover {
-                color: $color-grey-dark-1;
+                color: $color-grey-dark-4;
             }
         }
     }

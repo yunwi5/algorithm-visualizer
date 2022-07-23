@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchSection from './search-section/SearchSection';
 import SearchNav from './search-nav/SearchNav';
 import UserControl from './search-nav/UserControl';
 import { DEFAULT_SPEED, DEFAULT_ARR_SIZE } from '../../utilities/calc-util';
 import { createRandomSearchArray } from '../../utilities/searching-util/search-util';
 import classes from './SearchVisualizer.module.scss';
+import { AlgorithmSectionRef } from '../../models/types';
 
 const SearchVisualizer: React.FC = () => {
     const [speed, setSpeed] = useState(DEFAULT_SPEED);
@@ -22,6 +23,9 @@ const SearchVisualizer: React.FC = () => {
     const [firstCompleted, setFirstCompleted] = useState(false);
     const [secondCompleted, setSecondCompleted] = useState(false);
 
+    const firstSearchSectionRef = useRef<AlgorithmSectionRef>(null);
+    const secondSearchSectionRef = useRef<AlgorithmSectionRef>(null);
+
     function randomizeArray() {
         const newArray = createRandomSearchArray(arraySize, minNumber, maxNumber);
         setSearchArray(newArray);
@@ -33,12 +37,24 @@ const SearchVisualizer: React.FC = () => {
         setSecondCompleted(false);
     }
 
-    function reset(index: number) {
+    function resetStart(index: number) {
         if (index === 0) {
             setFirstCompleted(true);
         } else if (index === 1) {
             setSecondCompleted(true);
         }
+    }
+
+    // Force pausing of the animation execution of the simulation.
+    function togglePause() {
+        firstSearchSectionRef.current?.togglePause();
+        secondSearchSectionRef.current?.togglePause();
+    }
+
+    // Force reset while the search sections are simulating their algorithms.
+    function forceReset() {
+        firstSearchSectionRef.current?.reset();
+        secondSearchSectionRef.current?.reset();
     }
 
     useEffect(() => {
@@ -58,11 +74,13 @@ const SearchVisualizer: React.FC = () => {
     return (
         <main className={classes['search-visualizer']}>
             <SearchNav
+                isBegin={isBegin}
+                onTogglePause={togglePause}
+                onForceReset={forceReset}
                 onChangeSize={(newSize: number) => setArraySize(newSize)}
                 onChangeSpeed={(newSpeed: number) => setSpeed(newSpeed)}
                 onChangeDuo={() => setIsDuo((prev) => !prev)}
                 onRandomize={randomizeArray}
-                isBegin={isBegin}
             />
             <div className={classes.content}>
                 {!isBegin && (
@@ -75,23 +93,25 @@ const SearchVisualizer: React.FC = () => {
                 )}
                 <div className={classes.sections}>
                     <SearchSection
+                        ref={firstSearchSectionRef}
                         isBegin={isBegin}
                         target={target}
                         speed={speed}
                         arraySize={arraySize}
                         initialArray={searchArray}
                         maxHeight={maxNumber}
-                        onReset={() => reset(0)}
+                        onFinish={() => resetStart(0)}
                     />
                     {isDuo && (
                         <SearchSection
+                            ref={secondSearchSectionRef}
                             isBegin={isBegin}
                             target={target}
                             speed={speed}
                             arraySize={arraySize}
                             initialArray={searchArray}
                             maxHeight={maxNumber}
-                            onReset={() => reset(1)}
+                            onFinish={() => resetStart(1)}
                         />
                     )}
                 </div>

@@ -1,72 +1,89 @@
-import { useState, useMemo, useEffect } from "react";
-import SudokuGrid from "../../graphs/grid/SudokuGrid";
-import { SudokuAction } from "../../../models/sudoku-model";
-import { createCustomGrid } from "../../../utilities/sudoku-util/sudoku-util";
-import { executeSudokuAction } from "../../../utilities/sudoku-util/sudoku-action-util";
-import { getSudokuActions } from "../../../utilities/sudoku-util/sudoku-algo-util";
-import { PlayMode } from "../../../models/sudoku-model";
+import { useState, useMemo, useEffect, forwardRef, useRef, useImperativeHandle } from 'react';
+import SudokuGrid from '../../graphs/grid/SudokuGrid';
+import { SudokuAction } from '../../../models/sudoku-model';
+import { createCustomGrid } from '../../../utilities/sudoku-util/sudoku-util';
+import { executeSudokuAction } from '../../../utilities/sudoku-util/sudoku-action-util';
+import { getSudokuActions } from '../../../utilities/sudoku-util/sudoku-algo-util';
+import { PlayMode } from '../../../models/sudoku-model';
+import { AlgorithmSectionRef } from '../../../models/types';
 
 interface Props {
-	isBegin: boolean;
-	speed: number;
-	grid: number[][];
-	onComplete: () => void;
-	onTime: (time: number | null) => void;
+    isBegin: boolean;
+    speed: number;
+    grid: number[][];
+    onComplete: () => void;
+    onTime: (time: number | null) => void;
 }
 
-const SudokuSolver: React.FC<Props> = (props) => {
-	const { grid, onComplete, isBegin, speed, onTime } = props;
+const SudokuSolver: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> = (
+    props,
+    ref,
+) => {
+    const { grid, onComplete, isBegin, speed, onTime } = props;
 
-	const customGrid = useMemo(() => createCustomGrid(grid), [ grid ]);
-	const [ currentGrid, setCurrentGrid ] = useState(customGrid);
-	const [ actionsArray, setActionsArray ] = useState<SudokuAction[]>([]);
+    const customGrid = useMemo(() => createCustomGrid(grid), [grid]);
+    const [sudokuGrid, setSudokuGrid] = useState(customGrid);
+    const [actionsArray, setActionsArray] = useState<SudokuAction[]>([]);
 
-	useEffect(
-		() => {
-			const customGrid = createCustomGrid(grid);
-			// console.log("new custom grid!", customGrid);
-			setCurrentGrid(customGrid);
-			onTime(null);
+    const pauseRef = useRef(false);
+    const resetRef = useRef(false);
+    useImperativeHandle(ref, () => ({
+        togglePause: () => (pauseRef.current = !pauseRef.current),
+        reset: () => (resetRef.current = true),
+    }));
 
-			const getSudokuActionsAsync = async () => {
-				const { actions, solution } = await getSudokuActions(customGrid);
-				setActionsArray(actions);
-			};
-			getSudokuActionsAsync();
-		},
-		[ grid ]
-	);
+    useEffect(() => {
+        const customGrid = createCustomGrid(grid);
+        setSudokuGrid(customGrid);
+        onTime(null);
 
-	const finishActions = (interval: ReturnType<typeof setInterval>) => {
-		clearInterval(interval);
-		onComplete();
-	};
+        const getSudokuActionsAsync = async () => {
+            const { actions } = await getSudokuActions(customGrid);
+            setActionsArray(actions);
+        };
+        getSudokuActionsAsync();
+    }, [onTime, grid]);
 
-	useEffect(
-		() => {
-			if (!isBegin) {
-				return;
-			} else {
-				let index = 0,
-					n = actionsArray.length;
-				const startTime = performance.now();
-				const interval = setInterval(() => {
-					if (index > n - 1) {
-						finishActions(interval);
-						const endTime = performance.now();
-						onTime(endTime - startTime);
-						return;
-					}
-					const newGrid = executeSudokuAction(currentGrid, actionsArray[index]);
-					setCurrentGrid((prevGrid) => newGrid);
-					index++;
-				}, speed);
-			}
-		},
-		[ isBegin ]
-	);
+    const finishActions = (interval: ReturnType<typeof setInterval>) => {
+        clearInterval(interval);
+        onComplete();
+        pauseRef.current = false;
+        resetRef.current = false;
+    };
 
-	return <SudokuGrid grid={currentGrid} playMode={PlayMode.MACHINE} />;
+    const reset = (interval: ReturnType<typeof setInterval>) => {
+        finishActions(interval);
+        setSudokuGrid(createCustomGrid(grid));
+    };
+
+    useEffect(() => {
+        if (!isBegin) {
+            return;
+        } else {
+            let index = 0,
+                n = actionsArray.length;
+            const startTime = performance.now();
+            const interval = setInterval(() => {
+                if (index > n - 1) {
+                    finishActions(interval);
+                    const endTime = performance.now();
+                    return onTime(endTime - startTime);
+                }
+                if (resetRef.current) {
+                    reset(interval);
+                    return console.log('RESET!');
+                }
+                if (pauseRef.current) {
+                    return console.log('PAUSE!');
+                }
+                const newGrid = executeSudokuAction(sudokuGrid, actionsArray[index]);
+                setSudokuGrid((prevGrid) => newGrid);
+                index++;
+            }, speed);
+        }
+    }, [isBegin]);
+
+    return <SudokuGrid grid={sudokuGrid} playMode={PlayMode.MACHINE} />;
 };
 
-export default SudokuSolver;
+export default forwardRef(SudokuSolver);

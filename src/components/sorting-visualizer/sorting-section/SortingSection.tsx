@@ -13,36 +13,22 @@ import { createDeepArrayCopy } from '../../../utilities/list-util';
 import { getSortingActions } from '../../../utilities/sotring-util.ts/sorting-algo-util';
 import { executeSortingAction } from '../../../utilities/sotring-util.ts/sorting-action-util';
 import classes from './SortingSection.module.scss';
+import { AlgorithmSectionRef } from '../../../models/types';
 
 interface Props {
     isBegin: boolean;
-    arraySize: number;
     sortingSpeed: number;
     initialArray: SortingBar[];
     numberOfSections: number;
-    onResetStart: () => void;
+    onFinish: () => void;
     onClose: () => void;
 }
 
-export type SortingSectionRef = {
-    getPause(): void;
-    togglePause: () => void;
-    reset: () => void;
-};
-
-const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> = (
+const SortingSection: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> = (
     props,
     ref,
 ) => {
-    const {
-        arraySize,
-        sortingSpeed,
-        isBegin,
-        initialArray,
-        numberOfSections,
-        onResetStart,
-        onClose,
-    } = props;
+    const { sortingSpeed, isBegin, initialArray, numberOfSections, onFinish, onClose } = props;
     // Domain sorting algorithm
     const [algorithm, setAlgorithm] = useState(SortingAlgorithm.BubbleSort);
 
@@ -60,14 +46,13 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
     const pauseRef = useRef(false);
     const resetRef = useRef(false);
     useImperativeHandle(ref, () => ({
-        getPause: () => pauseRef.current,
         togglePause: () => (pauseRef.current = !pauseRef.current),
         reset: () => (resetRef.current = true),
     }));
 
     // Randomize Internally
     function randomizeArray() {
-        const newRandomArray = createRandomSortingArray(arraySize);
+        const newRandomArray = createRandomSortingArray(initialArray.length);
         setSortingArray(newRandomArray);
         setComparisons(0);
         setSwaps(0);
@@ -90,12 +75,12 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
         // Get new sorting animation actions
         const sortingActions = getSortingActions(newRandomArray, algorithm);
         setAnimationActions(sortingActions);
-    }, [initialArray, algorithm]); // change
+    }, [initialArray, algorithm]);
 
     const stopInterval = (interval: ReturnType<typeof setInterval>) => {
         clearInterval(interval);
         setAnimationActions([]);
-        onResetStart();
+        onFinish();
         // pause back to false, so that next turn simulation can run.
         pauseRef.current = false;
         // reset back to false, so that next turn simulation can run.
@@ -111,11 +96,7 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
     // Execute animation action one by one.
     // Begin state change Externally
     useEffect(() => {
-        if (!isBegin) {
-            // When Start turns to false
-            const sortingActions = getSortingActions(sortingArray, algorithm);
-            setAnimationActions(sortingActions);
-        } else if (isBegin) {
+        if (isBegin) {
             // When Start turns to true
             setComparisons(0);
             setSwaps(0);
@@ -132,7 +113,7 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
                     return console.log('RESET!');
                 }
                 if (pauseRef.current) {
-                    return console.log('Currently Paused!');
+                    return console.log('PAUSE!');
                 }
                 let action = animationActions[index];
                 const newArray = executeSortingAction(sortingArray, action, algorithm);
@@ -166,10 +147,14 @@ const SortingSection: React.ForwardRefRenderFunction<SortingSectionRef, Props> =
                 onRandomize={randomizeArray}
             />
 
-            <BarList arraySize={arraySize} speed={sortingSpeed} barArray={sortingArray} />
+            <BarList
+                arraySize={initialArray.length}
+                speed={sortingSpeed}
+                barArray={sortingArray}
+            />
 
             <SortingSummary
-                arraySize={arraySize}
+                arraySize={initialArray.length}
                 comparisons={comparisons}
                 swaps={swaps}
                 timeElapsed={timeElapsed}
