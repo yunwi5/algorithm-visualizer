@@ -1,36 +1,39 @@
-import { useRef, useEffect } from "react";
-import { Theme } from "../../models/gen-model";
-import classes from "./ToggleBar.module.scss";
+import { useRef, useEffect } from 'react';
+import { Theme } from '../../models/gen-model';
+import classes from './ToggleBar.module.scss';
 
 interface Props {
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	theme: Theme;
-	isBegin?: boolean;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    theme: Theme;
+    isBegin?: boolean;
+    defaultChecked?: boolean;
 }
 
-const ToggleBar: React.FC<Props> = ({ onChange, isBegin, theme }) => {
-	const inputRef = useRef<HTMLInputElement>(null);
+const ToggleBar: React.FC<Props> = ({ onChange, isBegin, theme, defaultChecked = false }) => {
+    const inputRef = useRef<HTMLInputElement>(null);
 
-	useEffect(
-		() => {
-			if (isBegin && inputRef.current) {
-				inputRef.current.disabled = true;
-			} else if (inputRef.current) {
-				inputRef.current.disabled = false;
-			}
-		},
-		[ isBegin ]
-	);
+    useEffect(() => {
+        if (isBegin && inputRef.current) {
+            inputRef.current.disabled = true;
+        } else if (inputRef.current) {
+            inputRef.current.disabled = false;
+        }
+    }, [isBegin]);
 
-	return (
-		<div className={classes.toggle}>
-			<span>Duo</span>
-			<label className={`${classes.switch} ${classes["switch-" + theme]}`}>
-				<input ref={inputRef} type="checkbox" onChange={onChange} />
-				<span className={`${classes.slider} ${classes.round}`} />
-			</label>
-		</div>
-	);
+    return (
+        <div className={classes.toggle}>
+            <span>Duo</span>
+            <label className={`${classes.switch} ${classes['switch-' + theme]}`}>
+                <input
+                    ref={inputRef}
+                    type="checkbox"
+                    onChange={onChange}
+                    defaultChecked={defaultChecked}
+                />
+                <span className={`${classes.slider} ${classes.round}`} />
+            </label>
+        </div>
+    );
 };
 
 export default ToggleBar;

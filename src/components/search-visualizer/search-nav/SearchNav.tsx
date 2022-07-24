@@ -70,6 +70,7 @@ const SearchNav: React.FC<Props> = (props) => {
                     onChange={displayDuoHandler}
                     isBegin={isBegin}
                     theme={Theme.SECONDARY}
+                    defaultChecked={true}
                 />
             </div>
             <div className={classes.action}>

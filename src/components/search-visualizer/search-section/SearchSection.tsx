@@ -21,6 +21,7 @@ interface Props {
     speed: number;
     arraySize: number;
     maxHeight: number;
+    defaultAlgorithm?: SearchAlgorithm;
     onFinish: () => void;
 }
 
@@ -28,10 +29,19 @@ const SearchSection: React.ForwardRefRenderFunction<AlgorithmSectionRef, Props> 
     props,
     ref,
 ) => {
-    const { isBegin, initialArray, target, speed, arraySize, maxHeight, onFinish } = props;
+    const {
+        isBegin,
+        defaultAlgorithm = SearchAlgorithm.BINARY_SEARCH,
+        initialArray,
+        target,
+        speed,
+        arraySize,
+        maxHeight,
+        onFinish,
+    } = props;
 
     const [searchArray, setSearchArray] = useState(createDeepArrayCopy(initialArray));
-    const [algorithm, setAlgorithm] = useState(SearchAlgorithm.BINARY_SEARCH);
+    const [algorithm, setAlgorithm] = useState(defaultAlgorithm);
     const [animationActions, setAnimationActions] = useState<SearchAction[]>([]);
 
     const [userMessage, setUserMessage] = useState<string | null>(null);

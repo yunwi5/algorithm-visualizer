@@ -6,6 +6,7 @@ import { DEFAULT_ARR_SIZE, DEFAULT_SPEED } from '../../utilities/calc-util';
 import { createRandomSearchArray } from '../../utilities/searching-util/search-util';
 import classes from './SearchVisualizer.module.scss';
 import { AlgorithmSectionRef } from '../../models/types';
+import { SearchAlgorithm } from '../../models/search-model';
 
 const SearchVisualizer: React.FC = () => {
     const [speed, setSpeed] = useState(DEFAULT_SPEED);
@@ -114,6 +115,7 @@ const SearchVisualizer: React.FC = () => {
                             arraySize={arraySize}
                             initialArray={searchArray}
                             maxHeight={maxNumber}
+                            defaultAlgorithm={SearchAlgorithm.LINEAR_SEARCH}
                             onFinish={() => resetStart(1)}
                         />
                     )}
