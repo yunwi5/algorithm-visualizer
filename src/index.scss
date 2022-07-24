@@ -1,9 +1,11 @@
-@import "styles/abstracts/mixin";
-@import "styles/abstracts/variables";
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Roboto+Slab:wght@600&display=swap');
 
-@import "styles/base/animation";
-@import "styles/base/base";
-@import "styles/base/button";
-@import "styles/base/typography";
+@import 'styles/abstracts/mixin';
+@import 'styles/abstracts/variables';
 
-@import "styles/layout/layout";
+@import 'styles/base/animation';
+@import 'styles/base/base';
+@import 'styles/base/button';
+@import 'styles/base/typography';
+
+@import 'styles/layout/layout';

@@ -1,0 +1,40 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixin';
+@import '../../../styles/base/animation';
+
+.container {
+    font-size: 2.75rem;
+    font-family: 'Roboto Slab', serif;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 2px solid #f7f7f7;
+    background-color: rgba(209, 213, 219, 0.9);
+    color: $color-grey-dark-5;
+    color: rgba(55, 65, 81, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    width: max-content;
+    border-radius: 5px;
+
+    @include respond(600px) {
+        padding: 0.75rem 0.75rem;
+        font-size: 2rem;
+
+        .icon {
+            display: none;
+        }
+    }
+
+    @include respond(500px) {
+        font-size: 1.8rem;
+    }
+
+    .icon {
+        font-size: 1.1em;
+        margin-right: 1rem;
+    }
+
+    .type-toggler {
+        animation: ToggleOpacity 0.6s ease-in-out infinite;
+    }
+}

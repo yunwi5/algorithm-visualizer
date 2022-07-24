@@ -1,0 +1,45 @@
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixin';
+@import '../../../styles/base/animation';
+
+.content {
+    text-align: left;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    padding: 0 3.5%;
+    color: rgba($color-grey-light-1, 0.87);
+
+    h1 {
+        margin-bottom: 2.5rem;
+        font-size: 6rem;
+        font-weight: 300;
+
+        @include respond(600px) {
+            font-size: 4.5rem;
+        }
+    }
+
+    .paragraphs {
+        // max-width: 70%;
+        color: rgba($color-grey-light-2, 0.8);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-size: 1.8rem;
+
+        @include respond(600px) {
+            margin-top: 1rem;
+            padding-right: 1rem;
+            max-width: 100%;
+            gap: 1.5rem;
+        }
+    }
+}
+
+.active {
+    &::after {
+        content: '|';
+        animation: ToggleOpacity 0.6s ease-in-out infinite;
+    }
+}

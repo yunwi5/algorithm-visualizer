@@ -6,3 +6,14 @@
         transform: rotate(360deg) scale(1.1);
     }
 }
+
+@keyframes ToggleOpacity {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    25%,
+    75% {
+        opacity: 1;
+    }
+}

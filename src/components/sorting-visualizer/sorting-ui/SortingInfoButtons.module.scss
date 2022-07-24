@@ -1,58 +1,60 @@
-@import "../../../styles/abstracts/variables";
-@import "../../../styles/abstracts/mixin";
-@import "../../../styles/base/button";
+@import '../../../styles/abstracts/variables';
+@import '../../../styles/abstracts/mixin';
+@import '../../../styles/base/button';
 
 .btn-wrapper {
-	display: flex;
-	justify-content: space-around;
-	min-width: 95%;
-	margin: 0 auto;
-	margin-top: 2rem;
+    margin: 0 auto;
+    margin-top: 1.25rem;
+    display: grid;
+    justify-content: center;
+    padding: 0 3%;
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+    column-gap: 3%;
+    row-gap: 2rem;
 
-	.btn {
-		display: inline-block;
-		border: none;
-		background-color: $color-primary-dark-3;
-		color: $color-grey-light-1;
-		@include button-large-fill($color-primary-dark-3);
-		padding-left: 0;
-		padding-right: 0;
-		border-radius: 30px !important;
-		width: 17rem;
-	}
+    .btn {
+        display: inline-block;
+        border: none;
+        background-color: $color-primary-dark-3;
+        color: $color-grey-light-1;
+        @include button-large-fill($color-primary-dark-3);
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 30px !important;
+    }
 
-	.btn:nth-of-type(3n) {
-		@include button-large-fill($color-primary-dark-2);
+    .btn:nth-of-type(3n) {
+        @include button-large-fill($color-primary-dark-2);
 
-		&:hover {
-			@include button-large-empty($color-primary-dark-2);
-		}
-	}
+        &:hover {
+            @include button-large-empty($color-primary-dark-2);
+        }
+    }
 
-	.btn:nth-of-type(3n + 1) {
-		@include button-large-fill($color-primary-dark-3);
+    .btn:nth-of-type(3n + 1) {
+        @include button-large-fill($color-primary-dark-3);
 
-		&:hover {
-			@include button-large-empty($color-primary-dark-3);
-		}
-	}
+        &:hover {
+            @include button-large-empty($color-primary-dark-3);
+        }
+    }
 
-	.btn:nth-of-type(3n + 2) {
-		@include button-large-fill($color-primary-dark-4);
+    .btn:nth-of-type(3n + 2) {
+        @include button-large-fill($color-primary-dark-4);
 
-		&:hover {
-			@include button-large-empty($color-primary-dark-4);
-		}
-	}
+        &:hover {
+            @include button-large-empty($color-primary-dark-4);
+        }
+    }
 }
 
 .wrapper-half {
-	.btn {
-		font-size: 2rem !important;
-	}
+    .btn {
+        font-size: 2rem !important;
+    }
 }
 .wrapper-quarter {
-	.btn {
-		font-size: 1.7rem !important;
-	}
+    .btn {
+        font-size: 1.7rem !important;
+    }
 }

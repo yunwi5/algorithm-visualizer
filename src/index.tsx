@@ -1,15 +1,14 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
-import ReactDOM from "react-dom";
-import App from "./App";
-import { ModalContextProvider } from "./store/modal-context";
-import "./index.scss";
+import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { ModalContextProvider } from './store/modal-context';
+import App from './App';
+import './index.scss';
 
 ReactDOM.render(
-	<ModalContextProvider>
-		<BrowserRouter>
-			<App />
-		</BrowserRouter>
-	</ModalContextProvider>,
-	document.getElementById("root")
+    <ModalContextProvider>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </ModalContextProvider>,
+    document.getElementById('root'),
 );
