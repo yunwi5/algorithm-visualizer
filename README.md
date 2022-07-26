@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# [AlgoVisualizer](https://algo-visualizer-yunwi5.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![homepage](https://user-images.githubusercontent.com/86972879/181115103-c1e15b08-3e45-46fd-8b35-e2c28ad16687.jpg)
 
-## Available Scripts
+URL: https://algo-visualizer-yunwi5.netlify.app/
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Sorting Visualizer - Graphically visualize sorting algorithms such as MergeSort, QuickSort, HeapSort, SelectionSort etc.
+2. Search Visualizer - Graphically visualize searching algorithms which are BinarySearch and LinearSearch.
+3. Sudoku Visualizer - Graphically visualize solving the sudoku puzzle.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br />
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. TypeScript
+2. React JS
+3. Sass
+4. Material UI
+5. FontAwesome
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br />
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Sorting Visualizer
+![sorting-page](https://user-images.githubusercontent.com/86972879/181116103-a106e928-5b51-4d3e-8316-0806cf2e3ec8.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Compare the runtime of different sorting algorithms side by side.
+* Each color represents different operations such as initial, pending, comparison, swapped etc.
+* Info icon on the top right pops up the modal that explains these algorithms & animations in detail.
+
+<br />
+
+### Search Visualizer
+![search-page](https://user-images.githubusercontent.com/86972879/181116527-7b4b43ba-984e-4455-92f1-4ffa27f3bf22.jpg)
+
+* Compare the runtime of two main search algorithms that are BinarySearch and LinearSearch.
+* Pause & Reset functionalities that allow you to stop the execution or reset the execution.
+* Info icon on the top right pops up the modal that explains these algorithms & animations in detail.
+
+<br />
+
+### Sudoku Visualizer
+![sudoku-page](https://user-images.githubusercontent.com/86972879/181116879-ebbafae9-749a-4e02-8a95-782ae98632ca.jpg)
+
+* Run the sudoku simulation that uses back-tracking algorithm to solve the sudoku puzzle by itself.
+* Try the sudoku puzzle on your own by clicking the 'Try Yourself' button.
+* Info icon on the top right pops up the modal that explains the sudoku section in detail.
+
+<br />
+
+## Getting Started
+
+For the development server,
+
+```bash
+npm start
+# or
+yarn start
+```
+
+For the production server,
+```bash
+npm run build
+# or
+yarn build
+```
+Builds the app for production to the `build` folder.
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+<br />
+
+## End
+That comes to an end of my algorithm visualizer project.
+If you liked my features, design and efforts put into this project, please give a star to my project repository on GibHub!
+
+Social Links: <br />
+LinkedId: https://www.linkedin.com/in/yunkeun-jo-984792217 <br />
+Facebook: https://www.facebook.com/profile.php?id=100041919639044
