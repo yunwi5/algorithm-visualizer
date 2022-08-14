@@ -80,5 +80,5 @@ That comes to an end of my algorithm visualizer project.
 If you liked my features, design and efforts put into this project, please give a star to my project repository on GibHub!
 
 Social Links: <br />
-LinkedId: https://www.linkedin.com/in/yunkeun-jo-984792217 <br />
+LinkedIn: https://www.linkedin.com/in/yunkeun-jo-984792217 <br />
 Facebook: https://www.facebook.com/profile.php?id=100041919639044
