@@ -2,7 +2,15 @@
 
 ![homepage](https://user-images.githubusercontent.com/86972879/181115103-c1e15b08-3e45-46fd-8b35-e2c28ad16687.jpg)
 
-URL: https://algo-visualizer-yunwi5.netlify.app/
+## Deployment
+
+<img src="https://user-images.githubusercontent.com/86972879/210071408-eb64edae-afb2-45cc-b01b-e5e101cffe05.png" width="300px" />
+Deployed on AWS S3: http://algo-visualizer.s3-website-ap-southeast-2.amazonaws.com/
+<br />
+
+Deployed on Netlify: https://algo-visualizer-yunwi5.netlify.app/
+
+Deployed the same project on both AWS S3 and Netlify for fun.
 
 <br />
 
